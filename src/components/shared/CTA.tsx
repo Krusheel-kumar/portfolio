@@ -12,7 +12,7 @@ export default function CTA() {
           Let's collaborate to bring your vision to life with premium design and scalable engineering.
         </p>
         <Link
-          href="/contact"
+          to="/start-project"
           className="inline-flex h-12 items-center justify-center rounded-full bg-primary px-8 text-sm font-medium text-primary-foreground shadow transition-transform hover:scale-105 active:scale-95"
         >
           Start a Project

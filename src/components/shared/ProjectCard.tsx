@@ -12,15 +12,13 @@ interface ProjectCardProps {
 
 export default function ProjectCard({ title, description, tags, href, imageUrl }: ProjectCardProps) {
   return (
-    <Link href={href} className="group block">
+    <Link to={href} className="group block">
       <div className="relative overflow-hidden rounded-2xl border border-border bg-card p-4 sm:p-6 transition-all duration-300 hover:border-primary/50 hover:shadow-xl hover:shadow-primary/10">
         <div className="relative aspect-video w-full overflow-hidden rounded-xl bg-muted mb-6">
           <img
             src={imageUrl}
             alt={`${title} project thumbnail`}
-            fill
-            className="object-cover transition-transform duration-500 group-hover:scale-105"
-            sizes="(max-width: 768px) 100vw, (max-width: 1200px) 50vw, 33vw"
+            className="w-full h-full object-cover transition-transform duration-500 group-hover:scale-105"
           />
         </div>
         

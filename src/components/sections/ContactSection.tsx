@@ -36,15 +36,15 @@ export default function ContactSection() {
             </div>
 
             <div className="flex gap-4">
-              <Link href="#" className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+              <a href="#" className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
                 <Briefcase size={20} />
-              </Link>
-              <Link href="#" className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
                 <Code size={20} />
-              </Link>
-              <Link href="#" className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
+              </a>
+              <a href="#" className="w-12 h-12 rounded-full border border-border/50 flex items-center justify-center text-muted-foreground hover:text-primary hover:border-primary transition-all">
                 <Camera size={20} />
-              </Link>
+              </a>
             </div>
           </motion.div>
 

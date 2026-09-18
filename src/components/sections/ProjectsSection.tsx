@@ -69,8 +69,7 @@ export default function ProjectsSection() {
                   <img 
                     src={project.image} 
                     alt={project.title} 
-                    fill 
-                    className="object-cover transition-transform duration-700 group-hover:scale-105"
+                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
                   />
                   <div className="absolute inset-0 bg-background/10 group-hover:bg-transparent transition-colors duration-500"></div>
                 </div>
@@ -106,12 +105,12 @@ export default function ProjectsSection() {
                 </div>
 
                 <div className="flex gap-4">
-                  <Link href="#" className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90">
+                  <a href="#" className="inline-flex items-center justify-center rounded-lg bg-primary px-6 py-3 text-sm font-semibold text-primary-foreground transition-all hover:bg-primary/90">
                     Live Demo <ExternalLink size={16} className="ml-2" />
-                  </Link>
-                  <Link href="#" className="inline-flex items-center justify-center rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold transition-all hover:bg-muted">
+                  </a>
+                  <a href="#" className="inline-flex items-center justify-center rounded-lg border border-border bg-card px-6 py-3 text-sm font-semibold transition-all hover:bg-muted">
                     Source Code <Code size={16} className="ml-2" />
-                  </Link>
+                  </a>
                 </div>
               </div>
             </motion.div>

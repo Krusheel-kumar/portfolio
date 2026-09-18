@@ -31,8 +31,7 @@ export default function AboutSection() {
                 <img 
                   src="/images/profileimage.jpeg" 
                   alt="Krusheel Kumar" 
-                  fill
-                  className="object-cover"
+                  className="w-full h-full object-cover"
                 />
               </motion.div>
               {/* Glass overlay text */}

@@ -20,7 +20,7 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
   
   // Refs for mobile auto-scrolling
   const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLButtonElement | null)[]>([]);
+  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
 
   useEffect(() => {
     if (!selectedIndustry || hasInteracted) {
