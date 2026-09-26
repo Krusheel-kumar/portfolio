@@ -1,10 +1,9 @@
-import { useState, useEffect, useRef } from "react";
+import { useState } from "react";
 import { motion, AnimatePresence } from "framer-motion";
 import { Industry } from "@/pages/Home";
 import { 
-  Cpu, CreditCard, Layout, BarChart, User,
-  ShoppingCart, Store, MessageSquare,
-  MousePointer2, CheckCircle2,
+  Cpu, CreditCard, Layout, BarChart, 
+  ShoppingCart, Store, CheckCircle2,
   Globe, Utensils, Settings, Bot, Gift, TrendingUp, PlayCircle
 } from "lucide-react";
 
@@ -14,177 +13,121 @@ interface SolutionProps {
 
 export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
   const [activeStep, setActiveStep] = useState(0);
-  const [hasInteracted, setHasInteracted] = useState(false);
-  const [isMobileExpanded, setIsMobileExpanded] = useState(false);
-  const autoplayRef = useRef<NodeJS.Timeout>();
-  
-  // Refs for mobile auto-scrolling
-  const scrollContainerRef = useRef<HTMLDivElement>(null);
-  const itemRefs = useRef<(HTMLDivElement | null)[]>([]);
-
-  useEffect(() => {
-    if (!selectedIndustry || hasInteracted) {
-      clearInterval(autoplayRef.current);
-      return;
-    }
-    
-    setActiveStep(0);
-    setHasInteracted(false);
-    setIsMobileExpanded(false);
-
-    autoplayRef.current = setInterval(() => {
-      setActiveStep((prev) => {
-        const systemLength = getSystem(selectedIndustry)?.nodes.length || 4;
-        return (prev + 1) % systemLength;
-      });
-    }, 4000); 
-
-    return () => clearInterval(autoplayRef.current);
-  }, [selectedIndustry, hasInteracted]);
-
-  // Auto-scroll the mobile horizontal timeline when activeStep changes
-  useEffect(() => {
-    if (window.innerWidth < 768 && itemRefs.current[activeStep] && scrollContainerRef.current) {
-      const container = scrollContainerRef.current;
-      const item = itemRefs.current[activeStep];
-      
-      // Calculate scroll position to center the active item
-      const scrollLeft = item.offsetLeft - (container.clientWidth / 2) + (item.clientWidth / 2);
-      container.scrollTo({ left: scrollLeft, behavior: 'smooth' });
-    }
-  }, [activeStep]);
-
-  const handleInteraction = (index: number) => {
-    setActiveStep(index);
-    setHasInteracted(true);
-  };
 
   const getSystem = (industry: Industry) => {
     switch (industry) {
       case "restaurant":
         return {
           title: "The Restaurant Autopilot",
-          accent: "from-orange-500/20 to-transparent",
+          accentColor: "rgba(249,115,22,0.15)", // Orange
+          activeColor: "bg-orange-500 text-white shadow-[0_0_30px_rgba(249,115,22,0.5)]",
           nodes: [
             { 
-              icon: <Globe />, 
+              icon: <Globe size={28} />, 
               label: "Digital Presence", 
-              desc: "Premium websites that build trust and attract more customers.",
-              image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=800&q=80",
-              benefits: ["📈 Increase Walk-in Customers", "⚡ Outrank Competitors on Google", "💰 Drive Direct Online Reservations", "😊 Premium First Impression"]
+              desc: "A premium, high-converting website that builds instant trust, ranks on Google, and attracts hungry customers to your door.",
+              image: "https://images.unsplash.com/photo-1517248135467-4c7edcad34c4?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Increase Walk-ins", "Outrank Competitors", "Direct Reservations", "Premium First Impression"]
             },
             { 
-              icon: <Utensils />, 
-              label: "Online Ordering", 
-              desc: "Accept online orders with secure payments and a seamless experience.",
-              image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=800&q=80",
-              benefits: ["📈 Higher Average Order Value", "⚡ Save Printing Costs", "💰 Faster Table Turnarounds", "😊 Better Ordering Experience"]
+              icon: <Utensils size={28} />, 
+              label: "Zero-Commission Ordering", 
+              desc: "Stop paying 30% to delivery apps. Accept direct online orders with secure payments and a seamless user experience.",
+              image: "https://images.unsplash.com/photo-1555396273-367ea4eb4db5?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Keep 100% of Profits", "Save Printing Costs", "Faster Table Turns", "Better Ordering UX"]
             },
             { 
-              icon: <Settings />, 
-              label: "Business Management", 
-              desc: "Manage your entire business from one smart dashboard.",
-              image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=800&q=80",
-              benefits: ["📈 Serve More Customers", "⚡ Eliminate Lost Orders", "💰 Reduce Food Waste", "😊 Faster Service Times"]
+              icon: <Settings size={28} />, 
+              label: "Central Command", 
+              desc: "Manage your entire operation—orders, inventory, staff, and tables—from one beautifully designed smart dashboard.",
+              image: "https://images.unsplash.com/photo-1583337130417-3346a1be7dee?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Serve More Customers", "Eliminate Lost Orders", "Reduce Food Waste", "Faster Service Times"]
             },
             { 
-              icon: <Bot />, 
-              label: "Customer Automation", 
-              desc: "AI chatbots and WhatsApp automation that work 24/7.",
-              image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=800&q=80",
-              benefits: ["📈 3x Higher Conversion Rate", "⚡ Zero Staff Intervention", "💰 Eliminate Delivery App Fees", "😊 Familiar Customer Chat"]
+              icon: <Bot size={28} />, 
+              label: "AI Customer Automation", 
+              desc: "Intelligent chatbots and WhatsApp automation that answer FAQs, take reservations, and recover abandoned carts 24/7.",
+              image: "https://images.unsplash.com/photo-1611746872915-64382b5c76da?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["3x Higher Conversions", "Zero Staff Needed", "Instant Replies", "Familiar WhatsApp Chat"]
             },
             { 
-              icon: <Gift />, 
-              label: "Customer Loyalty", 
-              desc: "Keep customers coming back with rewards and personalized offers.",
-              image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
-              benefits: ["📈 Higher Customer LTV", "⚡ Automated Marketing", "💰 Increased Cart Size", "😊 Highly Personalized Rewards"]
-            },
-            { 
-              icon: <TrendingUp />, 
-              label: "Business Growth", 
-              desc: "Analytics and insights to help you make smarter business decisions.",
-              image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-              benefits: ["📈 Make Data-Driven Decisions", "⚡ Instantly Spot Bottlenecks", "💰 Discover Hidden Profit", "😊 Total Peace of Mind"]
+              icon: <TrendingUp size={28} />, 
+              label: "Growth Analytics", 
+              desc: "Stop guessing. Get crystal-clear data on your best-selling items, peak hours, and hidden profit bottlenecks.",
+              image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Data-Driven Decisions", "Spot Bottlenecks", "Discover Profit", "Total Peace of Mind"]
             }
           ]
         };
       case "ecommerce":
         return {
           title: "The Conversion Engine",
-          accent: "from-blue-500/20 to-transparent",
+          accentColor: "rgba(59,130,246,0.15)", // Blue
+          activeColor: "bg-blue-500 text-white shadow-[0_0_30px_rgba(59,130,246,0.5)]",
           nodes: [
             { 
-              icon: <ShoppingCart />, 
+              icon: <ShoppingCart size={28} />, 
               label: "High-Speed Storefront", 
-              desc: "A lightning-fast React storefront designed purely to maximize conversions and reduce bounce rates.",
-              image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-              features: ["Sub-second Page Loads", "Headless Architecture", "Dynamic Search", "Frictionless UI/UX"],
-              benefits: ["📈 Lower Bounce Rates", "⚡ Higher SEO Rankings", "💰 Massive Conversion Spikes", "😊 Flawless Browsing Experience"]
+              desc: "A lightning-fast React storefront architected purely to maximize conversions and eliminate bounce rates.",
+              image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Lower Bounce Rates", "Higher SEO Rankings", "Conversion Spikes", "Flawless Browsing"]
             },
             { 
-              icon: <Cpu />, 
-              label: "AI Recommendation Engine", 
+              icon: <Cpu size={28} />, 
+              label: "AI Recommendations", 
               desc: "Machine learning algorithms that suggest the exact product the customer is most likely to buy next.",
-              image: "https://images.unsplash.com/photo-1518932945647-7a3c96922f18?auto=format&fit=crop&w=800&q=80",
-              features: ["Behavioral Tracking", "Personalized Upsells", "Dynamic Pricing Modules", "Abandoned Cart Recovery"],
-              benefits: ["📈 Higher Customer LTV", "⚡ Automated Marketing", "💰 Increased Cart Size", "😊 Highly Personalized Shopping"]
+              image: "https://images.unsplash.com/photo-1518932945647-7a3c96922f18?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Higher Customer LTV", "Automated Marketing", "Increased Cart Size", "Personalized Shopping"]
             },
             { 
-              icon: <CreditCard />, 
+              icon: <CreditCard size={28} />, 
               label: "1-Click Checkout", 
-              desc: "A frictionless checkout experience that captures payments instantly and reduces cart abandonment.",
-              image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=800&q=80",
-              features: ["Apple Pay & Google Pay", "Auto-fill Addresses", "Multi-currency Support", "Fraud Prevention AI"],
-              benefits: ["📈 Rescue Abandoned Carts", "⚡ Faster Purchase Flow", "💰 Higher Payment Success", "😊 Trust and Security"]
+              desc: "A frictionless checkout experience that captures payments instantly and dramatically rescues abandoned carts.",
+              image: "https://images.unsplash.com/photo-1556742049-0cfed4f6a45d?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Rescue Abandoned Carts", "Faster Purchase Flow", "Higher Payment Success", "Bank-Grade Security"]
             },
             { 
-              icon: <Layout />, 
+              icon: <Layout size={28} />, 
               label: "Automated Fulfillment", 
-              desc: "A centralized dashboard that syncs inventory and prints shipping labels the second an order arrives.",
-              image: "https://images.unsplash.com/photo-1586528116311-ad8ed7c1590f?auto=format&fit=crop&w=800&q=80",
-              features: ["Multi-warehouse Sync", "Automated Shipping Labels", "Live Tracking Updates", "Low Stock Alerts"],
-              benefits: ["📈 Handle Endless Volume", "⚡ Save Hours of Manual Work", "💰 Eliminate Stockouts", "😊 Perfect Delivery Expectations"]
+              desc: "A centralized dashboard that syncs your inventory and prints shipping labels the second an order arrives.",
+              image: "https://images.unsplash.com/photo-1586528116311-ad8ed7c1590f?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Handle Endless Volume", "Save Hours of Work", "Eliminate Stockouts", "Perfect Delivery"]
             }
           ]
         };
       case "business":
         return {
           title: "The Operational Scaler",
-          accent: "from-purple-500/20 to-transparent",
+          accentColor: "rgba(139,92,246,0.15)", // Violet
+          activeColor: "bg-violet-500 text-white shadow-[0_0_30px_rgba(139,92,246,0.5)]",
           nodes: [
             { 
-              icon: <Store />, 
-              label: "Lead Generation Portal", 
+              icon: <Store size={28} />, 
+              label: "Lead Generation", 
               desc: "A highly optimized landing page that acts as your 24/7 sales representative, capturing high-value B2B leads.",
-              image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=800&q=80",
-              features: ["A/B Tested Forms", "Automated Lead Scoring", "CRM Integration", "Exit Intent Popups"],
-              benefits: ["📈 5x More Qualified Leads", "⚡ Zero Cold Calling", "💰 Lower Customer Acquisition", "😊 Professional Brand Image"]
+              image: "https://images.unsplash.com/photo-1460925895917-afdab827c52f?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["5x More Qualified Leads", "Zero Cold Calling", "Lower Customer Cost", "Professional Image"]
             },
             { 
-              icon: <Cpu />, 
+              icon: <Cpu size={28} />, 
               label: "AI Support Assistant", 
               desc: "An intelligent chatbot trained on your company data that answers client questions instantly, day or night.",
-              image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=800&q=80",
-              features: ["Natural Language Processing", "Custom Knowledge Base", "Human Handoff Protocols", "Multi-language Support"],
-              benefits: ["📈 Scale Support Endlessly", "⚡ Save 40+ Hours a Week", "💰 Reduce Support Overhead", "😊 Instant Client Answers"]
+              image: "https://images.unsplash.com/photo-1531746020798-e6953c6e8e04?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Scale Support Endlessly", "Save 40+ Hours/Week", "Reduce Support Overhead", "Instant Answers"]
             },
             { 
-              icon: <CreditCard />, 
+              icon: <CreditCard size={28} />, 
               label: "Automated Invoicing", 
               desc: "Seamless digital contract signing and automated recurring billing infrastructure.",
-              image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=800&q=80",
-              features: ["Auto-generated Invoices", "Stripe Subscription Sync", "Digital Signatures", "Late Payment Reminders"],
-              benefits: ["📈 Predictable Cash Flow", "⚡ End Manual Accounting", "💰 Get Paid 3x Faster", "😊 Frictionless Onboarding"]
+              image: "https://images.unsplash.com/photo-1554224155-8d04cb21cd6c?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Predictable Cash Flow", "End Manual Accounting", "Get Paid 3x Faster", "Frictionless Onboarding"]
             },
             { 
-              icon: <BarChart />, 
+              icon: <BarChart size={28} />, 
               label: "Growth Analytics", 
               desc: "A centralized command center giving you real-time visibility into your entire business operations.",
-              image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=800&q=80",
-              features: ["Real-time KPI Tracking", "Custom Report Generation", "Profit Margin Analysis", "Goal Forecasting"],
-              benefits: ["📈 Make Data-Driven Decisions", "⚡ Instantly Spot Bottlenecks", "💰 Discover Hidden Profit", "😊 Total Peace of Mind"]
+              image: "https://images.unsplash.com/photo-1551288049-bebda4e38f71?auto=format&fit=crop&w=1200&q=80",
+              benefits: ["Make Data-Driven Decisions", "Instantly Spot Bottlenecks", "Discover Hidden Profit", "Total Peace of Mind"]
             }
           ]
         };
@@ -195,9 +138,8 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
 
   if (!selectedIndustry) {
     return (
-      <section className="py-32 flex flex-col items-center justify-center text-center opacity-50">
-        <div className="w-16 h-16 rounded-full border-2 border-white/20 border-t-white animate-spin mb-4" />
-        <p className="text-white/50 text-lg">Select an industry above to reveal your customized growth system.</p>
+      <section className="py-24 flex flex-col items-center justify-center text-center opacity-50 bg-[#030712]">
+        <div className="w-12 h-12 rounded-full border-2 border-white/20 border-t-white animate-spin mb-4" />
       </section>
     );
   }
@@ -205,202 +147,166 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
   const system = getSystem(selectedIndustry);
 
   return (
-    <section className="py-24 md:py-32 relative overflow-hidden bg-white text-black transition-colors duration-1000 rounded-t-[3rem]">
+    <section className="relative bg-[#030712] font-sans text-white border-t border-white/5 pb-24 md:pb-40">
       
-      {/* Dynamic Background Glow */}
-      <AnimatePresence mode="wait">
-        <motion.div
-          key={selectedIndustry}
-          initial={{ opacity: 0 }}
-          animate={{ opacity: 1 }}
-          exit={{ opacity: 0 }}
-          className={`absolute top-0 left-0 right-0 h-[500px] bg-gradient-to-b ${system?.accent} pointer-events-none`}
-        />
-      </AnimatePresence>
+      {/* Background Orbs (Hidden overflow handled by absolute wrapper) */}
+      <div className="absolute inset-0 overflow-hidden pointer-events-none z-0">
+        <AnimatePresence mode="wait">
+          <motion.div
+            key={selectedIndustry}
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            exit={{ opacity: 0 }}
+            transition={{ duration: 1 }}
+            className="absolute top-[20%] right-0 w-[600px] lg:w-[800px] h-[600px] lg:h-[800px] rounded-full"
+            style={{
+              background: `radial-gradient(circle, ${system?.accentColor} 0%, transparent 60%)`,
+              filter: "blur(80px)"
+            }}
+          />
+        </AnimatePresence>
+        <div className="absolute inset-0 dot-grid opacity-[0.15]" />
+      </div>
 
-      <div className="container mx-auto px-4 max-w-7xl relative z-10">
-        <div className="text-center mb-16 md:mb-24">
-          <h2 className="text-sm font-bold tracking-widest uppercase mb-4 text-black/50">Your Custom Ecosystem</h2>
-          <AnimatePresence mode="wait">
-            <motion.h3 
-              key={system?.title}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              className="text-4xl md:text-6xl font-extrabold tracking-tight"
-            >
-              {system?.title}
-            </motion.h3>
-          </AnimatePresence>
+      <div className="container mx-auto px-5 md:px-10 max-w-7xl relative z-10">
+        
+        {/* Intro Header */}
+        <div className="pt-20 md:pt-32 pb-10 flex flex-col md:flex-row md:items-end justify-between gap-8">
+          <div className="max-w-2xl">
+            <h2 className="text-[10px] md:text-xs font-bold tracking-[0.2em] uppercase text-white/40 mb-3 md:mb-5">
+              Scroll to explore
+            </h2>
+            <AnimatePresence mode="wait">
+              <motion.h3 
+                key={system?.title}
+                initial={{ opacity: 0, y: 16 }}
+                animate={{ opacity: 1, y: 0 }}
+                exit={{ opacity: 0, y: -16 }}
+                className="text-4xl md:text-6xl lg:text-7xl font-extrabold tracking-tighter text-white leading-[1.05]"
+              >
+                {system?.title}
+              </motion.h3>
+            </AnimatePresence>
+          </div>
 
           <AnimatePresence mode="wait">
             <motion.div
               key={`${system?.title}-cta`}
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              exit={{ opacity: 0, y: -20 }}
-              transition={{ delay: 0.1 }}
-              className="mt-6 flex flex-col md:flex-row items-center justify-center gap-4"
+              initial={{ opacity: 0, x: 20 }}
+              animate={{ opacity: 1, x: 0 }}
+              exit={{ opacity: 0, x: -20 }}
+              className="flex flex-col sm:flex-row items-center gap-4 shrink-0"
             >
-              <div className="bg-green-500/10 text-green-700 border border-green-500/20 px-4 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider shadow-sm">
-                Complete Ecosystem Starts @ ₹19,999
+              <div className="bg-white/5 text-white border border-white/10 px-5 py-3 rounded-full text-xs font-bold uppercase tracking-wider flex items-center gap-2 backdrop-blur-sm">
+                <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                Starts @ ₹19,999
               </div>
-              <button className="flex items-center gap-2 bg-black text-white px-5 py-2 rounded-full text-xs md:text-sm font-bold uppercase tracking-wider shadow-md hover:bg-black/80 transition-colors cursor-pointer hover:scale-105 active:scale-95">
-                <PlayCircle size={16} /> Watch Live Demo
+              <button className="flex items-center gap-2 bg-white text-black px-7 py-3 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-gray-200 transition-all shadow-lg hover:scale-105 active:scale-95">
+                <PlayCircle size={18} /> Watch Demo
               </button>
             </motion.div>
           </AnimatePresence>
         </div>
 
-        <div className="flex flex-col lg:flex-row gap-12 lg:gap-16 items-start relative max-w-7xl mx-auto">
+        {/* Sticky Scroll Architecture */}
+        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 relative mt-10">
           
-          {/* ==================================================== */}
-          {/* TIMELINE GRID (Desktop & Mobile)                     */}
-          {/* ==================================================== */}
-          <div className="w-full lg:w-1/2 relative order-2 lg:order-1 pt-4 pb-8">
-            
-            {/* The SVG Snaking Circuit Line */}
-            <div className="absolute inset-0 z-0 pointer-events-none pt-[2.25rem] pb-[3.5rem] px-[20%] md:pt-[1.75rem] md:pb-[4rem] md:px-[25%]">
-              <svg width="100%" height="100%" viewBox="0 0 100 100" preserveAspectRatio="none" className="overflow-visible">
-                {/* Background static track */}
-                <path 
-                  d="M 0 0 L 100 0 C 150 0, 150 50, 100 50 L 0 50 C -50 50, -50 100, 0 100 L 100 100" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="2" 
-                  vectorEffect="non-scaling-stroke"
-                  className="text-black/5"
-                />
-                
-                {/* Animated glowing neon wire */}
-                <motion.path 
-                  d="M 0 0 L 100 0 C 150 0, 150 50, 100 50 L 0 50 C -50 50, -50 100, 0 100 L 100 100" 
-                  fill="none" 
-                  stroke="currentColor" 
-                  strokeWidth="3" 
-                  vectorEffect="non-scaling-stroke"
-                  className={`drop-shadow-[0_0_10px_currentColor] ${
-                    selectedIndustry === 'restaurant' ? 'text-orange-500' : 
-                    selectedIndustry === 'ecommerce' ? 'text-blue-500' : 
-                    'text-purple-500'
-                  }`}
-                  initial={{ pathLength: 0 }}
-                  animate={{ pathLength: activeStep === 0 ? 0.05 : activeStep / 5 }}
-                  transition={{ duration: 0.8, ease: "easeInOut" }}
-                />
-              </svg>
+          {/* Mobile Sticky Visual (Shows on top on small screens, hidden on desktop) */}
+          <div className="lg:hidden sticky top-[90px] z-40 w-full h-[35vh] rounded-[1.5rem] bg-[#0a0a0a] shadow-[0_20px_50px_rgba(0,0,0,0.9)] border border-white/10 flex flex-col overflow-hidden">
+            <div className="h-8 bg-white/[0.03] border-b border-white/5 flex items-center px-4 gap-1.5 shrink-0 backdrop-blur-md">
+              <div className="w-2 h-2 rounded-full bg-white/20" />
+              <div className="w-2 h-2 rounded-full bg-white/20" />
+              <div className="w-2 h-2 rounded-full bg-white/20" />
             </div>
-
-            <AnimatePresence mode="wait">
-              <motion.div
-                key={selectedIndustry}
-                initial={{ opacity: 0, x: -20 }}
-                animate={{ opacity: 1, x: 0 }}
-                exit={{ opacity: 0, x: 20 }}
-                className="grid grid-cols-2 gap-x-4 gap-y-6 md:gap-x-8 md:gap-y-8 relative z-10"
-              >
-                {system?.nodes.map((node, i) => {
-                  const isHiddenOnMobile = !isMobileExpanded && i >= 4;
-                  return (
-                    <div 
-                      key={i}
-                      ref={(el) => (itemRefs.current[i] = el)}
-                      onClick={() => handleInteraction(i)}
-                      className={`relative flex-col items-center text-center cursor-pointer group ${isHiddenOnMobile ? 'hidden md:flex' : 'flex'}`}
-                    >
-                      {/* The Icon */}
-                      <div className={`relative z-20 flex-shrink-0 w-12 h-12 md:w-12 md:h-12 rounded-full flex items-center justify-center transition-all duration-300 border mb-2 ${
-                        activeStep === i 
-                          ? 'bg-black border-black text-white shadow-xl scale-110' 
-                          : 'bg-white border-black/10 text-black/30 group-hover:border-black/30 group-hover:text-black/60'
-                      }`}>
-                        {node.icon}
-                      </div>
-                      
-                      {/* The Text */}
-                      <div className={`transition-opacity duration-300 px-1 flex flex-col items-center ${activeStep === i ? 'opacity-100' : 'opacity-40 group-hover:opacity-80'}`}>
-                        <h4 className="text-xs md:text-sm font-bold leading-tight mb-1">{node.label}</h4>
-                        <p className="text-[10px] md:text-xs text-black/60 leading-snug">{node.desc}</p>
-                        
-                        {!hasInteracted && i === 0 && (
-                          <motion.span 
-                            initial={{ opacity: 0, y: -10 }}
-                            animate={{ opacity: 1, y: 0 }}
-                            className="absolute -top-10 left-1/2 -translate-x-1/2 flex items-center gap-1 text-[10px] bg-black/5 text-black/60 px-2 py-1 rounded-full animate-pulse whitespace-nowrap"
-                          >
-                            <MousePointer2 size={10} /> Click to explore
-                          </motion.span>
-                        )}
-                      </div>
-                    </div>
-                  );
-                })}
-              </motion.div>
-            </AnimatePresence>
-
-            {/* Mobile "Explore More" Button */}
-            {system && system.nodes.length > 4 && (
-              <div className="w-full flex justify-center mt-8 md:hidden relative z-20">
-                <button 
-                  onClick={() => setIsMobileExpanded(!isMobileExpanded)}
-                  className="bg-black/5 hover:bg-black/10 text-black px-6 py-2 rounded-full text-xs font-bold uppercase tracking-wider transition-colors"
-                >
-                  {isMobileExpanded ? "Show Less" : "Explore Full System"}
-                </button>
-              </div>
-            )}
+            <div className="flex-1 relative">
+              <AnimatePresence mode="wait">
+                <motion.img 
+                  key={activeStep}
+                  src={system?.nodes[activeStep].image} 
+                  initial={{ opacity: 0 }}
+                  animate={{ opacity: 1 }}
+                  exit={{ opacity: 0 }}
+                  transition={{ duration: 0.5 }}
+                  className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
+                />
+              </AnimatePresence>
+              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
+            </div>
           </div>
 
-          {/* ==================================================== */}
-          {/* THE PRODUCT SHOWCASE CARD                            */}
-          {/* ==================================================== */}
-          <div className="w-full lg:w-1/2 order-2 lg:sticky lg:top-8 z-20">
-            <AnimatePresence mode="wait">
+          {/* Left Column: Scrolling Content */}
+          <div className="w-full lg:w-1/2 flex flex-col z-20">
+            {system?.nodes.map((node, i) => (
               <motion.div
-                key={`${selectedIndustry}-${activeStep}`}
-                initial={{ opacity: 0, y: 20, filter: "blur(10px)" }}
-                animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-                exit={{ opacity: 0, y: -20, filter: "blur(10px)" }}
-                transition={{ duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                className="w-full bg-white rounded-2xl shadow-2xl border border-black/5 flex flex-col overflow-hidden"
+                key={i}
+                onViewportEnter={() => setActiveStep(i)}
+                viewport={{ margin: "-45% 0px -45% 0px" }}
+                className={`py-12 lg:min-h-[80vh] flex flex-col justify-center transition-all duration-700 ${
+                  activeStep === i ? 'opacity-100 scale-100' : 'opacity-20 scale-95'
+                }`}
               >
-                {/* Mockup Image */}
-                <div className="w-full h-[180px] md:h-[200px] bg-black/5 relative overflow-hidden group">
-                  <img 
-                    src={system?.nodes[activeStep].image} 
-                    alt={system?.nodes[activeStep].label} 
-                    className="w-full h-full object-cover transition-transform duration-700 group-hover:scale-105"
-                  />
-                  <div className="absolute inset-x-0 bottom-0 h-12 bg-gradient-to-t from-white to-transparent pointer-events-none" />
+                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-all duration-700 shadow-xl ${
+                  activeStep === i ? system.activeColor : 'bg-white/5 text-white/40'
+                }`}>
+                  {node.icon}
                 </div>
+                
+                <h4 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight">
+                  {node.label}
+                </h4>
+                <p className="text-base md:text-lg lg:text-xl text-white/60 mb-8 max-w-lg leading-relaxed">
+                  {node.desc}
+                </p>
 
-                {/* Content */}
-                <div className="p-5 md:p-6 flex flex-col gap-4 bg-white relative z-10">
-                  
-                  <div className="flex justify-between items-start gap-4">
-                    <div>
-                      <h4 className="text-xl font-extrabold mb-1 tracking-tight">{system?.nodes[activeStep].label}</h4>
-                      <p className="text-black/60 text-sm leading-relaxed">{system?.nodes[activeStep].desc}</p>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                  {node.benefits.map((benefit, idx) => (
+                    <div key={idx} className="flex items-center gap-3">
+                      <CheckCircle2 size={20} className="text-green-400 shrink-0" />
+                      <span className="text-sm md:text-base font-semibold text-white/80">
+                        {benefit}
+                      </span>
                     </div>
-                  </div>
-
-                  <div className="w-full h-[1px] bg-black/5 my-1" />
-
-                  <div>
-                    <h5 className="font-bold text-[10px] tracking-widest uppercase text-black/40 mb-3">Business Benefits</h5>
-                    <div className="grid grid-cols-2 gap-x-4 gap-y-3">
-                      {system?.nodes[activeStep].benefits.map((benefit, idx) => (
-                        <div key={idx} className="flex items-start gap-2 text-xs md:text-sm">
-                          <span className="leading-none shrink-0 text-base">{benefit.split(" ")[0]}</span>
-                          <span className="font-medium text-black/80 leading-tight">{benefit.substring(benefit.indexOf(" ") + 1)}</span>
-                        </div>
-                      ))}
-                    </div>
-                  </div>
-
+                  ))}
                 </div>
               </motion.div>
-            </AnimatePresence>
+            ))}
+            
+            {/* Spacer for last item to scroll fully up on desktop */}
+            <div className="hidden lg:block h-[40vh]" />
+          </div>
+
+          {/* Right Column: Desktop Sticky Visual */}
+          <div className="hidden lg:block lg:w-1/2 relative z-30">
+            <div className="sticky top-[140px] w-full h-[calc(100vh-200px)] max-h-[800px] bg-[#0a0a0a] rounded-[2.5rem] shadow-[0_30px_100px_rgba(0,0,0,0.8)] border border-white/10 flex flex-col overflow-hidden">
+              {/* Outer Glow */}
+              <div className="absolute -inset-1 bg-gradient-to-br from-white/10 to-transparent opacity-20 blur-xl -z-10" />
+
+              {/* macOS style Window Header */}
+              <div className="h-12 bg-white/[0.02] border-b border-white/5 flex items-center px-6 gap-2 shrink-0 backdrop-blur-xl">
+                <div className="w-3 h-3 rounded-full bg-white/20" />
+                <div className="w-3 h-3 rounded-full bg-white/20" />
+                <div className="w-3 h-3 rounded-full bg-white/20" />
+              </div>
+
+              {/* Dynamic Image Canvas */}
+              <div className="flex-1 relative bg-black overflow-hidden">
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={activeStep}
+                    src={system?.nodes[activeStep].image} 
+                    initial={{ opacity: 0, scale: 1.05, filter: "blur(10px)" }}
+                    animate={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
+                    exit={{ opacity: 0, scale: 0.95, filter: "blur(10px)" }}
+                    transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                    className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-80"
+                  />
+                </AnimatePresence>
+                
+                {/* Cinematic Overlays */}
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-90" />
+                <div className="absolute inset-0 bg-gradient-to-l from-transparent to-[#0a0a0a]/30" />
+              </div>
+            </div>
           </div>
 
         </div>

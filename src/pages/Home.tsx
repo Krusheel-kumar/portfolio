@@ -1,8 +1,11 @@
 import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
+import Footer from "@/components/layout/Footer";
+import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
 
-// Business Components
+// Sections
 import HeroSection from "@/components/sections/HeroSection";
+import TrustStrip from "@/components/sections/TrustStrip";
 import IndustrySelector from "@/components/sections/IndustrySelector";
 import SolutionEcosystem from "@/components/sections/SolutionEcosystem";
 import ProductShowcase from "@/components/sections/ProductShowcase";
@@ -12,63 +15,59 @@ import PricingSection from "@/components/sections/PricingSection";
 import FAQSection from "@/components/sections/FAQSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 
-// Engineering Components
-import EngineeringHero from "@/components/sections/EngineeringHero";
-import EngineeringSkills from "@/components/sections/EngineeringSkills";
-import EngineeringProjects from "@/components/sections/EngineeringProjects";
-import EngineeringContact from "@/components/sections/EngineeringContact";
-
 export type Industry = "restaurant" | "ecommerce" | "business" | null;
-export type Persona = "business" | "engineering";
 
 export default function Home() {
   const [selectedIndustry, setSelectedIndustry] = useState<Industry>("restaurant");
-  const [persona, setPersona] = useState<Persona>("business");
 
   return (
-    <div className={`flex flex-col min-h-screen transition-colors duration-1000 ${persona === 'engineering' ? 'bg-[#030712] font-mono' : 'bg-[#030712]'}`}>
-      
-      <Navbar persona={persona} setPersona={setPersona} />
-      
-      {persona === "business" ? (
-        // ==========================================
-        // PERSONA: BUSINESS OWNER
-        // ==========================================
-        <main>
-          <HeroSection 
-            selectedIndustry={selectedIndustry} 
-            onIndustrySelect={setSelectedIndustry}
-            setPersona={setPersona}
-          />
-          
-          <IndustrySelector 
-            selectedIndustry={selectedIndustry} 
+    <div className="flex flex-col min-h-screen bg-[#030712]">
+      <Navbar />
+
+      <main>
+        <HeroSection />
+        <TrustStrip />
+
+        {/* Industry Selector + Ecosystem */}
+        <div id="solutions">
+          <IndustrySelector
+            selectedIndustry={selectedIndustry}
             onSelect={(ind: Industry) => {
               setSelectedIndustry(ind);
-              window.scrollBy({ top: 400, behavior: "smooth" });
-            }} 
+              setTimeout(() => {
+                const element = document.getElementById("ecosystem");
+                if (element) {
+                   const y = element.getBoundingClientRect().top + window.scrollY - 90; // offset for navbar
+                   window.scrollTo({ top: y, behavior: 'smooth' });
+                }
+              }, 150);
+            }}
           />
-          
-          <SolutionEcosystem selectedIndustry={selectedIndustry} />
-          <ProductShowcase />
-          <WhyUsSection />
-          <ProcessSection />
-          <PricingSection />
-          <FAQSection />
-          <FinalCTASection />
-        </main>
-      ) : (
-        // ==========================================
-        // PERSONA: ENGINEERING / RECRUITER
-        // ==========================================
-        <main>
-          <EngineeringHero />
-          <EngineeringSkills />
-          <EngineeringProjects />
-          <EngineeringContact />
-        </main>
-      )}
+          <div id="ecosystem">
+            <SolutionEcosystem selectedIndustry={selectedIndustry} />
+          </div>
+        </div>
 
+        <div id="work">
+          <ProductShowcase />
+        </div>
+
+        <WhyUsSection />
+
+        <div id="process">
+          <ProcessSection />
+        </div>
+
+        <div id="pricing">
+          <PricingSection />
+        </div>
+
+        <FAQSection />
+        <FinalCTASection />
+      </main>
+
+      <Footer />
+      <FloatingWhatsApp />
     </div>
   );
 }
