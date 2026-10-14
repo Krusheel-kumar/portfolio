@@ -61,6 +61,8 @@
     font-family: 'Plus Jakarta Sans', system-ui, -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif !important;
     background-color: #FAFAFA !important;
     color: #0F172A !important;
+    overflow-x: hidden;
+    max-width: 100vw;
     @apply scroll-smooth;
   }
 }

@@ -38,19 +38,19 @@ function Interactive3DStage() {
           rotateY: rotate.y,
         }}
         transition={{ type: "spring", stiffness: 120, damping: 18 }}
-        className="relative transform-3d rounded-3xl bg-white/95 border border-slate-200 shadow-[0_35px_80px_rgba(15,23,42,0.14)] p-6 sm:p-9 backdrop-blur-xl transition-shadow"
+        className="relative transform-3d rounded-3xl bg-white/95 border border-slate-200 shadow-[0_35px_80px_rgba(15,23,42,0.14)] p-4 sm:p-9 backdrop-blur-xl transition-shadow"
       >
         {/* Top Control Bar */}
-        <div className="flex items-center justify-between pb-5 border-b border-slate-100 mb-8">
-          <div className="flex items-center gap-2.5">
-            <div className="w-3.5 h-3.5 rounded-full bg-rose-400" />
-            <div className="w-3.5 h-3.5 rounded-full bg-amber-400" />
-            <div className="w-3.5 h-3.5 rounded-full bg-emerald-400" />
-            <span className="ml-3 text-sm font-semibold text-slate-500 tracking-wide">krunnex.system/live-dashboard</span>
+        <div className="flex items-center justify-between pb-4 sm:pb-5 border-b border-slate-100 mb-6 sm:mb-8">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-rose-400" />
+            <div className="w-3 h-3 rounded-full bg-amber-400" />
+            <div className="w-3 h-3 rounded-full bg-emerald-400" />
+            <span className="ml-2 sm:ml-3 text-xs sm:text-sm font-semibold text-slate-500 tracking-wide truncate max-w-[130px] sm:max-w-none">krunnex.system/live-dashboard</span>
           </div>
-          <div className="flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-emerald-50 border border-emerald-200">
-            <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
-            <span className="text-xs font-bold text-emerald-700">Autopilot Active</span>
+          <div className="flex items-center gap-1.5 sm:gap-2 px-3 py-1 sm:px-3.5 sm:py-1.5 rounded-full bg-emerald-50 border border-emerald-200 shrink-0">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[11px] sm:text-xs font-bold text-emerald-700">Autopilot Active</span>
           </div>
         </div>
 
