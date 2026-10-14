@@ -209,28 +209,60 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
         </div>
 
         {/* Sticky Scroll Architecture */}
-        <div className="flex flex-col lg:flex-row gap-10 lg:gap-20 relative mt-10">
+        <div className="flex flex-col lg:flex-row gap-8 lg:gap-20 relative mt-6 md:mt-10">
           
-          {/* Mobile Sticky Visual (Shows on top on small screens, hidden on desktop) */}
-          <div className="lg:hidden sticky top-[90px] z-40 w-full h-[35vh] rounded-[1.5rem] bg-[#0a0a0a] shadow-[0_20px_50px_rgba(0,0,0,0.9)] border border-white/10 flex flex-col overflow-hidden">
-            <div className="h-8 bg-white/[0.03] border-b border-white/5 flex items-center px-4 gap-1.5 shrink-0 backdrop-blur-md">
-              <div className="w-2 h-2 rounded-full bg-white/20" />
-              <div className="w-2 h-2 rounded-full bg-white/20" />
-              <div className="w-2 h-2 rounded-full bg-white/20" />
+          {/* Mobile Interactive Experience: Floating Tabs + Visual */}
+          <div className="lg:hidden flex flex-col gap-4">
+            {/* Horizontal Feature Pills for Quick Tap */}
+            <div className="flex gap-2 overflow-x-auto pb-2 -mx-5 px-5 hide-scrollbar">
+              {system?.nodes.map((node, i) => (
+                <button
+                  key={i}
+                  onClick={() => setActiveStep(i)}
+                  className={`flex items-center gap-2 px-3.5 py-2 rounded-xl text-xs font-bold whitespace-nowrap transition-all border ${
+                    activeStep === i
+                      ? `${system.activeColor} border-white/20`
+                      : "bg-white/[0.04] text-white/50 border-white/8 hover:text-white"
+                  }`}
+                >
+                  <span className="scale-75">{node.icon}</span>
+                  {node.label}
+                </button>
+              ))}
             </div>
-            <div className="flex-1 relative">
-              <AnimatePresence mode="wait">
-                <motion.img 
-                  key={activeStep}
-                  src={system?.nodes[activeStep].image} 
-                  initial={{ opacity: 0 }}
-                  animate={{ opacity: 1 }}
-                  exit={{ opacity: 0 }}
-                  transition={{ duration: 0.5 }}
-                  className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
-                />
-              </AnimatePresence>
-              <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
+
+            {/* Mobile Visual Showcase (Non-intrusive, inline rounded window) */}
+            <div className="w-full h-[220px] sm:h-[260px] rounded-2xl bg-[#0a0a0a] shadow-[0_20px_50px_rgba(0,0,0,0.8)] border border-white/10 flex flex-col overflow-hidden relative">
+              <div className="h-8 bg-white/[0.03] border-b border-white/5 flex items-center justify-between px-3 shrink-0 backdrop-blur-md">
+                <div className="flex items-center gap-1.5">
+                  <div className="w-2 h-2 rounded-full bg-white/20" />
+                  <div className="w-2 h-2 rounded-full bg-white/20" />
+                  <div className="w-2 h-2 rounded-full bg-white/20" />
+                </div>
+                <span className="text-[10px] font-bold tracking-widest text-white/40 uppercase">
+                  {system?.nodes[activeStep].label}
+                </span>
+              </div>
+              <div className="flex-1 relative">
+                <AnimatePresence mode="wait">
+                  <motion.img 
+                    key={activeStep}
+                    src={system?.nodes[activeStep].image} 
+                    initial={{ opacity: 0, scale: 1.05 }}
+                    animate={{ opacity: 1, scale: 1 }}
+                    exit={{ opacity: 0, scale: 0.95 }}
+                    transition={{ duration: 0.4 }}
+                    className="absolute inset-0 w-full h-full object-cover mix-blend-screen opacity-90"
+                  />
+                </AnimatePresence>
+                <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-transparent to-transparent opacity-80" />
+                
+                {/* Floating Micro Live Tag */}
+                <div className="absolute bottom-3 left-3 flex items-center gap-2 px-2.5 py-1 rounded-lg bg-black/60 border border-white/10 backdrop-blur-md">
+                  <span className="w-1.5 h-1.5 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-[10px] font-bold text-white/80">Active System</span>
+                </div>
+              </div>
             </div>
           </div>
 
@@ -240,29 +272,29 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
               <motion.div
                 key={i}
                 onViewportEnter={() => setActiveStep(i)}
-                viewport={{ margin: "-45% 0px -45% 0px" }}
-                className={`py-12 lg:min-h-[80vh] flex flex-col justify-center transition-all duration-700 ${
-                  activeStep === i ? 'opacity-100 scale-100' : 'opacity-20 scale-95'
+                viewport={{ margin: "-30% 0px -30% 0px" }}
+                className={`py-8 md:py-12 lg:min-h-[80vh] flex flex-col justify-center transition-all duration-700 ${
+                  activeStep === i ? 'opacity-100 scale-100' : 'opacity-35 lg:opacity-20 scale-98 lg:scale-95'
                 }`}
               >
-                <div className={`w-16 h-16 rounded-2xl flex items-center justify-center mb-8 transition-all duration-700 shadow-xl ${
+                <div className={`w-14 h-14 md:w-16 md:h-16 rounded-2xl flex items-center justify-center mb-6 md:mb-8 transition-all duration-700 shadow-xl ${
                   activeStep === i ? system.activeColor : 'bg-white/5 text-white/40'
                 }`}>
                   {node.icon}
                 </div>
                 
-                <h4 className="text-3xl md:text-4xl lg:text-5xl font-extrabold mb-5 tracking-tight">
+                <h4 className="text-2xl sm:text-3xl md:text-4xl lg:text-5xl font-extrabold mb-3 md:mb-5 tracking-tight">
                   {node.label}
                 </h4>
-                <p className="text-base md:text-lg lg:text-xl text-white/60 mb-8 max-w-lg leading-relaxed">
+                <p className="text-sm sm:text-base md:text-lg lg:text-xl text-white/60 mb-6 md:mb-8 max-w-lg leading-relaxed">
                   {node.desc}
                 </p>
 
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-4 gap-x-6">
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-y-3 md:gap-y-4 gap-x-6">
                   {node.benefits.map((benefit, idx) => (
-                    <div key={idx} className="flex items-center gap-3">
-                      <CheckCircle2 size={20} className="text-green-400 shrink-0" />
-                      <span className="text-sm md:text-base font-semibold text-white/80">
+                    <div key={idx} className="flex items-center gap-2.5 md:gap-3">
+                      <CheckCircle2 size={18} className="text-green-400 shrink-0" />
+                      <span className="text-xs sm:text-sm md:text-base font-semibold text-white/80">
                         {benefit}
                       </span>
                     </div>

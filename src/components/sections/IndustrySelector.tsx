@@ -96,7 +96,7 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
         </motion.div>
 
         {/* Premium Selection Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
           {industries.map((ind, i) => {
             const isSelected = selectedIndustry === ind.id;
             const t = ind.theme;
@@ -110,9 +110,9 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
                 transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
                 whileTap={{ scale: 0.98 }}
                 onClick={() => onSelect(ind.id as Industry)}
-                className={`relative flex flex-col items-start text-left p-7 md:p-8 lg:p-9 rounded-[2rem] border transition-all duration-500 overflow-hidden group ${
+                className={`relative flex flex-col items-start text-left p-5 sm:p-6 md:p-8 lg:p-9 rounded-[1.5rem] md:rounded-[2rem] border transition-all duration-500 overflow-hidden group ${
                   isSelected
-                    ? `bg-white/[0.05] ${t.border} shadow-[0_30px_60px_rgba(0,0,0,0.5)]`
+                    ? `bg-white/[0.05] ${t.border} shadow-[0_20px_50px_rgba(0,0,0,0.6)]`
                     : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/15"
                 }`}
               >
@@ -126,19 +126,19 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
                 )}
 
                 {/* Top Row: Icon + Radio Indicator */}
-                <div className="flex justify-between items-start w-full mb-10 relative z-10">
+                <div className="flex justify-between items-center md:items-start w-full mb-4 sm:mb-6 md:mb-10 relative z-10">
                   
                   {/* Icon Block */}
-                  <div className={`w-16 h-16 rounded-2xl flex items-center justify-center transition-all duration-500 ${
+                  <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500 ${
                     isSelected 
-                      ? `${t.primaryBg} text-white ${t.glowRing} scale-110` 
+                      ? `${t.primaryBg} text-white ${t.glowRing} scale-105 md:scale-110` 
                       : "bg-white/[0.04] text-white/40 group-hover:bg-white/[0.08] group-hover:text-white/80"
                   }`}>
                     {ind.icon}
                   </div>
                   
                   {/* Premium Radio Button Indicator */}
-                  <div className={`w-6 h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
+                  <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
                     isSelected 
                       ? `${t.border} bg-black/50` 
                       : "border-white/10 bg-transparent group-hover:border-white/30"
@@ -149,7 +149,7 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
                           initial={{ scale: 0 }}
                           animate={{ scale: 1 }}
                           exit={{ scale: 0 }}
-                          className={`w-2.5 h-2.5 rounded-full ${t.primaryBg} ${t.glowRing}`} 
+                          className={`w-2 md:w-2.5 h-2 md:h-2.5 rounded-full ${t.primaryBg} ${t.glowRing}`} 
                         />
                       )}
                     </AnimatePresence>
@@ -158,12 +158,12 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
 
                 {/* Bottom Row: Typography */}
                 <div className="relative z-10 w-full mt-auto">
-                  <h3 className={`font-extrabold text-2xl lg:text-3xl tracking-tight mb-2.5 transition-colors ${
+                  <h3 className={`font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1.5 md:mb-2.5 transition-colors ${
                     isSelected ? "text-white" : "text-white/70 group-hover:text-white"
                   }`}>
                     {ind.label}
                   </h3>
-                  <p className={`text-sm lg:text-base font-medium leading-relaxed transition-colors ${
+                  <p className={`text-xs sm:text-sm lg:text-base font-medium leading-relaxed transition-colors ${
                     isSelected ? "text-white/70" : "text-white/40 group-hover:text-white/60"
                   }`}>
                     {ind.description}

@@ -133,11 +133,11 @@ export default function ProductShowcase() {
                       {project.title}
                     </h3>
 
-                    <p className="hidden md:block text-sm md:text-base text-white/60 leading-relaxed mb-6">
+                    <p className="text-xs sm:text-sm md:text-base text-white/60 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
                       {project.description}
                     </p>
 
-                    <div className="hidden md:block w-full h-[1px] bg-white/8 mb-6" />
+                    <div className="w-full h-[1px] bg-white/8 mb-4 md:mb-6" />
 
                     {/* Features + Impact Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 mb-6 md:mb-8">

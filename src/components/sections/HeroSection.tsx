@@ -340,12 +340,75 @@ export default function HeroSection() {
             </a>
           </motion.div>
 
+          {/* Mobile Interactive Motion Graphic Card */}
+          <motion.div
+            initial={{ opacity: 0, y: 30 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 0.8, duration: 0.8 }}
+            className="w-full mt-10 xl:hidden max-w-sm mx-auto"
+          >
+            <div className="relative rounded-2xl p-4 bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden">
+              <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-violet-500 via-cyan-400 to-transparent" />
+              
+              <div className="flex items-center justify-between mb-3 border-b border-white/8 pb-2.5">
+                <div className="flex items-center gap-2">
+                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+                  <span className="text-[11px] font-bold text-white tracking-wide uppercase">Live Ecosystem Preview</span>
+                </div>
+                <span className="text-[10px] text-violet-400 font-semibold bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded-full">
+                  Auto-Pilot
+                </span>
+              </div>
+
+              {/* Dynamic Notification Row */}
+              <div className="space-y-2">
+                <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-green-500/20 flex items-center justify-center shrink-0">
+                      <ShoppingBag size={14} className="text-green-400" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white text-[11px] font-bold leading-tight">New QR Table Order</p>
+                      <p className="text-white/40 text-[9px]">Table 04 · ₹580 paid online</p>
+                    </div>
+                  </div>
+                  <span className="text-[9px] font-bold text-green-400 bg-green-500/10 px-2 py-0.5 rounded-md">
+                    Instant POS
+                  </span>
+                </div>
+
+                <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.03] border border-white/5">
+                  <div className="flex items-center gap-2.5">
+                    <div className="w-7 h-7 rounded-lg bg-[#25D366]/20 flex items-center justify-center shrink-0">
+                      <MessageCircle size={14} className="text-[#25D366]" />
+                    </div>
+                    <div className="text-left">
+                      <p className="text-white text-[11px] font-bold leading-tight">AI WhatsApp Auto-Reply</p>
+                      <p className="text-white/40 text-[9px]">"Order confirmed & dispatched 🛵"</p>
+                    </div>
+                  </div>
+                  <span className="text-[9px] font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md">
+                    24/7 Bot
+                  </span>
+                </div>
+              </div>
+
+              {/* Mini Stats Bar */}
+              <div className="mt-3 pt-2 border-t border-white/8 flex items-center justify-between text-[10px]">
+                <span className="text-white/40 font-medium">Daily Direct Orders</span>
+                <span className="text-white font-extrabold flex items-center gap-1">
+                  <TrendingUp size={11} className="text-green-400" /> +38% this week
+                </span>
+              </div>
+            </div>
+          </motion.div>
+
           {/* Micro trust signals */}
           <motion.div
             initial={{ opacity: 0 }}
             animate={{ opacity: 1 }}
             transition={{ delay: 1.0, duration: 0.8 }}
-            className="flex items-center gap-6 mt-10 flex-wrap justify-center"
+            className="flex items-center gap-6 mt-8 md:mt-10 flex-wrap justify-center"
           >
             {[
               { label: "25+ Projects Built" },
