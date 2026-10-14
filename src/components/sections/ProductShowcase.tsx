@@ -78,13 +78,13 @@ export default function ProductShowcase() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-xs font-bold tracking-widest uppercase mb-3 text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block">
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase mb-4 text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block">
             Proof of Execution
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mt-3">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-950 mt-2 mb-4">
             Real Systems. Measurable Impact.
           </h2>
-          <p className="text-slate-500 mt-3 max-w-xl mx-auto text-base sm:text-lg font-normal">
+          <p className="text-slate-600 mt-2 max-w-2xl mx-auto text-lg sm:text-xl font-normal leading-relaxed">
             Custom engineered platforms built for real businesses. Zero templates. Clean, scalable architecture.
           </p>
         </motion.div>
@@ -104,13 +104,13 @@ export default function ProductShowcase() {
                 viewport={{ once: true, amount: 0.08 }}
                 transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="w-full max-w-6xl rounded-3xl overflow-hidden relative shadow-[0_20px_50px_rgba(15,23,42,0.08)] flex flex-col md:flex-row bg-white border border-slate-200">
+                <div className="w-full max-w-6xl rounded-3xl overflow-hidden relative shadow-[0_20px_60px_rgba(15,23,42,0.08)] flex flex-col md:flex-row bg-white border border-slate-200">
 
                   {/* Accent bar top */}
-                  <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${project.accentColor} to-transparent pointer-events-none`} />
+                  <div className={`absolute top-0 left-0 right-0 h-[4px] bg-gradient-to-r ${project.accentColor} to-transparent pointer-events-none`} />
 
                   {/* Image */}
-                  <div className="w-full md:w-[48%] h-[240px] sm:h-[300px] md:h-[540px] relative overflow-hidden shrink-0 bg-slate-100">
+                  <div className="w-full md:w-[46%] h-[260px] sm:h-[340px] md:h-auto min-h-[460px] relative overflow-hidden shrink-0 bg-slate-100">
                     <img
                       src={project.image}
                       alt={project.title}
@@ -119,37 +119,37 @@ export default function ProductShowcase() {
                   </div>
 
                   {/* Content */}
-                  <div className="flex-1 p-6 sm:p-8 md:p-12 lg:p-14 flex flex-col justify-center">
+                  <div className="flex-1 p-7 sm:p-9 md:p-12 lg:p-14 flex flex-col justify-center">
 
                     {/* Category */}
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
-                      <span className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-slate-400">
+                      <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                      <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-slate-500">
                         {project.category}
                       </span>
                     </div>
 
-                    <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4 leading-tight text-slate-950">
+                    <h3 className="text-3xl md:text-4xl lg:text-5xl font-black mb-3 md:mb-4 leading-tight text-slate-950">
                       {project.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed mb-4 md:mb-6">
+                    <p className="text-base sm:text-lg text-slate-600 leading-relaxed mb-6">
                       {project.description}
                     </p>
 
-                    <div className="w-full h-[1px] bg-slate-100 mb-4 md:mb-6" />
+                    <div className="w-full h-[1px] bg-slate-100 mb-6" />
 
                     {/* Features + Impact Grid */}
-                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 mb-6 md:mb-8">
+                    <div className="grid grid-cols-1 sm:grid-cols-2 gap-6 mb-8">
 
                       {/* What We Built */}
                       <div className="hidden sm:block">
-                        <h4 className="text-[11px] font-bold tracking-wider uppercase text-slate-400 mb-3 flex items-center gap-1.5">
-                          <Code2 size={12} /> Tech Stack & Features
+                        <h4 className="text-xs font-bold tracking-wider uppercase text-slate-400 mb-3.5 flex items-center gap-1.5">
+                          <Code2 size={14} /> Tech Stack & Features
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {project.features.map((f, fi) => (
-                            <span key={fi} className="text-[11px] font-semibold bg-slate-100 border border-slate-200/60 px-2.5 py-1 rounded-md text-slate-700">
+                            <span key={fi} className="text-xs font-semibold bg-slate-100 border border-slate-200/80 px-3 py-1.5 rounded-lg text-slate-700">
                               {f}
                             </span>
                           ))}
@@ -158,14 +158,14 @@ export default function ProductShowcase() {
 
                       {/* Business Impact */}
                       <div>
-                        <h4 className="text-[11px] font-bold tracking-wider uppercase text-slate-400 mb-3 flex items-center gap-1.5">
-                          <CheckCircle2 size={12} /> Business Impact
+                        <h4 className="text-xs font-bold tracking-wider uppercase text-slate-400 mb-3.5 flex items-center gap-1.5">
+                          <CheckCircle2 size={14} /> Business Impact
                         </h4>
-                        <div className="space-y-2">
+                        <div className="space-y-2.5">
                           {project.impact.map((r, ri) => (
-                            <div key={ri} className="flex items-start gap-2">
-                              <CheckCircle2 size={14} className="text-emerald-600 mt-0.5 shrink-0" />
-                              <span className="text-xs font-semibold text-slate-800 leading-snug">{r}</span>
+                            <div key={ri} className="flex items-start gap-2.5">
+                              <CheckCircle2 size={16} className="text-emerald-600 mt-1 shrink-0" />
+                              <span className="text-sm font-semibold text-slate-800 leading-snug">{r}</span>
                             </div>
                           ))}
                         </div>
@@ -174,20 +174,20 @@ export default function ProductShowcase() {
                     </div>
 
                     {/* CTAs */}
-                    <div className="flex flex-row gap-3">
+                    <div className="flex flex-col sm:flex-row gap-3.5">
                       <Link
                         to={project.ctaPrimary.href}
-                        className="flex-1 flex justify-center items-center gap-1.5 bg-slate-950 text-white px-4 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-sm"
+                        className="flex-1 flex justify-center items-center gap-2 bg-slate-950 text-white px-6 py-4 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-md"
                       >
-                        {project.ctaPrimary.label} <ArrowRight size={13} />
+                        {project.ctaPrimary.label} <ArrowRight size={15} />
                       </Link>
                       <a
                         href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20view%20details%20for%20this%20project."
                         target="_blank"
                         rel="noreferrer"
-                        className="flex-1 flex justify-center items-center gap-1.5 bg-white border border-slate-200 text-slate-800 px-4 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-all"
+                        className="flex-1 flex justify-center items-center gap-2 bg-white border border-slate-300 text-slate-900 px-6 py-4 rounded-full text-sm font-bold uppercase tracking-wider hover:bg-slate-50 transition-all shadow-sm"
                       >
-                        Inquire Project <ExternalLink size={13} />
+                        Inquire Project <ExternalLink size={15} />
                       </a>
                     </div>
 

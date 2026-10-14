@@ -19,42 +19,42 @@ export default function FinalCTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block mb-6">
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block mb-6">
             Ready to Build Your Edge?
           </span>
 
-          <h2 className="text-4xl sm:text-6xl font-extrabold tracking-tight text-slate-950 mb-6 leading-tight">
+          <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-950 mb-6 leading-[1.08]">
             Stop relying on manual processes.
             <br className="hidden md:block" />
             <span className="text-gradient-primary"> Start automating today.</span>
           </h2>
 
-          <p className="text-base sm:text-lg text-slate-600 mb-10 max-w-xl mx-auto leading-relaxed font-normal">
+          <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed font-normal">
             We partner with businesses to build high-performance digital systems that capture orders, automate customer interactions, and scale revenue 24/7.
           </p>
 
           {/* Action CTAs */}
-          <div className="flex flex-col sm:flex-row gap-3.5 items-center justify-center">
+          <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <Link
               to="/start-project"
-              className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-slate-950 px-8 text-sm font-bold text-white transition-all shadow-[0_4px_16px_rgba(15,23,42,0.25)] hover:bg-slate-800 hover:scale-[1.02] active:scale-98 w-full sm:w-auto"
+              className="inline-flex h-16 items-center justify-center gap-3 rounded-full bg-slate-950 px-10 text-base font-black text-white transition-all shadow-[0_8px_30px_rgba(15,23,42,0.25)] hover:bg-slate-800 hover:scale-[1.02] active:scale-98 w-full sm:w-auto"
             >
               Start Your Project
-              <ArrowRight size={16} />
+              <ArrowRight size={18} />
             </Link>
 
             <a
               href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noreferrer"
-              className="inline-flex h-13 items-center justify-center gap-2 rounded-full bg-white border border-slate-200 px-8 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-all shadow-sm w-full sm:w-auto"
+              className="inline-flex h-16 items-center justify-center gap-3 rounded-full bg-white border border-slate-300 px-10 text-base font-bold text-slate-900 hover:bg-slate-50 transition-all shadow-sm w-full sm:w-auto hover:border-slate-400"
             >
-              <MessageCircle size={17} className="text-[#25D366]" />
+              <MessageCircle size={20} className="text-[#25D366]" />
               Chat on WhatsApp
             </a>
           </div>
 
-          <p className="text-slate-400 text-xs mt-8">
+          <p className="text-slate-500 text-sm mt-8 font-medium">
             Free strategy call · Fixed-price proposal · 100% custom code
           </p>
         </motion.div>

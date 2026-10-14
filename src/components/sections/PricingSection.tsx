@@ -73,25 +73,25 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <span className="text-xs font-bold tracking-widest uppercase mb-3 text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block">
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase mb-4 text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block">
             Investment Tiers
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mb-3 mt-2">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-950 mb-4 mt-2">
             Transparent, ROI-Focused Pricing.
           </h2>
-          <p className="text-slate-500 max-w-xl mx-auto text-base sm:text-lg font-normal">
+          <p className="text-slate-600 max-w-2xl mx-auto text-lg sm:text-xl font-normal leading-relaxed">
             No unexpected hourly rates. We engineer complete business systems that generate measurable revenue and automate operations.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-7 items-stretch max-w-6xl mx-auto">
           {TIERS.map((tier, idx) => (
             <motion.div
               key={idx}
-              className={`relative rounded-3xl p-7 md:p-8 flex flex-col justify-between ${
+              className={`relative rounded-3xl p-8 sm:p-10 flex flex-col justify-between ${
                 tier.popular
-                  ? "bg-slate-50/80 border-2 border-indigo-600 shadow-[0_20px_50px_rgba(79,70,229,0.12)] md:-translate-y-2"
-                  : "bg-white border border-slate-200 shadow-sm"
+                  ? "bg-slate-50/90 border-2 border-indigo-600 shadow-[0_20px_50px_rgba(79,70,229,0.15)] md:-translate-y-3"
+                  : "bg-white border border-slate-200 shadow-sm hover:border-slate-300"
               }`}
               initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
@@ -99,31 +99,31 @@ export default function PricingSection() {
               transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
               {tier.tag && (
-                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest shadow-sm">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-4 py-1.5 rounded-full text-xs font-black uppercase tracking-widest shadow-md">
                   {tier.tag}
                 </div>
               )}
 
               <div>
-                <h3 className="text-base font-bold text-slate-950 mb-2">{tier.name}</h3>
+                <h3 className="text-xl font-black text-slate-950 mb-2">{tier.name}</h3>
 
-                <div className="flex items-baseline gap-1.5 mb-1">
-                  <span className="text-3xl md:text-4xl font-extrabold text-slate-950">{tier.price}</span>
-                  {tier.period && <span className="text-slate-400 text-sm font-medium">{tier.period}</span>}
+                <div className="flex items-baseline gap-2 mb-2">
+                  <span className="text-4xl sm:text-5xl font-black text-slate-950">{tier.price}</span>
+                  {tier.period && <span className="text-slate-500 text-base font-semibold">{tier.period}</span>}
                 </div>
 
-                <p className="text-xs text-slate-500 mb-6 leading-relaxed min-h-[3rem]">{tier.description}</p>
+                <p className="text-sm sm:text-base text-slate-600 mb-6 leading-relaxed min-h-[3.5rem]">{tier.description}</p>
 
                 <div className="w-full h-[1px] bg-slate-100 mb-6" />
 
-                <div className="space-y-3 mb-8 flex-1">
+                <div className="space-y-3.5 mb-8 flex-1">
                   {tier.features.map((feature, fi) => (
-                    <div key={fi} className="flex items-start gap-2.5">
+                    <div key={fi} className="flex items-start gap-3">
                       <CheckCircle2
-                        size={16}
+                        size={18}
                         className={tier.popular ? "text-indigo-600 mt-0.5 shrink-0" : "text-emerald-600 mt-0.5 shrink-0"}
                       />
-                      <span className="text-xs font-semibold text-slate-700">{feature}</span>
+                      <span className="text-sm font-semibold text-slate-800 leading-snug">{feature}</span>
                     </div>
                   ))}
                 </div>
@@ -131,13 +131,13 @@ export default function PricingSection() {
 
               <Link
                 to={tier.ctaHref}
-                className={`w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
+                className={`w-full py-4 rounded-full text-sm font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                   tier.popular
-                    ? "bg-slate-950 text-white hover:bg-slate-800 shadow-md"
-                    : "bg-slate-100 text-slate-800 hover:bg-slate-200"
+                    ? "bg-slate-950 text-white hover:bg-slate-800 shadow-md hover:scale-[1.02]"
+                    : "bg-slate-100 text-slate-900 hover:bg-slate-200"
                 }`}
               >
-                {tier.cta} <ArrowRight size={13} />
+                {tier.cta} <ArrowRight size={15} />
               </Link>
             </motion.div>
           ))}
@@ -148,18 +148,18 @@ export default function PricingSection() {
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="mt-12 text-center"
+          className="mt-14 text-center"
         >
-          <p className="text-white/35 text-sm mb-4">
+          <p className="text-slate-600 text-base mb-4 font-medium">
             Not sure which tier fits your business?
           </p>
           <a
             href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20help%20choosing%20the%20right%20package."
             target="_blank"
             rel="noreferrer"
-            className="inline-flex items-center gap-2 text-sm font-semibold text-green-400 hover:text-green-300 transition-colors"
+            className="inline-flex items-center gap-2 px-6 py-3 rounded-full bg-emerald-50 text-emerald-800 border border-emerald-200 text-sm font-bold hover:bg-emerald-100 transition-all shadow-sm"
           >
-            <MessageCircle size={16} /> Get a Free Quote on WhatsApp
+            <MessageCircle size={18} className="text-emerald-600" /> Get a Free Quote on WhatsApp
           </a>
         </motion.div>
 

@@ -46,20 +46,20 @@ export default function FAQSection() {
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          className="text-center mb-14 md:mb-18"
+          className="text-center mb-16 md:mb-20"
         >
-          <span className="text-xs font-bold tracking-widest uppercase mb-3 text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block">
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase mb-4 text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block">
             Frequently Asked Questions
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mt-2 mb-3">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-950 mt-2 mb-4">
             Clear Answers. Zero Confusion.
           </h2>
-          <p className="text-base text-slate-500 max-w-lg mx-auto font-normal">
+          <p className="text-base sm:text-lg text-slate-600 max-w-xl mx-auto font-normal">
             Everything you need to know about our engineering process, pricing, and handover.
           </p>
         </motion.div>
 
-        <div className="space-y-3">
+        <div className="space-y-4">
           {FAQS.map((faq, index) => {
             const isOpen = openIndex === index;
             return (
@@ -69,27 +69,27 @@ export default function FAQSection() {
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
                 transition={{ delay: index * 0.05 }}
-                className={`border rounded-2xl overflow-hidden transition-all duration-200 ${
+                className={`border rounded-3xl overflow-hidden transition-all duration-200 ${
                   isOpen
-                    ? "bg-white border-slate-300 shadow-sm"
-                    : "bg-white/80 border-slate-200 hover:border-slate-300"
+                    ? "bg-white border-indigo-400 shadow-md ring-2 ring-indigo-500/10"
+                    : "bg-white border-slate-200 hover:border-slate-300"
                 }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full px-6 py-4.5 md:px-7 flex items-center justify-between text-left focus:outline-none"
+                  className="w-full px-7 py-5 md:px-8 md:py-6 flex items-center justify-between text-left focus:outline-none cursor-pointer"
                 >
-                  <span className={`font-bold text-base md:text-lg pr-4 leading-snug ${
+                  <span className={`font-black text-lg md:text-xl pr-4 leading-snug ${
                     isOpen ? "text-slate-950" : "text-slate-800"
                   }`}>
                     {faq.question}
                   </span>
-                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
+                  <div className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all ${
                     isOpen
-                      ? "bg-slate-900 text-white"
-                      : "bg-slate-100 text-slate-500"
+                      ? "bg-slate-950 text-white shadow-sm"
+                      : "bg-slate-100 text-slate-600"
                   }`}>
-                    {isOpen ? <Minus size={15} /> : <Plus size={15} />}
+                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
                   </div>
                 </button>
 
@@ -101,9 +101,9 @@ export default function FAQSection() {
                       exit={{ height: 0, opacity: 0 }}
                       transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
-                      <div className="px-6 md:px-7 pb-6 pt-1">
+                      <div className="px-7 md:px-8 pb-7 pt-1">
                         <div className="w-full h-[1px] bg-slate-100 mb-4" />
-                        <p className="text-slate-600 leading-relaxed text-sm md:text-base font-normal">
+                        <p className="text-slate-600 leading-relaxed text-base sm:text-lg font-normal">
                           {faq.answer}
                         </p>
                       </div>

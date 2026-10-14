@@ -118,27 +118,27 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
       <div className="container mx-auto px-5 md:px-10 max-w-6xl">
 
         {/* Section Header */}
-        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-12">
+        <div className="flex flex-col md:flex-row md:items-end justify-between gap-6 mb-14">
           <div>
-            <span className="text-xs font-bold uppercase tracking-wider text-slate-400">
+            <span className="text-xs sm:text-sm font-bold uppercase tracking-wider text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block mb-3">
               Interactive System Architecture
             </span>
-            <h3 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mt-2">
+            <h3 className="text-4xl sm:text-6xl font-black text-slate-950 tracking-tight mt-1">
               {system?.title}
             </h3>
           </div>
 
           <div className="flex items-center gap-3">
-            <span className="px-3.5 py-1.5 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-xs font-bold">
+            <span className="px-4 py-2 rounded-full bg-emerald-50 text-emerald-700 border border-emerald-200 text-sm font-bold">
               Starts @ ₹19,999
             </span>
             <a
               href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20see%20a%20live%20demo%20of%20the%20system."
               target="_blank"
               rel="noreferrer"
-              className="inline-flex items-center gap-2 px-5 py-2 rounded-full bg-slate-900 text-white text-xs font-semibold hover:bg-slate-800 transition-all shadow-sm"
+              className="inline-flex items-center gap-2 px-6 py-2.5 rounded-full bg-slate-950 text-white text-sm font-bold hover:bg-slate-800 transition-all shadow-md"
             >
-              <PlayCircle size={15} /> Request Live Demo
+              <PlayCircle size={17} /> Request Live Demo
             </a>
           </div>
         </div>
@@ -147,7 +147,7 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
         <div className="grid grid-cols-1 lg:grid-cols-12 gap-8 items-start">
           
           {/* Left Column: Feature Navigation Pills */}
-          <div className="lg:col-span-5 flex flex-col gap-3">
+          <div className="lg:col-span-5 flex flex-col gap-3.5">
             {system?.nodes.map((node, i) => {
               const isActive = activeStep === i;
 
@@ -155,22 +155,22 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
                 <div
                   key={i}
                   onClick={() => setActiveStep(i)}
-                  className={`p-5 rounded-2xl border cursor-pointer transition-all duration-200 flex items-start gap-4 ${
+                  className={`p-6 sm:p-7 rounded-3xl border cursor-pointer transition-all duration-200 flex items-start gap-5 ${
                     isActive
-                      ? "bg-slate-50 border-slate-300 shadow-sm"
-                      : "bg-white border-slate-100 hover:border-slate-200 hover:bg-slate-50/50"
+                      ? "bg-white border-indigo-500 shadow-[0_10px_30px_rgba(79,70,229,0.08)] ring-2 ring-indigo-500/20"
+                      : "bg-white/70 border-slate-200 hover:border-slate-300 hover:bg-white"
                   }`}
                 >
-                  <div className={`w-10 h-10 rounded-xl flex items-center justify-center shrink-0 transition-all ${
-                    isActive ? "bg-slate-900 text-white shadow-sm" : "bg-slate-100 text-slate-500"
+                  <div className={`w-12 h-12 rounded-2xl flex items-center justify-center shrink-0 transition-all ${
+                    isActive ? "bg-slate-950 text-white shadow-md scale-105" : "bg-slate-100 text-slate-500"
                   }`}>
                     {node.icon}
                   </div>
                   <div>
-                    <h4 className={`text-base font-bold mb-1 ${isActive ? "text-slate-950" : "text-slate-700"}`}>
+                    <h4 className={`text-lg sm:text-xl font-black mb-1.5 ${isActive ? "text-slate-950" : "text-slate-700"}`}>
                       {node.label}
                     </h4>
-                    <p className="text-xs text-slate-500 leading-relaxed font-normal">
+                    <p className="text-sm text-slate-600 leading-relaxed font-normal">
                       {node.desc}
                     </p>
                   </div>
@@ -181,21 +181,21 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
 
           {/* Right Column: Visual Product Frame */}
           <div className="lg:col-span-7">
-            <div className="rounded-3xl border border-slate-200 bg-white p-6 md:p-8 shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
+            <div className="rounded-3xl border border-slate-200 bg-white p-7 md:p-9 shadow-[0_20px_50px_rgba(0,0,0,0.06)]">
               {/* Window Header */}
               <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
-                <div className="flex items-center gap-1.5">
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
-                  <div className="w-2.5 h-2.5 rounded-full bg-slate-200" />
+                <div className="flex items-center gap-2">
+                  <div className="w-3 h-3 rounded-full bg-rose-400" />
+                  <div className="w-3 h-3 rounded-full bg-amber-400" />
+                  <div className="w-3 h-3 rounded-full bg-emerald-400" />
                 </div>
-                <span className="text-[11px] font-bold text-slate-400 uppercase tracking-widest">
+                <span className="text-xs font-bold text-slate-400 uppercase tracking-widest">
                   {system?.nodes[activeStep].label}
                 </span>
               </div>
 
               {/* Showcase Image */}
-              <div className="relative rounded-2xl overflow-hidden h-64 md:h-80 bg-slate-100 mb-6">
+              <div className="relative rounded-2xl overflow-hidden h-72 md:h-[400px] bg-slate-100 mb-7">
                 <AnimatePresence mode="wait">
                   <motion.img
                     key={activeStep}
@@ -209,19 +209,19 @@ export default function SolutionEcosystem({ selectedIndustry }: SolutionProps) {
                   />
                 </AnimatePresence>
                 <div className="absolute inset-0 bg-gradient-to-t from-slate-950/40 via-transparent to-transparent" />
-                <div className="absolute bottom-4 left-4 bg-white/95 backdrop-blur-md px-3.5 py-1.5 rounded-xl border border-slate-200 shadow-sm text-xs font-bold text-slate-900 flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
-                  Operational Mode
+                <div className="absolute bottom-5 left-5 bg-white/95 backdrop-blur-md px-4 py-2 rounded-2xl border border-slate-200 shadow-md text-xs sm:text-sm font-bold text-slate-900 flex items-center gap-2.5">
+                  <span className="w-2.5 h-2.5 rounded-full bg-emerald-500 animate-pulse" />
+                  Live Operational Sandbox
                 </div>
               </div>
 
               {/* Benefits Checklist */}
               <div>
-                <h5 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">Key Impact & ROI</h5>
-                <div className="grid grid-cols-1 sm:grid-cols-2 gap-2.5">
+                <h5 className="text-xs sm:text-sm font-bold uppercase tracking-wider text-slate-400 mb-4">Key Impact & ROI</h5>
+                <div className="grid grid-cols-1 sm:grid-cols-2 gap-3.5">
                   {system?.nodes[activeStep].benefits.map((b, idx) => (
-                    <div key={idx} className="flex items-center gap-2 text-xs font-semibold text-slate-700">
-                      <CheckCircle2 size={16} className="text-emerald-600 shrink-0" />
+                    <div key={idx} className="flex items-center gap-3 text-sm sm:text-base font-semibold text-slate-800">
+                      <CheckCircle2 size={19} className="text-emerald-600 shrink-0" />
                       {b}
                     </div>
                   ))}

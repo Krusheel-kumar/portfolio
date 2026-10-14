@@ -90,8 +90,8 @@ export default function ProcessSection() {
         <div ref={containerRef} className="relative">
 
           {/* Vertical line — desktop center, mobile left */}
-          <div className="hidden md:block absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-[1px] bg-white/6" />
-          <div className="md:hidden absolute left-6 top-0 bottom-0 w-[1px] bg-white/6" />
+          <div className="hidden md:block absolute left-1/2 -translate-x-[0.5px] top-0 bottom-0 w-[2px] bg-slate-200" />
+          <div className="md:hidden absolute left-6 top-0 bottom-0 w-[2px] bg-slate-200" />
 
           {/* Animated progress fill */}
           <motion.div
@@ -100,7 +100,7 @@ export default function ProcessSection() {
               scaleY: lineScaleY,
               height: "100%",
               background: "linear-gradient(180deg, #7c3aed, #4f46e5, #06b6d4)",
-              boxShadow: "0 0 12px rgba(124,58,237,0.7)",
+              boxShadow: "0 0 12px rgba(124,58,237,0.4)",
             }}
           />
           <motion.div
@@ -109,7 +109,7 @@ export default function ProcessSection() {
               scaleY: lineScaleY,
               height: "100%",
               background: "linear-gradient(180deg, #7c3aed, #06b6d4)",
-              boxShadow: "0 0 12px rgba(124,58,237,0.7)",
+              boxShadow: "0 0 12px rgba(124,58,237,0.4)",
             }}
           />
 
@@ -121,14 +121,14 @@ export default function ProcessSection() {
                 <div key={idx} className="relative flex items-center md:grid md:grid-cols-2 md:gap-16 pl-16 md:pl-0">
 
                   {/* Timeline node */}
-                  <div className={`absolute left-[17px] md:left-1/2 md:-translate-x-1/2 z-20 flex items-center justify-center`}>
+                  <div className={`absolute left-[13px] md:left-1/2 md:-translate-x-1/2 z-20 flex items-center justify-center`}>
                     <motion.div
-                      className="w-[26px] h-[26px] rounded-full border-2 border-slate-300 bg-white flex items-center justify-center shadow-sm"
-                      whileInView={{ borderColor: "#4f46e5", boxShadow: "0 0 15px rgba(79,70,229,0.3)" }}
+                      className="w-8 h-8 rounded-full border-4 border-white bg-slate-200 flex items-center justify-center shadow-md"
+                      whileInView={{ backgroundColor: "#4f46e5", boxShadow: "0 0 15px rgba(79,70,229,0.35)" }}
                       viewport={{ once: true }}
                       transition={{ delay: 0.2, duration: 0.4 }}
                     >
-                      <div className="w-2.5 h-2.5 rounded-full bg-indigo-600" />
+                      <div className="w-2.5 h-2.5 rounded-full bg-white" />
                     </motion.div>
                   </div>
 
@@ -170,25 +170,25 @@ function StepCard({ step, idx, direction, isLeft }: {
       transition={{ duration: 0.5 }}
       className={`w-full ${isLeft ? "md:text-right" : ""}`}
     >
-      <div className="group relative bg-white border border-slate-200 rounded-3xl p-7 md:p-8 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all">
+      <div className="group relative bg-white border border-slate-200 rounded-3xl p-8 sm:p-10 overflow-hidden shadow-sm hover:shadow-xl hover:border-slate-300 transition-all">
 
         {/* Header */}
         <div className={`flex items-center gap-3 mb-4 ${isLeft ? "md:flex-row-reverse" : ""}`}>
-          <span className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full bg-slate-100 text-slate-700">
+          <span className="px-3.5 py-1.5 text-xs font-bold uppercase tracking-wider rounded-full bg-slate-100 text-slate-800">
             {step.week}
           </span>
-          <span className="text-[11px] font-extrabold text-indigo-600 tracking-wider uppercase">
+          <span className="text-xs font-black text-indigo-600 tracking-wider uppercase">
             Step {step.number}
           </span>
         </div>
 
-        <h3 className="text-xl md:text-2xl font-extrabold text-slate-950 mb-2 leading-tight">{step.title}</h3>
-        <p className="text-slate-600 text-sm leading-relaxed mb-5">{step.body}</p>
+        <h3 className="text-2xl md:text-3xl font-black text-slate-950 mb-3 leading-tight">{step.title}</h3>
+        <p className="text-slate-600 text-base leading-relaxed mb-6">{step.body}</p>
 
         {/* Tags */}
-        <div className={`flex flex-wrap gap-2 ${isLeft ? "md:justify-end" : ""}`}>
+        <div className={`flex flex-wrap gap-2.5 ${isLeft ? "md:justify-end" : ""}`}>
           {step.tags.map((tag, ti) => (
-            <span key={ti} className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
+            <span key={ti} className="text-xs font-semibold px-3 py-1.5 rounded-lg bg-slate-100 text-slate-700 border border-slate-200/60">
               {tag}
             </span>
           ))}

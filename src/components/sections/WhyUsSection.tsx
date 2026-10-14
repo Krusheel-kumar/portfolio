@@ -9,13 +9,13 @@ function CodeVisual() {
   const lines = [
     { w: "70%", color: "bg-violet-400" },
     { w: "90%", color: "bg-cyan-400" },
-    { w: "55%", color: "bg-white/30" },
+    { w: "55%", color: "bg-slate-300" },
     { w: "80%", color: "bg-violet-300" },
-    { w: "65%", color: "bg-white/20" },
+    { w: "65%", color: "bg-slate-200" },
     { w: "75%", color: "bg-cyan-300" },
   ];
   return (
-    <div className="absolute bottom-6 right-6 w-32 flex flex-col gap-1.5 opacity-30 group-hover:opacity-60 transition-opacity duration-500">
+    <div className="absolute bottom-6 right-6 w-32 flex flex-col gap-1.5 opacity-40 group-hover:opacity-75 transition-opacity duration-500">
       {lines.map((l, i) => (
         <motion.div
           key={i}
@@ -36,9 +36,9 @@ function SpeedVisual() {
   const inView = useInView(ref, { once: true });
   const circumference = 2 * Math.PI * 28;
   return (
-    <div className="absolute top-5 right-5 opacity-40 group-hover:opacity-80 transition-opacity duration-500">
+    <div className="absolute top-5 right-5 opacity-60 group-hover:opacity-100 transition-opacity duration-500">
       <svg width="70" height="70" viewBox="0 0 70 70">
-        <circle cx="35" cy="35" r="28" fill="none" stroke="rgba(255,255,255,0.08)" strokeWidth="3" />
+        <circle cx="35" cy="35" r="28" fill="none" stroke="rgba(15,23,42,0.08)" strokeWidth="3" />
         <circle
           ref={ref}
           cx="35" cy="35" r="28"
@@ -60,7 +60,7 @@ function SpeedVisual() {
             <stop offset="100%" stopColor="#06b6d4" />
           </linearGradient>
         </defs>
-        <text x="35" y="40" textAnchor="middle" className="text-xs fill-white font-bold" fontSize="11">0.3s</text>
+        <text x="35" y="40" textAnchor="middle" className="text-xs fill-slate-900 font-black" fontSize="12">0.3s</text>
       </svg>
     </div>
   );
@@ -156,11 +156,11 @@ function ScaleVisual() {
 
 function SupportVisual() {
   return (
-    <div className="absolute bottom-5 right-5 flex flex-col gap-1.5 opacity-35 group-hover:opacity-65 transition-opacity duration-500 w-28">
+    <div className="absolute bottom-5 right-5 flex flex-col gap-1.5 opacity-60 group-hover:opacity-100 transition-opacity duration-500 w-32">
       {[
-        { msg: "My order?", align: "start", color: "bg-white/10" },
-        { msg: "Ready in 5 mins! 🎉", align: "end", color: "bg-violet-500/30" },
-        { msg: "Thank you!", align: "start", color: "bg-white/10" },
+        { msg: "Order ready?", align: "start", color: "bg-slate-200 text-slate-800" },
+        { msg: "Delivered in 5m! 🎉", align: "end", color: "bg-indigo-600 text-white font-medium" },
+        { msg: "Amazing!", align: "start", color: "bg-slate-200 text-slate-800" },
       ].map((b, i) => (
         <motion.div
           key={i}
@@ -170,7 +170,7 @@ function SupportVisual() {
           viewport={{ once: true }}
           transition={{ delay: 0.3 + i * 0.2 }}
         >
-          <div className={`${b.color} rounded-lg px-2 py-1 text-[9px] text-white/70 max-w-[90%]`}>
+          <div className={`${b.color} rounded-lg px-2.5 py-1 text-[10px] shadow-sm max-w-[90%]`}>
             {b.msg}
           </div>
         </motion.div>
@@ -196,7 +196,7 @@ const CARDS = [
     label: "Performance",
     number: "02",
     title: "Sub-Second Speed",
-    desc: "React frontends on edge CDNs. 0.3s load times that maximize SEO and minimize bounce.",
+    desc: "React frontends on edge CDNs. 0.3s load times that maximize SEO and minimize bounce rates.",
     col: "md:col-span-1",
     accent: "from-yellow-500/15 to-orange-500/5",
     Visual: SpeedVisual,
@@ -206,7 +206,7 @@ const CARDS = [
     label: "Artificial Intelligence",
     number: "03",
     title: "AI-Native by Default",
-    desc: "Every system is architected to leverage automation from day one — not bolted on as an afterthought.",
+    desc: "Every system is architected to leverage automation and LLMs from day one — not bolted on as an afterthought.",
     col: "md:col-span-1",
     accent: "from-violet-500/20 to-blue-500/5",
     Visual: AIVisual,
@@ -216,7 +216,7 @@ const CARDS = [
     label: "Cloud Infrastructure",
     number: "05",
     title: "Built to Scale",
-    desc: "10 users or 10 million — our cloud architecture scales dynamically. You'll never hit a wall.",
+    desc: "10 users or 10 million — our cloud architecture scales dynamically with zero downtime. You'll never hit a wall.",
     col: "md:col-span-2",
     accent: "from-cyan-500/15 to-blue-500/5",
     Visual: ScaleVisual,
@@ -226,7 +226,7 @@ const CARDS = [
     label: "Enterprise Security",
     number: "04",
     title: "Bank-Grade Security",
-    desc: "End-to-end encryption, secure auth flows, and GDPR-ready data handling for your customers.",
+    desc: "End-to-end encryption, secure auth flows, and GDPR-ready data handling to protect your customers.",
     col: "md:col-span-1",
     accent: "from-green-500/20 to-emerald-500/5",
     Visual: SecurityVisual,
@@ -236,7 +236,7 @@ const CARDS = [
     label: "Ongoing Partnership",
     number: "06",
     title: "Post-Launch Support",
-    desc: "We don't disappear after delivery. Ongoing maintenance, updates, and optimisation as you grow.",
+    desc: "We don't disappear after delivery. Ongoing maintenance, performance tuning, and continuous feature expansion.",
     col: "md:col-span-1",
     accent: "from-pink-500/15 to-rose-500/5",
     Visual: SupportVisual,
@@ -246,7 +246,7 @@ const CARDS = [
 /* ─── Main Section ────────────────────────────────────────── */
 export default function WhyUsSection() {
   return (
-    <section className="bg-white text-slate-900 py-20 md:py-32 relative overflow-hidden border-t border-slate-200/80">
+    <section className="bg-white text-slate-900 py-24 md:py-36 relative overflow-hidden border-t border-slate-200/80">
 
       <div className="container mx-auto px-5 md:px-10 max-w-7xl relative z-10">
 
@@ -258,44 +258,46 @@ export default function WhyUsSection() {
           viewport={{ once: true }}
           transition={{ duration: 0.6 }}
         >
-          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block mb-4">
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block mb-4">
             The Krunnex Standard
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mb-4">
+          <h2 className="text-4xl sm:text-6xl font-black tracking-tight text-slate-950 mb-4">
             Why custom engineering wins over templates.
           </h2>
-          <p className="text-slate-500 text-base sm:text-lg font-normal max-w-xl leading-relaxed">
+          <p className="text-slate-600 text-lg sm:text-xl font-normal max-w-2xl leading-relaxed">
             Your brand deserves software engineered for your specific business logic — not bloated page-builder themes that slow down your conversion rates.
           </p>
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
           {CARDS.map((card, idx) => {
-            const { Visual } = card;
             return (
               <motion.div
                 key={card.id}
-                className={`${card.col} group relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/70 p-7 md:p-9 min-h-[200px] cursor-default transition-all duration-300 hover:border-slate-300 hover:shadow-md hover:bg-white`}
+                className={`${card.col} group relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/70 p-8 sm:p-10 min-h-[220px] cursor-default transition-all duration-300 hover:border-indigo-400 hover:shadow-xl hover:bg-white`}
                 initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
                 transition={{ duration: 0.5, delay: idx * 0.05 }}
               >
+                {/* Visual */}
+                <card.Visual />
+
                 {/* Card number */}
-                <span className="absolute top-7 right-7 text-xs font-bold text-slate-300 tracking-widest">
+                <span className="absolute top-8 right-8 text-sm font-black text-slate-300 tracking-widest">
                   {card.number}
                 </span>
 
                 {/* Content */}
                 <div className="relative z-10 max-w-[85%]">
-                  <span className="text-[11px] font-bold tracking-wider uppercase text-indigo-600 mb-2 block">
+                  <span className="text-xs font-bold tracking-wider uppercase text-indigo-600 mb-2.5 block">
                     {card.label}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-950 mb-2 leading-tight">
+                  <h3 className="text-2xl md:text-3xl font-black text-slate-950 mb-3 leading-tight">
                     {card.title}
                   </h3>
-                  <p className="text-slate-600 text-sm leading-relaxed">{card.desc}</p>
+                  <p className="text-slate-600 text-base leading-relaxed">{card.desc}</p>
                 </div>
               </motion.div>
             );
@@ -304,7 +306,7 @@ export default function WhyUsSection() {
 
         {/* CTAs */}
         <motion.div
-          className="flex flex-col sm:flex-row items-center gap-4 mt-14"
+          className="flex flex-col sm:flex-row items-center gap-4 mt-16"
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
@@ -312,19 +314,15 @@ export default function WhyUsSection() {
         >
           <Link
             to="/start-project"
-            className="group relative inline-flex items-center gap-2.5 rounded-full overflow-hidden px-8 py-3.5 text-sm font-extrabold text-white shadow-[0_0_30px_rgba(124,58,237,0.35)] transition-all hover:scale-105 active:scale-95"
-            style={{ background: "linear-gradient(135deg,#7c3aed,#4f46e5,#0891b2)" }}
+            className="group relative inline-flex items-center justify-center gap-2.5 rounded-full overflow-hidden px-9 py-4 text-sm font-extrabold text-white shadow-[0_4px_20px_rgba(79,70,229,0.35)] transition-all hover:scale-105 active:scale-95 bg-slate-950 hover:bg-slate-800"
           >
-            <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/15 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-            <span className="relative flex items-center gap-2">
-              Start Your Project <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
-            </span>
+            Start Your Project <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
           </Link>
           <a
             href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20ask%20a%20question%20about%20your%20services."
             target="_blank"
             rel="noreferrer"
-            className="text-sm font-semibold text-white/45 hover:text-white transition-colors border border-white/10 px-8 py-3.5 rounded-full hover:border-white/20"
+            className="text-sm font-bold text-slate-800 hover:text-slate-950 transition-colors border border-slate-300 bg-white hover:bg-slate-50 px-8 py-4 rounded-full shadow-sm"
           >
             Ask a Question on WhatsApp
           </a>

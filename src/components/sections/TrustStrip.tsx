@@ -28,7 +28,7 @@ function AnimatedNumber({ target, suffix }: { target: number; suffix: string }) 
   }, [inView, target]);
 
   return (
-    <div ref={ref} className="font-extrabold tracking-tight text-slate-950 tabular-nums text-4xl sm:text-5xl">
+    <div ref={ref} className="font-black tracking-tight text-slate-950 tabular-nums text-5xl sm:text-6xl md:text-7xl">
       {count}{suffix}
     </div>
   );

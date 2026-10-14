@@ -47,20 +47,20 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
       <div className="container mx-auto px-5 md:px-10 max-w-6xl text-center relative z-10">
 
         {/* Header Block */}
-        <div className="mb-12 flex flex-col items-center">
-          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 mb-4">
+        <div className="mb-14 flex flex-col items-center">
+          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 mb-5">
             Select Your Industry
           </span>
-          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mb-4">
+          <h2 className="text-4xl sm:text-6xl font-black text-slate-950 tracking-tight mb-4">
             Tailored systems for your business model.
           </h2>
-          <p className="text-base text-slate-500 max-w-xl">
+          <p className="text-base sm:text-lg text-slate-500 max-w-2xl">
             Choose your sector below to see the exact digital ecosystem, integrations, and ROI we deliver.
           </p>
         </div>
 
-        {/* Minimal Light Selection Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+        {/* Minimal Light Selection Cards - Zoomed */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 max-w-5xl mx-auto">
           {industries.map((ind) => {
             const isSelected = selectedIndustry === ind.id;
 
@@ -68,34 +68,34 @@ export default function IndustrySelector({ selectedIndustry, onSelect }: Industr
               <button
                 key={ind.id}
                 onClick={() => onSelect(ind.id as Industry)}
-                className={`relative flex flex-col text-left p-6 sm:p-7 rounded-2xl border transition-all duration-300 text-slate-900 ${
+                className={`relative flex flex-col text-left p-7 sm:p-8 rounded-3xl border transition-all duration-300 text-slate-900 ${
                   isSelected
-                    ? `${ind.bgActive} border-2 shadow-[0_15px_30px_rgba(0,0,0,0.06)] scale-[1.02]`
-                    : "bg-white border-slate-200/80 hover:border-slate-300 hover:shadow-sm"
+                    ? `${ind.bgActive} border-2 shadow-[0_20px_40px_rgba(0,0,0,0.08)] scale-[1.03]`
+                    : "bg-white border-slate-200 hover:border-slate-300 hover:shadow-md"
                 }`}
               >
                 {/* Top Row: Icon + Check Indicator */}
-                <div className="flex justify-between items-center w-full mb-6">
-                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                <div className="flex justify-between items-center w-full mb-8">
+                  <div className={`w-14 h-14 rounded-2xl flex items-center justify-center transition-all ${
                     isSelected ? ind.iconBg : "bg-slate-100 text-slate-600"
                   }`}>
                     {ind.icon}
                   </div>
                   
                   {isSelected ? (
-                    <div className="w-6 h-6 rounded-full bg-slate-950 text-white flex items-center justify-center">
-                      <Check size={14} />
+                    <div className="w-7 h-7 rounded-full bg-slate-950 text-white flex items-center justify-center shadow-sm">
+                      <Check size={16} />
                     </div>
                   ) : (
-                    <div className="w-6 h-6 rounded-full border border-slate-200" />
+                    <div className="w-7 h-7 rounded-full border-2 border-slate-200" />
                   )}
                 </div>
 
                 {/* Typography */}
-                <h3 className="font-extrabold text-xl text-slate-950 tracking-tight mb-2">
+                <h3 className="font-extrabold text-2xl text-slate-950 tracking-tight mb-2.5">
                   {ind.label}
                 </h3>
-                <p className="text-sm text-slate-500 leading-relaxed font-normal">
+                <p className="text-sm sm:text-base text-slate-500 leading-relaxed font-normal">
                   {ind.description}
                 </p>
               </button>

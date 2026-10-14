@@ -16,31 +16,31 @@ export default function FloatingWhatsApp() {
             animate={{ opacity: 1, scale: 1, y: 0 }}
             exit={{ opacity: 0, scale: 0.85, y: 16 }}
             transition={{ duration: 0.3, ease: [0.16, 1, 0.3, 1] }}
-            className="w-[280px] rounded-2xl overflow-hidden shadow-[0_20px_60px_rgba(0,0,0,0.6)] border border-white/10"
+            className="w-[320px] rounded-3xl overflow-hidden shadow-[0_25px_60px_rgba(0,0,0,0.25)] border border-slate-200 bg-white"
           >
             {/* Header */}
-            <div className="px-4 py-3.5 flex items-center gap-3" style={{ background: "#128C7E" }}>
-              <div className="w-9 h-9 rounded-full bg-white/20 flex items-center justify-center shrink-0">
-                <MessageCircle size={18} className="text-white" />
+            <div className="px-5 py-4 flex items-center gap-3.5" style={{ background: "#128C7E" }}>
+              <div className="w-10 h-10 rounded-full bg-white/20 flex items-center justify-center shrink-0">
+                <MessageCircle size={20} className="text-white" />
               </div>
               <div className="flex-1 min-w-0">
-                <p className="text-white font-bold text-sm leading-none">Krunnex Support</p>
-                <p className="text-white/70 text-[11px] mt-0.5 flex items-center gap-1">
-                  <span className="w-1.5 h-1.5 rounded-full bg-green-300" /> Typically replies instantly
+                <p className="text-white font-black text-sm leading-none">Krunnex Support</p>
+                <p className="text-white/80 text-xs mt-1 flex items-center gap-1.5 font-medium">
+                  <span className="w-2 h-2 rounded-full bg-emerald-300 animate-pulse" /> Typically replies instantly
                 </p>
               </div>
-              <button onClick={() => setOpen(false)} className="text-white/70 hover:text-white transition-colors">
-                <X size={16} />
+              <button onClick={() => setOpen(false)} className="text-white/80 hover:text-white transition-colors cursor-pointer">
+                <X size={18} />
               </button>
             </div>
 
             {/* Chat bubble */}
-            <div className="p-4 bg-[#ece5dd]">
-              <div className="bg-white rounded-lg rounded-tl-none px-3.5 py-3 shadow-sm max-w-[85%]">
-                <p className="text-[#111b21] text-xs leading-relaxed">
+            <div className="p-5 bg-[#ece5dd]">
+              <div className="bg-white rounded-2xl rounded-tl-none px-4 py-3.5 shadow-sm max-w-[90%]">
+                <p className="text-[#111b21] text-sm leading-relaxed font-medium">
                   👋 Hi! I'm the Krunnex team. Tell me about your business and what you'd like to build — I'll get back to you within the hour!
                 </p>
-                <p className="text-[#8696a0] text-[9px] mt-1.5 text-right">Now</p>
+                <p className="text-[#8696a0] text-[10px] mt-1.5 text-right font-medium">Now</p>
               </div>
             </div>
 
@@ -49,12 +49,12 @@ export default function FloatingWhatsApp() {
               href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noreferrer"
-              className="flex items-center justify-center gap-2 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90"
+              className="flex items-center justify-center gap-2 py-4 text-sm font-black text-white transition-opacity hover:opacity-95"
               style={{ background: "#25D366" }}
             >
-              <MessageCircle size={16} />
-              Start Conversation
-              <ArrowRight size={14} />
+              <MessageCircle size={18} />
+              Start WhatsApp Conversation
+              <ArrowRight size={15} />
             </a>
           </motion.div>
         )}
