@@ -251,154 +251,109 @@ export default function HeroSection() {
       >
         <div className="flex flex-col items-center text-center">
 
-          {/* Live badge */}
+          {/* Clean minimal badge */}
           <motion.div
-            initial={{ opacity: 0, scale: 0.8, y: 20 }}
-            animate={{ opacity: 1, scale: 1, y: 0 }}
-            transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
-            className="inline-flex items-center gap-2.5 px-5 py-2.5 rounded-full glass border-glow-violet mb-8 text-xs font-semibold text-white/70 tracking-widest uppercase"
+            initial={{ opacity: 0, y: 15 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.6 }}
+            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-8 backdrop-blur-md"
           >
-            <span className="relative flex h-2 w-2">
-              <span className="animate-ping absolute inline-flex h-full w-full rounded-full bg-green-400 opacity-75" />
-              <span className="relative inline-flex h-2 w-2 rounded-full bg-green-400" />
+            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
+            <span className="text-[11px] font-semibold text-white/70 tracking-wide">
+              Digital Solutions & Automation
             </span>
-            Premium Digital Solutions — India
           </motion.div>
 
-          {/* Headline */}
-          <div className="overflow-hidden mb-2">
-            <motion.h1
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.15, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(2.8rem,7.5vw,6.5rem)] font-extrabold tracking-tighter leading-[1.03] text-white"
-            >
-              We Build Digital
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden mb-2">
-            <motion.h1
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.22, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(2.8rem,7.5vw,6.5rem)] font-extrabold tracking-tighter leading-[1.03] text-gradient-primary"
-            >
-              Systems That Run
-            </motion.h1>
-          </div>
-          <div className="overflow-hidden mb-8">
-            <motion.h1
-              initial={{ opacity: 0, y: 60 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ duration: 0.9, delay: 0.29, ease: [0.16, 1, 0.3, 1] }}
-              className="text-[clamp(2.8rem,7.5vw,6.5rem)] font-extrabold tracking-tighter leading-[1.03] text-white/30"
-            >
-              Your Business.
-            </motion.h1>
-          </div>
+          {/* Minimal modern headline */}
+          <motion.h1
+            initial={{ opacity: 0, y: 25 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 0.7, delay: 0.1 }}
+            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white max-w-4xl leading-[1.08] mb-6"
+          >
+            We build high-performance systems that scale your business.
+          </motion.h1>
 
-          {/* Sub */}
+          {/* Clean sub-headline */}
           <motion.p
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.5, ease: [0.16, 1, 0.3, 1] }}
-            className="text-base md:text-lg text-white/45 mb-10 max-w-2xl leading-relaxed font-medium"
+            transition={{ duration: 0.7, delay: 0.2 }}
+            className="text-base sm:text-lg text-white/60 mb-10 max-w-2xl leading-relaxed font-normal"
           >
-            Custom websites, ordering systems, AI automation, WhatsApp flows, and business software — built from scratch for restaurants, e-commerce, and growing businesses across India.
+            Custom websites, high-conversion e-commerce, AI chatbots, and WhatsApp workflows engineered for modern brands.
           </motion.p>
 
-          {/* CTAs */}
+          {/* Minimalist CTAs */}
           <motion.div
             initial={{ opacity: 0, y: 20 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.8, delay: 0.65, ease: [0.16, 1, 0.3, 1] }}
-            className="flex flex-col sm:flex-row gap-4 items-center w-full max-w-sm sm:max-w-none justify-center"
+            transition={{ duration: 0.7, delay: 0.3 }}
+            className="flex flex-col sm:flex-row gap-3.5 items-center w-full max-w-sm sm:max-w-none justify-center"
           >
-            {/* Primary CTA */}
+            {/* Primary CTA: crisp white pill */}
             <Link
               to="/start-project"
-              className="group relative inline-flex h-14 items-center justify-center gap-2.5 rounded-full overflow-hidden shadow-[0_0_40px_rgba(124,58,237,0.4)] w-full sm:w-auto px-9 text-sm font-extrabold text-white transition-all hover:scale-105 active:scale-95"
-              style={{ background: "linear-gradient(135deg, #7c3aed, #4f46e5, #0891b2)" }}
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-7 text-sm font-semibold text-black transition-all hover:bg-white/90 active:scale-98 w-full sm:w-auto shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
             >
-              {/* Shimmer sweep */}
-              <span className="absolute inset-0 bg-gradient-to-r from-transparent via-white/20 to-transparent -translate-x-full group-hover:translate-x-full transition-transform duration-700" />
-              <span className="relative flex items-center gap-2">
-                Start a Project
-                <ArrowRight size={17} className="group-hover:translate-x-1 transition-transform" />
-              </span>
+              Start a Project
+              <ArrowRight size={15} />
             </Link>
 
-            {/* WhatsApp CTA */}
+            {/* WhatsApp CTA: subtle dark glass with green accent */}
             <a
               href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noreferrer"
-              className="group inline-flex h-14 items-center justify-center gap-2.5 rounded-full glass border border-white/12 px-8 text-sm font-semibold text-white/80 hover:text-white hover:border-white/25 hover:bg-white/8 transition-all w-full sm:w-auto"
+              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white/[0.04] border border-white/12 px-7 text-sm font-semibold text-white/80 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all w-full sm:w-auto"
             >
-              <MessageCircle size={17} className="text-[#25D366]" />
+              <MessageCircle size={16} className="text-[#25D366]" />
               Chat on WhatsApp
             </a>
           </motion.div>
 
-          {/* Mobile Interactive Motion Graphic Card */}
+          {/* Minimalist Mobile Preview Card */}
           <motion.div
-            initial={{ opacity: 0, y: 30 }}
+            initial={{ opacity: 0, y: 25 }}
             animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.8, duration: 0.8 }}
-            className="w-full mt-10 xl:hidden max-w-sm mx-auto"
+            transition={{ delay: 0.45, duration: 0.7 }}
+            className="w-full mt-12 xl:hidden max-w-sm mx-auto"
           >
-            <div className="relative rounded-2xl p-4 bg-gradient-to-b from-white/[0.08] to-white/[0.02] border border-white/10 shadow-[0_20px_50px_rgba(0,0,0,0.6)] backdrop-blur-xl overflow-hidden">
-              <div className="absolute top-0 left-0 right-0 h-[1.5px] bg-gradient-to-r from-violet-500 via-cyan-400 to-transparent" />
-              
-              <div className="flex items-center justify-between mb-3 border-b border-white/8 pb-2.5">
+            <div className="rounded-2xl p-4 bg-[#0a0f1d]/80 border border-white/10 backdrop-blur-xl shadow-2xl text-left">
+              <div className="flex items-center justify-between pb-3 border-b border-white/8">
                 <div className="flex items-center gap-2">
-                  <div className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-                  <span className="text-[11px] font-bold text-white tracking-wide uppercase">Live Ecosystem Preview</span>
+                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
+                  <span className="text-xs font-semibold text-white">Live Operations</span>
                 </div>
-                <span className="text-[10px] text-violet-400 font-semibold bg-violet-500/10 border border-violet-500/20 px-2 py-0.5 rounded-full">
-                  Auto-Pilot
-                </span>
+                <span className="text-[10px] font-medium text-white/40">Real-time</span>
               </div>
-
-              {/* Dynamic Notification Row */}
-              <div className="space-y-2">
-                <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.03] border border-white/5">
+              
+              <div className="mt-3 space-y-2">
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-green-500/20 flex items-center justify-center shrink-0">
-                      <ShoppingBag size={14} className="text-green-400" />
+                    <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
+                      <ShoppingBag size={14} />
                     </div>
-                    <div className="text-left">
-                      <p className="text-white text-[11px] font-bold leading-tight">New QR Table Order</p>
-                      <p className="text-white/40 text-[9px]">Table 04 · ₹580 paid online</p>
+                    <div>
+                      <p className="text-xs font-semibold text-white">Direct Online Order</p>
+                      <p className="text-[10px] text-white/45">₹580 · 0% commission</p>
                     </div>
                   </div>
-                  <span className="text-[9px] font-bold text-green-400 bg-green-500/10 px-2 py-0.5 rounded-md">
-                    Instant POS
-                  </span>
+                  <span className="text-[10px] font-bold text-emerald-400">Paid</span>
                 </div>
 
-                <div className="flex items-center justify-between p-2 rounded-xl bg-white/[0.03] border border-white/5">
+                <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
                   <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-[#25D366]/20 flex items-center justify-center shrink-0">
-                      <MessageCircle size={14} className="text-[#25D366]" />
+                    <div className="w-7 h-7 rounded-lg bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
+                      <MessageCircle size={14} />
                     </div>
-                    <div className="text-left">
-                      <p className="text-white text-[11px] font-bold leading-tight">AI WhatsApp Auto-Reply</p>
-                      <p className="text-white/40 text-[9px]">"Order confirmed & dispatched 🛵"</p>
+                    <div>
+                      <p className="text-xs font-semibold text-white">AI WhatsApp Bot</p>
+                      <p className="text-[10px] text-white/45">Instant automated reply</p>
                     </div>
                   </div>
-                  <span className="text-[9px] font-bold text-cyan-400 bg-cyan-500/10 px-2 py-0.5 rounded-md">
-                    24/7 Bot
-                  </span>
+                  <span className="text-[10px] font-bold text-sky-400">Active</span>
                 </div>
-              </div>
-
-              {/* Mini Stats Bar */}
-              <div className="mt-3 pt-2 border-t border-white/8 flex items-center justify-between text-[10px]">
-                <span className="text-white/40 font-medium">Daily Direct Orders</span>
-                <span className="text-white font-extrabold flex items-center gap-1">
-                  <TrendingUp size={11} className="text-green-400" /> +38% this week
-                </span>
               </div>
             </div>
           </motion.div>
