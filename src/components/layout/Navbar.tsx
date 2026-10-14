@@ -37,30 +37,30 @@ export default function Navbar() {
     <>
       <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
         scrolled
-          ? "bg-white/80 backdrop-blur-xl border-b border-slate-200/80 py-3 shadow-[0_4px_20px_rgba(0,0,0,0.03)]"
-          : "bg-transparent py-5"
+          ? "bg-white/85 backdrop-blur-xl border-b border-slate-200/80 py-3.5 sm:py-4 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
+          : "bg-transparent py-5 sm:py-7"
       }`}>
-        <div className="container mx-auto px-5 md:px-10 flex items-center justify-between">
+        <div className="container mx-auto px-6 md:px-12 max-w-7xl flex items-center justify-between">
 
           {/* LOGO */}
           <Link to="/" className="flex items-center group shrink-0">
             <img
               src="/images/krunnex_logo.png"
               alt="Krunnex"
-              className="h-11 w-auto object-contain transition-transform duration-300 group-hover:scale-[1.03]"
+              className="h-16 sm:h-20 md:h-22 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
           {/* DESKTOP LINKS */}
-          <div className="hidden md:flex items-center gap-8">
+          <div className="hidden md:flex items-center gap-10 lg:gap-14">
             {NAV_LINKS.map((link, idx) => (
               <button
                 key={idx}
                 onClick={() => handleNavClick(link.href)}
-                className="text-sm font-semibold text-slate-600 hover:text-slate-950 transition-all relative group whitespace-nowrap cursor-pointer"
+                className="text-base lg:text-lg font-bold text-slate-700 hover:text-slate-950 transition-all relative group whitespace-nowrap cursor-pointer tracking-tight"
               >
                 {link.label}
-                <span className="absolute -bottom-1 left-0 w-0 h-[1.5px] bg-indigo-600 transition-all duration-300 group-hover:w-full" />
+                <span className="absolute -bottom-1.5 left-0 w-0 h-[2.5px] bg-indigo-600 transition-all duration-300 group-hover:w-full rounded-full" />
               </button>
             ))}
           </div>
@@ -69,19 +69,19 @@ export default function Navbar() {
           <div className="hidden md:flex items-center gap-4">
             <Link
               to="/start-project"
-              className="group relative flex items-center gap-2 rounded-full bg-slate-900 px-6 py-2.5 text-sm font-semibold text-white transition-all duration-300 shadow-[0_4px_14px_rgba(15,23,42,0.2)] hover:bg-slate-800 hover:scale-[1.02] active:scale-98"
+              className="group relative flex items-center gap-2.5 rounded-full bg-slate-950 px-8 py-3.5 text-base font-bold text-white transition-all duration-300 shadow-[0_4px_18px_rgba(15,23,42,0.25)] hover:bg-slate-800 hover:scale-[1.03] active:scale-98"
             >
-              Start a Project <ArrowRight size={14} className="group-hover:translate-x-0.5 transition-transform" />
+              Start a Project <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
           {/* MOBILE MENU BUTTON */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden h-10 w-10 flex items-center justify-center rounded-full border border-slate-200 bg-white text-slate-800 transition-colors shadow-sm"
+            className="md:hidden h-12 w-12 flex items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-800 transition-colors shadow-sm cursor-pointer"
             aria-label="Toggle menu"
           >
-            {mobileOpen ? <X className="h-5 w-5" /> : <Menu className="h-5 w-5" />}
+            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
           </button>
 
         </div>

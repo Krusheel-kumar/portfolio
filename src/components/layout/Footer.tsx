@@ -15,7 +15,7 @@ export default function Footer() {
               <img
                 src="/images/krunnex_logo.png"
                 alt="Krunnex"
-                className="h-11 w-auto object-contain"
+                className="h-16 sm:h-20 w-auto object-contain"
               />
             </Link>
             <p className="text-slate-500 text-sm leading-relaxed max-w-xs font-normal">

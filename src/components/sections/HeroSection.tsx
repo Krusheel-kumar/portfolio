@@ -192,7 +192,7 @@ export default function HeroSection() {
   const { scrollY } = useScroll();
 
   return (
-    <section className="relative pt-32 pb-20 md:pt-44 md:pb-36 overflow-hidden bg-[#FAFAFA] text-slate-900">
+    <section className="relative pt-36 sm:pt-48 md:pt-52 pb-20 md:pb-36 overflow-hidden bg-[#FAFAFA] text-slate-900">
       
       {/* Soft Ambient Background Elements */}
       <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[700px] pointer-events-none overflow-hidden -z-10">
