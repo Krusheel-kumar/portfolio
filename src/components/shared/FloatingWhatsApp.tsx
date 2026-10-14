@@ -46,7 +46,7 @@ export default function FloatingWhatsApp() {
 
             {/* CTA */}
             <a
-              href="https://wa.me/919876543210?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noreferrer"
               className="flex items-center justify-center gap-2 py-3.5 text-sm font-bold text-white transition-opacity hover:opacity-90"

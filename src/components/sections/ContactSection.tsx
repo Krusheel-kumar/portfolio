@@ -21,17 +21,17 @@ export default function ContactSection() {
             </p>
 
             <div className="space-y-6 mb-12">
-              <a href="mailto:hello@krunnex.com" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors text-lg">
+              <a href="mailto:krusheelkumar7@gmail.com" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors text-lg">
                 <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-primary">
                   <Mail size={20} />
                 </div>
-                hello@krunnex.com
+                krusheelkumar7@gmail.com
               </a>
-              <a href="https://wa.me/1234567890" target="_blank" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors text-lg">
+              <a href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project." target="_blank" className="flex items-center gap-4 text-muted-foreground hover:text-primary transition-colors text-lg">
                 <div className="w-12 h-12 rounded-full bg-secondary flex items-center justify-center text-primary">
                   <Phone size={20} />
                 </div>
-                +1 (234) 567-890
+                +91 77949 71935
               </a>
             </div>
 

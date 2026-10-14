@@ -339,7 +339,7 @@ export default function WhyUsSection() {
             </span>
           </Link>
           <a
-            href="https://wa.me/919876543210"
+            href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20ask%20a%20question%20about%20your%20services."
             target="_blank"
             rel="noreferrer"
             className="text-sm font-semibold text-white/45 hover:text-white transition-colors border border-white/10 px-8 py-3.5 rounded-full hover:border-white/20"

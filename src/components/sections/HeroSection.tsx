@@ -330,7 +330,7 @@ export default function HeroSection() {
 
             {/* WhatsApp CTA */}
             <a
-              href="https://wa.me/919876543210?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
               target="_blank"
               rel="noreferrer"
               className="group inline-flex h-14 items-center justify-center gap-2.5 rounded-full glass border border-white/12 px-8 text-sm font-semibold text-white/80 hover:text-white hover:border-white/25 hover:bg-white/8 transition-all w-full sm:w-auto"

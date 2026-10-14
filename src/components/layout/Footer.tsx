@@ -25,7 +25,7 @@ export default function Footer() {
             {/* Social links */}
             <div className="flex items-center gap-3 mt-2">
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp"
@@ -43,7 +43,7 @@ export default function Footer() {
                 <Instagram size={16} />
               </a>
               <a
-                href="mailto:hello@krunnex.com"
+                href="mailto:krusheelkumar7@gmail.com"
                 aria-label="Email"
                 className="w-9 h-9 rounded-full bg-white/6 border border-white/10 flex items-center justify-center text-white/50 hover:text-violet-400 hover:border-violet-400/30 transition-colors"
               >
@@ -111,16 +111,16 @@ export default function Footer() {
               Start a Project <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
             </Link>
             <div className="flex flex-col gap-2 text-xs text-white/35">
-              <a href="mailto:hello@krunnex.com" className="hover:text-white transition-colors">
-                hello@krunnex.com
+              <a href="mailto:krusheelkumar7@gmail.com" className="hover:text-white transition-colors">
+                krusheelkumar7@gmail.com
               </a>
               <a
-                href="https://wa.me/919876543210"
+                href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noreferrer"
                 className="hover:text-green-400 transition-colors"
               >
-                +91 98765 43210
+                +91 77949 71935
               </a>
             </div>
           </div>

@@ -155,7 +155,7 @@ export default function PricingSection() {
             Not sure which tier fits your business?
           </p>
           <a
-            href="https://wa.me/919876543210?text=Hi%20Krunnex%2C%20I%27d%20like%20help%20choosing%20the%20right%20package."
+            href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20help%20choosing%20the%20right%20package."
             target="_blank"
             rel="noreferrer"
             className="inline-flex items-center gap-2 text-sm font-semibold text-green-400 hover:text-green-300 transition-colors"
