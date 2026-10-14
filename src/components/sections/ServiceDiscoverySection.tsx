@@ -1,9 +1,9 @@
-import { useState } from "react";
-import { Link } from "react-router-dom";
+import { useState, useEffect } from "react";
+import { Link, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 import { 
   ArrowRight, Globe, ShoppingCart, Store, Cpu, Bot, Layers, 
-  CheckCircle2, Sparkles, Zap, Smartphone, Laptop, Check, TrendingUp, Play, MessageCircle
+  CheckCircle2, Sparkles, Zap, Smartphone, Laptop, Check, TrendingUp, Play, MessageCircle, X, ExternalLink
 } from "lucide-react";
 import { SERVICES_DATA, ServiceItem } from "@/data/servicesData";
 
@@ -453,45 +453,151 @@ const iconMap = {
 /* ─── Main Service Discovery Section Component ───────────────────── */
 export default function ServiceDiscoverySection() {
   const [selectedServiceSlug, setSelectedServiceSlug] = useState<string>("websites");
+  const [splashService, setSplashService] = useState<ServiceItem | null>(null);
+  const navigate = useNavigate();
 
   const selectedService = SERVICES_DATA.find(s => s.slug === selectedServiceSlug) || SERVICES_DATA[0];
   const ActiveMotionGraphic = GRAPHICS_MAP[selectedService.slug] || WebsitesMotionGraphic;
   const ActiveIcon = iconMap[selectedService.iconName] || Globe;
 
+  // Handle escape key to dismiss splash
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setSplashService(null);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  // Lock body scroll when splash modal is open
+  useEffect(() => {
+    if (splashService) {
+      document.body.style.overflow = "hidden";
+    } else {
+      document.body.style.overflow = "unset";
+    }
+    return () => {
+      document.body.style.overflow = "unset";
+    };
+  }, [splashService]);
+
   return (
-    <section id="services" className="py-20 md:py-32 bg-white border-t border-slate-200/80 text-slate-900 font-sans">
+    <section id="services" className="pt-10 pb-16 sm:pt-12 sm:pb-24 md:pt-14 md:pb-28 bg-white border-t border-slate-200/80 text-slate-900 font-sans scroll-mt-20">
       <div className="container mx-auto px-5 sm:px-8 max-w-6xl">
         
         {/* Section Header */}
-        <div className="text-center mb-12 sm:mb-16">
-          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-indigo-700 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block mb-3.5">
-            Main Service Discovery
-          </span>
-          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-950 tracking-tight mb-4">
-            What Are You Looking For?
+        <div className="text-center mb-8 sm:mb-10">
+          <div className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-indigo-50 border border-indigo-200/80 mb-3 shadow-2xs">
+            <span className="w-2 h-2 rounded-full bg-indigo-600 animate-pulse" />
+            <span className="text-[11px] sm:text-xs font-black uppercase tracking-wider text-indigo-700">
+              Interactive System Selector
+            </span>
+          </div>
+
+          <h2 className="text-3xl sm:text-5xl md:text-6xl font-black text-slate-950 tracking-tight mb-3">
+            What Are You <span className="bg-gradient-to-r from-indigo-600 via-purple-600 to-blue-600 bg-clip-text text-transparent">Looking For?</span>
           </h2>
-          <p className="text-base sm:text-xl text-slate-600 max-w-2xl mx-auto font-normal leading-relaxed">
-            Choose what your business needs. Tap below to test live motion graphics, view features, and explore deliverables.
+          <p className="text-xs sm:text-base text-slate-600 max-w-xl mx-auto font-normal leading-relaxed">
+            Choose what your business needs. Tap any system tile to launch an interactive live preview, explore deliverables, and enter its dedicated page.
           </p>
         </div>
 
-        {/* 6 Clickable Service Tabs (Mobile-friendly horizontal chip wrap) */}
-        <div className="flex flex-wrap items-center justify-center gap-2 sm:gap-3 mb-12 max-w-4xl mx-auto">
+        {/* Gen Z Modern Bento Interactive Tile Dock (2-Col on Mobile, 3-Col on Tablet, 6-Col on Desktop) */}
+        <div className="grid grid-cols-2 sm:grid-cols-3 lg:grid-cols-6 gap-2.5 sm:gap-3.5 mb-10 max-w-5xl mx-auto">
           {SERVICES_DATA.map((service) => {
             const isSelected = selectedServiceSlug === service.slug;
             const Icon = iconMap[service.iconName] || Globe;
+
+            // Distinctive Gen Z aesthetic color palette per service
+            const badgeMeta: Record<string, { color: string; tag: string; iconBg: string }> = {
+              "websites-web-applications": { 
+                color: "text-blue-600", 
+                tag: "⚡ < 0.4s",
+                iconBg: "bg-blue-500/10 border-blue-200 text-blue-600" 
+              },
+              "restaurant-pos-qr-ordering": { 
+                color: "text-amber-600", 
+                tag: "🔥 0% Cuts",
+                iconBg: "bg-amber-500/10 border-amber-200 text-amber-600" 
+              },
+              "ecommerce-stores": { 
+                color: "text-pink-600", 
+                tag: "🛍️ 1-Click UPI",
+                iconBg: "bg-pink-500/10 border-pink-200 text-pink-600" 
+              },
+              "custom-business-software": { 
+                color: "text-indigo-600", 
+                tag: "⚙️ Custom ERP",
+                iconBg: "bg-indigo-500/10 border-indigo-200 text-indigo-600" 
+              },
+              "ai-whatsapp-automation": { 
+                color: "text-emerald-600", 
+                tag: "🤖 24/7 AI",
+                iconBg: "bg-emerald-500/10 border-emerald-200 text-[#25D366]" 
+              },
+              "saas-platforms-mobile-apps": { 
+                color: "text-purple-600", 
+                tag: "📱 Scalable",
+                iconBg: "bg-purple-500/10 border-purple-200 text-purple-600" 
+              },
+            };
+
+            const meta = badgeMeta[service.slug] || {
+              color: "text-indigo-600",
+              tag: "✦ System",
+              iconBg: "bg-indigo-500/10 border-indigo-200 text-indigo-600"
+            };
+
             return (
               <button
                 key={service.slug}
-                onClick={() => setSelectedServiceSlug(service.slug)}
-                className={`flex items-center gap-2 px-4 sm:px-5 py-2.5 sm:py-3 rounded-full text-xs sm:text-sm font-black transition-all cursor-pointer ${
+                onClick={() => {
+                  setSelectedServiceSlug(service.slug);
+                  setSplashService(service);
+                }}
+                className={`relative group rounded-2xl p-3.5 sm:p-4 text-left flex flex-col justify-between transition-all duration-300 cursor-pointer active:scale-95 border ${
                   isSelected
-                    ? "bg-slate-950 text-white shadow-lg scale-105"
-                    : "bg-slate-100/90 text-slate-700 border border-slate-200 hover:border-slate-300 hover:bg-slate-200/60"
+                    ? "bg-white border-indigo-600 shadow-[0_12px_28px_rgba(79,70,229,0.18)] ring-2 ring-indigo-500 -translate-y-1"
+                    : "bg-[#FAFAFA] border-slate-200/90 hover:bg-white hover:border-slate-300 hover:shadow-sm"
                 }`}
               >
-                <Icon size={16} />
-                <span>{service.name}</span>
+                {/* Top: Icon + Mini Tag */}
+                <div className="flex items-center justify-between mb-3">
+                  <div className={`w-9 h-9 rounded-xl flex items-center justify-center border transition-transform group-hover:scale-110 duration-200 ${meta.iconBg}`}>
+                    <Icon size={18} />
+                  </div>
+                  <span className="text-[9px] font-black uppercase tracking-tight px-1.5 py-0.5 rounded-md bg-white border border-slate-200/80 text-slate-600 shadow-3xs">
+                    {meta.tag}
+                  </span>
+                </div>
+
+                {/* Service Name */}
+                <div>
+                  <h4 className={`text-xs sm:text-[13px] font-black leading-tight tracking-tight transition-colors ${
+                    isSelected ? "text-indigo-600" : "text-slate-900 group-hover:text-indigo-600"
+                  }`}>
+                    {service.name}
+                  </h4>
+                </div>
+
+                {/* Active Indicator or Tap prompt */}
+                <div className="mt-2.5 pt-2 border-t border-slate-100/90 flex items-center justify-between">
+                  <span className={`text-[10px] font-bold ${
+                    isSelected ? "text-indigo-600 flex items-center gap-1" : "text-slate-400 group-hover:text-slate-700"
+                  }`}>
+                    {isSelected ? (
+                      <>
+                        <span className="w-1.5 h-1.5 rounded-full bg-emerald-500 animate-pulse" />
+                        Previewing
+                      </>
+                    ) : (
+                      "Tap to open"
+                    )}
+                  </span>
+                  <span className="text-slate-300 group-hover:text-indigo-500 group-hover:translate-x-0.5 transition-all text-xs">
+                    →
+                  </span>
+                </div>
               </button>
             );
           })}
@@ -507,7 +613,7 @@ export default function ServiceDiscoverySection() {
                 <ActiveMotionGraphic />
               </div>
               <p className="text-[11px] text-slate-400 text-center mt-2 font-medium">
-                Interactive motion graphic — simulated production workflow
+                Live interactive motion graphic — tap and test real features
               </p>
             </div>
 
@@ -553,12 +659,12 @@ export default function ServiceDiscoverySection() {
                 >
                   Explore Full {selectedService.name} Details <ArrowRight size={15} />
                 </Link>
-                <Link
-                  to={`/estimate?service=${selectedService.slug}`}
-                  className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-white border border-slate-300 px-6 text-sm font-bold text-slate-800 hover:bg-slate-50 transition-all text-center shadow-sm"
+                <button
+                  onClick={() => setSplashService(selectedService)}
+                  className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-indigo-50 border border-indigo-200 px-6 text-sm font-bold text-indigo-700 hover:bg-indigo-100 transition-all text-center cursor-pointer shadow-xs"
                 >
-                  Estimate Cost
-                </Link>
+                  <Sparkles size={16} /> Open Splash Preview
+                </button>
               </div>
 
             </div>
@@ -579,7 +685,10 @@ export default function ServiceDiscoverySection() {
             return (
               <div
                 key={service.slug}
-                onClick={() => setSelectedServiceSlug(service.slug)}
+                onClick={() => {
+                  setSelectedServiceSlug(service.slug);
+                  setSplashService(service);
+                }}
                 className={`group rounded-3xl border p-7 sm:p-8 flex flex-col justify-between transition-all duration-300 cursor-pointer ${
                   isSelected
                     ? "bg-white border-indigo-600 shadow-xl ring-4 ring-indigo-500/10 -translate-y-1"
@@ -598,7 +707,7 @@ export default function ServiceDiscoverySection() {
                     </span>
                   </div>
 
-                  <h4 className="text-xl font-black text-slate-950 mb-2 leading-snug">
+                  <h4 className="text-xl font-black text-slate-950 mb-2 leading-snug group-hover:text-indigo-600 transition-colors">
                     {service.name}
                   </h4>
                   <p className="text-xs sm:text-sm text-slate-600 leading-relaxed font-normal mb-5 line-clamp-2">
@@ -607,8 +716,8 @@ export default function ServiceDiscoverySection() {
                 </div>
 
                 <div className="pt-4 border-t border-slate-100 flex items-center justify-between text-xs font-bold">
-                  <span className={isSelected ? "text-indigo-600" : "text-slate-500 group-hover:text-slate-900"}>
-                    {isSelected ? "Active in Preview Stage ↑" : "Tap to Preview Motion Graphic"}
+                  <span className="text-indigo-600 group-hover:text-indigo-700 flex items-center gap-1">
+                    <Sparkles size={12} /> Tap to Open Splash Preview
                   </span>
                   <Link
                     to={`/solutions/${service.slug}`}
@@ -624,6 +733,129 @@ export default function ServiceDiscoverySection() {
         </div>
 
       </div>
+
+      {/* FULLSCREEN / CENTERED INTERACTIVE SPLASH PREVIEW MODAL */}
+      <AnimatePresence>
+        {splashService && (
+          <div className="fixed inset-0 z-50 flex items-center justify-center p-4 sm:p-6 overflow-y-auto">
+            {/* Backdrop with Blur */}
+            <motion.div
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              exit={{ opacity: 0 }}
+              transition={{ duration: 0.25 }}
+              onClick={() => setSplashService(null)}
+              className="fixed inset-0 bg-slate-950/80 backdrop-blur-md cursor-pointer"
+            />
+
+            {/* Modal Dialog Card */}
+            <motion.div
+              initial={{ opacity: 0, scale: 0.9, y: 24 }}
+              animate={{ opacity: 1, scale: 1, y: 0 }}
+              exit={{ opacity: 0, scale: 0.9, y: 24 }}
+              transition={{ type: "spring", damping: 25, stiffness: 280 }}
+              className="relative w-full max-w-4xl bg-white rounded-3xl shadow-2xl border border-slate-200 overflow-hidden z-10 max-h-[92vh] flex flex-col"
+            >
+              {/* Modal Top Bar */}
+              <div className="flex items-center justify-between px-6 py-4.5 border-b border-slate-100 bg-slate-50/90">
+                <div className="flex items-center gap-3">
+                  <div className="w-10 h-10 rounded-2xl bg-indigo-600 text-white flex items-center justify-center shadow-sm">
+                    {(() => {
+                      const SplashIcon = iconMap[splashService.iconName] || Globe;
+                      return <SplashIcon size={20} />;
+                    })()}
+                  </div>
+                  <div>
+                    <h3 className="text-base sm:text-xl font-black text-slate-950 leading-tight">
+                      {splashService.name}
+                    </h3>
+                    <p className="text-xs text-slate-500 font-medium">Interactive System Showcase</p>
+                  </div>
+                </div>
+
+                <div className="flex items-center gap-3">
+                  <span className="text-xs font-bold text-emerald-800 bg-emerald-50 border border-emerald-200 px-3.5 py-1.5 rounded-full hidden sm:inline">
+                    Starts @ {splashService.startingPrice}
+                  </span>
+                  <button
+                    onClick={() => setSplashService(null)}
+                    className="w-10 h-10 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-600 hover:text-slate-950 hover:bg-slate-100 transition-colors cursor-pointer shadow-xs"
+                    aria-label="Close Preview"
+                  >
+                    <X size={18} />
+                  </button>
+                </div>
+              </div>
+
+              {/* Modal Content Body */}
+              <div className="p-6 sm:p-8 overflow-y-auto space-y-6">
+                
+                {/* Visual Motion Graphic Showcase */}
+                <div className="rounded-2xl overflow-hidden border border-slate-800 shadow-xl bg-slate-900">
+                  {(() => {
+                    const ModalGraphic = GRAPHICS_MAP[splashService.slug] || WebsitesMotionGraphic;
+                    return <ModalGraphic />;
+                  })()}
+                </div>
+
+                {/* Service Details & Deliverables */}
+                <div className="grid grid-cols-1 md:grid-cols-12 gap-6 pt-2">
+                  <div className="md:col-span-7">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-indigo-700 mb-2">
+                      About This Solution
+                    </h4>
+                    <p className="text-sm sm:text-base text-slate-700 leading-relaxed font-normal mb-4">
+                      {splashService.shortDesc}
+                    </p>
+                    <div className="flex items-center gap-2 text-xs font-bold text-emerald-700 bg-emerald-50 px-3 py-1.5 rounded-xl border border-emerald-200 w-fit">
+                      <CheckCircle2 size={14} className="text-emerald-600" />
+                      <span>100% Custom Code • Sub-Second Speed • Zero Aggregator Cuts</span>
+                    </div>
+                  </div>
+
+                  <div className="md:col-span-5 bg-slate-50 p-4 sm:p-5 rounded-2xl border border-slate-200/80">
+                    <h4 className="text-xs font-bold uppercase tracking-wider text-slate-400 mb-3">
+                      Included Deliverables:
+                    </h4>
+                    <div className="space-y-2.5">
+                      {splashService.deliverables.slice(0, 4).map((del, di) => (
+                        <div key={di} className="flex items-start gap-2 text-xs font-semibold text-slate-800">
+                          <CheckCircle2 size={15} className="text-emerald-600 mt-0.5 shrink-0" />
+                          <span>{del.title}</span>
+                        </div>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+
+              </div>
+
+              {/* Modal Action Footer */}
+              <div className="p-5 sm:p-6 border-t border-slate-100 bg-slate-50/80 flex flex-col sm:flex-row gap-3">
+                <button
+                  onClick={() => {
+                    setSplashService(null);
+                    navigate(`/solutions/${splashService.slug}`);
+                  }}
+                  className="flex-1 inline-flex h-14 items-center justify-center gap-2.5 rounded-full bg-slate-950 px-8 text-sm font-bold text-white shadow-md hover:bg-slate-800 transition-all text-center cursor-pointer"
+                >
+                  Explore Full {splashService.name} Page <ArrowRight size={16} />
+                </button>
+                <button
+                  onClick={() => {
+                    setSplashService(null);
+                    navigate(`/estimate?service=${splashService.slug}`);
+                  }}
+                  className="inline-flex h-14 items-center justify-center gap-2 rounded-full bg-white border border-slate-300 px-6 text-sm font-bold text-slate-800 hover:bg-slate-100 transition-all text-center cursor-pointer shadow-xs"
+                >
+                  Estimate Investment
+                </button>
+              </div>
+
+            </motion.div>
+          </div>
+        )}
+      </AnimatePresence>
     </section>
   );
 }

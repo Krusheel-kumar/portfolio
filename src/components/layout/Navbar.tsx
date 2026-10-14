@@ -76,46 +76,13 @@ export default function Navbar() {
   return (
     <>
       <header className="fixed top-0 w-full z-50 transition-all duration-300">
-        
-        {/* Top Micro Utility Bar - High-End Tech Company Touch */}
-        <div className={`bg-slate-950 text-white text-[11px] sm:text-xs py-1.5 px-4 transition-all duration-300 ${
-          scrolled ? "hidden md:hidden" : "block"
-        }`}>
-          <div className="container mx-auto flex items-center justify-between max-w-7xl">
-            <div className="flex items-center gap-2">
-              <span className="w-2 h-2 rounded-full bg-emerald-400 animate-pulse" />
-              <span className="text-slate-300 font-medium hidden sm:inline">
-                Building Custom Digital Systems, E-Commerce & POS for Real Businesses
-              </span>
-              <span className="text-slate-300 font-medium sm:hidden">
-                Custom Software & Digital Systems
-              </span>
-            </div>
-            <div className="flex items-center gap-4 text-slate-300">
-              <a 
-                href="tel:+917794971935" 
-                className="hover:text-emerald-400 transition-colors flex items-center gap-1.5 font-semibold"
-              >
-                <Phone size={11} className="text-emerald-400" /> +91 77949 71935
-              </a>
-              <span className="text-slate-700 hidden md:inline">|</span>
-              <a 
-                href="mailto:krusheelkumar7@gmail.com" 
-                className="hover:text-indigo-300 transition-colors hidden md:flex items-center gap-1.5 font-semibold"
-              >
-                <Mail size={11} className="text-indigo-400" /> krusheelkumar7@gmail.com
-              </a>
-            </div>
-          </div>
-        </div>
-
         {/* Main Navbar */}
         <nav 
           aria-label="Main Navigation"
           className={`w-full transition-all duration-300 ease-out ${
             scrolled
               ? "bg-white/95 backdrop-blur-xl border-b border-slate-200/90 py-2.5 sm:py-3 shadow-[0_10px_30px_rgba(15,23,42,0.06)]"
-              : "bg-white/80 backdrop-blur-md border-b border-slate-200/50 py-3 sm:py-4"
+              : "bg-white/90 backdrop-blur-md border-b border-slate-200/60 py-3 sm:py-4 shadow-2xs"
           }`}
         >
           <div className="container mx-auto px-4 sm:px-8 md:px-12 max-w-7xl flex items-center justify-between">

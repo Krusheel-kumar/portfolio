@@ -4,8 +4,9 @@ import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
 
 // Homepage Sections
 import HeroSection from "@/components/sections/HeroSection";
-import TrustStrip from "@/components/sections/TrustStrip";
+import ServicesMarquee from "@/components/sections/ServicesMarquee";
 import ServiceDiscoverySection from "@/components/sections/ServiceDiscoverySection";
+import TrustStrip from "@/components/sections/TrustStrip";
 import HomePortfolioSection from "@/components/sections/HomePortfolioSection";
 import HomeEstimatorTeaser from "@/components/sections/HomeEstimatorTeaser";
 import HomeProcessSection from "@/components/sections/HomeProcessSection";
@@ -22,14 +23,17 @@ export default function Home() {
       <Navbar />
 
       <main>
-        {/* Section 2: Hero with connected digital products stage */}
+        {/* Section 2: Hero */}
         <HeroSection />
 
-        {/* Minimal Trust Indicator Strip */}
-        <TrustStrip />
+        {/* Auto-Scrolling Services Marquee Ticker */}
+        <ServicesMarquee />
 
-        {/* Section 3: Main Service Discovery — Highest Priority */}
+        {/* Section 3: Main Service Discovery — Immediately After Hero */}
         <ServiceDiscoverySection />
+
+        {/* Trust Indicator Strip */}
+        <TrustStrip />
 
         {/* Section 4: Portfolio Section */}
         <HomePortfolioSection />
