@@ -2,403 +2,276 @@
 
 import { motion, useScroll, useTransform } from "framer-motion";
 import { Link } from "react-router-dom";
-import { ArrowRight, MessageCircle, TrendingUp, Star, Zap, ShoppingBag } from "lucide-react";
+import { ArrowRight, MessageCircle, TrendingUp, ShoppingBag, CheckCircle2, Sparkles, Layers, ShieldCheck, Zap } from "lucide-react";
+import { useState } from "react";
 
-/* ─── Floating UI Cards ───────────────────────────────────── */
+/* ─── 3D Interactive Isometric Product Stage ───────────────────── */
+function Interactive3DStage() {
+  const [rotate, setRotate] = useState({ x: 12, y: -16 });
 
-function OrderCard() {
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    const x = e.clientX - rect.left - rect.width / 2;
+    const y = e.clientY - rect.top - rect.height / 2;
+    setRotate({
+      x: -(y / rect.height) * 16 + 8,
+      y: (x / rect.width) * 20 - 10,
+    });
+  };
+
+  const handleMouseLeave = () => {
+    setRotate({ x: 10, y: -12 });
+  };
+
   return (
-    <motion.div
-      initial={{ opacity: 0, x: -60, y: 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ delay: 1.0, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="animate-float-slow absolute left-[3%] top-[22%] hidden xl:block z-20 w-[220px]"
+    <div 
+      className="relative w-full max-w-4xl mx-auto perspective-1000 py-6 select-none"
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
     >
-      <div className="glass rounded-2xl p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-        {/* Header */}
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-7 h-7 rounded-full bg-green-500/20 flex items-center justify-center">
-            <ShoppingBag size={13} className="text-green-400" />
-          </div>
-          <div>
-            <p className="text-white text-[11px] font-bold leading-none">New Order</p>
-            <p className="text-white/40 text-[9px] mt-0.5">Just now · QR Table 4</p>
-          </div>
-          <span className="ml-auto w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-        </div>
-        {/* Items */}
-        <div className="space-y-1.5 mb-3">
-          {["Butter Chicken", "Garlic Naan × 2", "Lassi"].map((item, i) => (
-            <div key={i} className="flex justify-between">
-              <span className="text-white/60 text-[10px]">{item}</span>
-              <span className="text-white/40 text-[10px]">₹{[380, 120, 80][i]}</span>
-            </div>
-          ))}
-        </div>
-        <div className="border-t border-white/8 pt-2.5 flex items-center justify-between">
-          <span className="text-white/40 text-[10px] font-semibold">TOTAL</span>
-          <span className="text-white font-extrabold text-sm">₹580</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
+      {/* Soft Ambient Light Glow behind 3D Stage */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[350px] bg-gradient-to-tr from-indigo-200/40 via-cyan-100/50 to-emerald-100/40 rounded-full blur-[80px] pointer-events-none -z-10" />
 
-function RevenueCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 60, y: 20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ delay: 1.2, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="animate-float-medium absolute right-[3%] top-[16%] hidden xl:block z-20 w-[210px]"
-    >
-      <div className="glass rounded-2xl p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-        <div className="flex items-center justify-between mb-3">
-          <div>
-            <p className="text-white/45 text-[10px] font-semibold uppercase tracking-wide">Today's Revenue</p>
-            <p className="text-white font-extrabold text-xl leading-tight mt-0.5">₹24,680</p>
+      <motion.div
+        animate={{
+          rotateX: rotate.x,
+          rotateY: rotate.y,
+        }}
+        transition={{ type: "spring", stiffness: 120, damping: 18 }}
+        className="relative transform-3d rounded-3xl bg-white/90 border border-slate-200/90 shadow-[0_30px_70px_rgba(15,23,42,0.12)] p-4 sm:p-7 backdrop-blur-xl transition-shadow"
+      >
+        {/* Top Control Bar */}
+        <div className="flex items-center justify-between pb-4 border-b border-slate-100 mb-6">
+          <div className="flex items-center gap-2">
+            <div className="w-3 h-3 rounded-full bg-rose-400/80" />
+            <div className="w-3 h-3 rounded-full bg-amber-400/80" />
+            <div className="w-3 h-3 rounded-full bg-emerald-400/80" />
+            <span className="ml-2 text-xs font-semibold text-slate-400 tracking-wide">krunnex.system/live-dashboard</span>
           </div>
-          <div className="w-9 h-9 rounded-xl bg-violet-500/20 flex items-center justify-center">
-            <TrendingUp size={16} className="text-violet-400" />
+          <div className="flex items-center gap-2 px-3 py-1 rounded-full bg-emerald-50 border border-emerald-200/60">
+            <span className="w-2 h-2 rounded-full bg-emerald-500 animate-pulse" />
+            <span className="text-[11px] font-bold text-emerald-700">Autopilot Active</span>
           </div>
         </div>
-        {/* Mini bar chart */}
-        <div className="flex items-end gap-1 h-8">
-          {[40, 65, 45, 80, 55, 90, 70, 100, 85, 95].map((h, i) => (
-            <motion.div
-              key={i}
-              className="flex-1 rounded-sm bg-violet-500/40"
-              initial={{ scaleY: 0 }}
-              animate={{ scaleY: 1 }}
-              transition={{ delay: 1.6 + i * 0.05, duration: 0.4, ease: "easeOut" }}
-              style={{ height: `${h}%`, transformOrigin: "bottom" }}
-            />
-          ))}
-        </div>
-        <div className="flex items-center gap-1.5 mt-2.5">
-          <span className="flex items-center gap-1 text-green-400 text-[10px] font-bold">
-            <TrendingUp size={9} /> +32%
-          </span>
-          <span className="text-white/30 text-[10px]">vs yesterday</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
 
-function LoyaltyCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: 60, y: -20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ delay: 1.4, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="animate-float-fast absolute right-[3%] bottom-[18%] hidden xl:block z-20 w-[200px]"
-    >
-      <div className="glass rounded-2xl p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-7 h-7 rounded-full bg-amber-500/20 flex items-center justify-center">
-            <Star size={13} className="text-amber-400" />
-          </div>
-          <div>
-            <p className="text-white text-[11px] font-bold">Loyalty Reward</p>
-            <p className="text-white/40 text-[9px]">Auto-sent via WhatsApp</p>
-          </div>
-        </div>
-        <p className="text-white/70 text-[11px] leading-snug mb-2.5 bg-white/5 rounded-lg p-2.5 border border-white/8 italic">
-          "You've earned 50 points! Redeem for a free dessert 🎁"
-        </p>
-        <div className="flex items-center gap-2">
-          <div className="flex-1 h-1.5 bg-white/10 rounded-full overflow-hidden">
-            <motion.div
-              className="h-full bg-gradient-to-r from-amber-500 to-orange-400 rounded-full"
-              initial={{ width: 0 }}
-              animate={{ width: "72%" }}
-              transition={{ delay: 2, duration: 1.2, ease: "easeOut" }}
-            />
-          </div>
-          <span className="text-amber-400 text-[10px] font-bold">72%</span>
-        </div>
-      </div>
-    </motion.div>
-  );
-}
-
-function WhatsAppBotCard() {
-  return (
-    <motion.div
-      initial={{ opacity: 0, x: -60, y: -20 }}
-      animate={{ opacity: 1, x: 0, y: 0 }}
-      transition={{ delay: 1.6, duration: 0.9, ease: [0.16, 1, 0.3, 1] }}
-      className="animate-float-slow absolute left-[3%] bottom-[20%] hidden xl:block z-20 w-[215px]"
-      style={{ animationDelay: "1.5s" }}
-    >
-      <div className="glass rounded-2xl p-4 shadow-[0_20px_60px_rgba(0,0,0,0.5)]">
-        <div className="flex items-center gap-2 mb-3">
-          <div className="w-7 h-7 rounded-full bg-[#25D366]/20 flex items-center justify-center">
-            <MessageCircle size={13} className="text-[#25D366]" />
-          </div>
-          <div>
-            <p className="text-white text-[11px] font-bold">AI WhatsApp Bot</p>
-            <p className="text-white/40 text-[9px]">3 conversations active</p>
-          </div>
-        </div>
-        <div className="space-y-1.5">
-          {[
-            { msg: "Is the mutton biryani available?", time: "2m", from: "customer" },
-            { msg: "Yes! Ready in 20 mins. Order now?", time: "now", from: "bot" },
-          ].map((m, i) => (
-            <div key={i} className={`flex ${m.from === "bot" ? "justify-end" : "justify-start"}`}>
-              <div className={`max-w-[80%] px-2.5 py-1.5 rounded-xl text-[10px] leading-snug ${
-                m.from === "bot"
-                  ? "bg-[#25D366]/20 text-green-300"
-                  : "bg-white/8 text-white/70"
-              }`}>
-                {m.msg}
+        {/* Dashboard Canvas Grid */}
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-5 items-stretch">
+          
+          {/* Main Chart Card */}
+          <div className="md:col-span-7 bg-slate-50/80 rounded-2xl p-5 border border-slate-100 flex flex-col justify-between">
+            <div className="flex items-center justify-between mb-4">
+              <div>
+                <p className="text-xs font-semibold text-slate-500 uppercase tracking-wider">Direct Business Revenue</p>
+                <div className="flex items-baseline gap-2 mt-1">
+                  <span className="text-3xl font-extrabold text-slate-900 tracking-tight">₹1,48,250</span>
+                  <span className="text-xs font-bold text-emerald-600 flex items-center">
+                    <TrendingUp size={13} className="mr-0.5" /> +42% direct orders
+                  </span>
+                </div>
               </div>
+              <span className="text-[11px] font-medium bg-white px-2.5 py-1 rounded-lg border border-slate-200 text-slate-600 shadow-sm">
+                0% Commission
+              </span>
             </div>
-          ))}
+
+            {/* Clean 3D Style SVG Chart Curve */}
+            <div className="h-32 w-full pt-3 relative">
+              <svg className="w-full h-full overflow-visible" viewBox="0 0 300 100" preserveAspectRatio="none">
+                <defs>
+                  <linearGradient id="chartGrad" x1="0" y1="0" x2="0" y2="1">
+                    <stop offset="0%" stopColor="#6366f1" stopOpacity="0.25" />
+                    <stop offset="100%" stopColor="#6366f1" stopOpacity="0" />
+                  </linearGradient>
+                </defs>
+                <path
+                  d="M0,80 Q50,65 100,50 T200,30 T300,10 L300,100 L0,100 Z"
+                  fill="url(#chartGrad)"
+                />
+                <path
+                  d="M0,80 Q50,65 100,50 T200,30 T300,10"
+                  fill="none"
+                  stroke="#4f46e5"
+                  strokeWidth="3.5"
+                  strokeLinecap="round"
+                />
+              </svg>
+            </div>
+          </div>
+
+          {/* Right Column: Live Simulated Stream */}
+          <div className="md:col-span-5 flex flex-col gap-3">
+            
+            {/* Live POS Card */}
+            <div className="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-indigo-50 border border-indigo-100 flex items-center justify-center text-indigo-600 shrink-0">
+                  <ShoppingBag size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-900">QR Table Order #48</p>
+                  <p className="text-[11px] text-slate-400">Paid via UPI · ₹720</p>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold text-emerald-600 bg-emerald-50 px-2 py-0.5 rounded-full">
+                Instant POS
+              </span>
+            </div>
+
+            {/* WhatsApp AI Auto-Reply Card */}
+            <div className="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-emerald-50 border border-emerald-100 flex items-center justify-center text-[#25D366] shrink-0">
+                  <MessageCircle size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-900">AI WhatsApp Flow</p>
+                  <p className="text-[11px] text-slate-400">Order confirmed in 2s</p>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold text-indigo-600 bg-indigo-50 px-2 py-0.5 rounded-full">
+                24/7 AI
+              </span>
+            </div>
+
+            {/* Loyalty Trigger Card */}
+            <div className="p-3.5 bg-white rounded-xl border border-slate-200/80 shadow-sm flex items-center justify-between">
+              <div className="flex items-center gap-3">
+                <div className="w-9 h-9 rounded-lg bg-amber-50 border border-amber-100 flex items-center justify-center text-amber-500 shrink-0">
+                  <Sparkles size={18} />
+                </div>
+                <div>
+                  <p className="text-xs font-bold text-slate-900">Loyalty Cashback Sent</p>
+                  <p className="text-[11px] text-slate-400">100 pts auto-credited</p>
+                </div>
+              </div>
+              <span className="text-[10px] font-extrabold text-amber-600 bg-amber-50 px-2 py-0.5 rounded-full">
+                Retention
+              </span>
+            </div>
+
+          </div>
+
         </div>
-        <div className="flex items-center gap-1.5 mt-2.5">
-          <Zap size={9} className="text-violet-400" />
-          <span className="text-white/35 text-[9px]">Automated · Zero staff needed</span>
+      </motion.div>
+
+      {/* Floating 3D Badge 1 - Left */}
+      <motion.div
+        animate={{ y: [0, -8, 0] }}
+        transition={{ duration: 4, repeat: Infinity, ease: "easeInOut" }}
+        className="hidden lg:flex items-center gap-2.5 absolute -left-6 top-1/3 bg-white/95 border border-slate-200/80 shadow-[0_15px_35px_rgba(0,0,0,0.08)] px-4 py-2.5 rounded-2xl backdrop-blur-md"
+      >
+        <div className="w-8 h-8 rounded-full bg-emerald-500/10 flex items-center justify-center text-emerald-600">
+          <CheckCircle2 size={16} />
         </div>
-      </div>
-    </motion.div>
-  );
-}
+        <div>
+          <p className="text-xs font-bold text-slate-900">Zero App Commissions</p>
+          <p className="text-[10px] text-slate-400">Save 25-30% on every order</p>
+        </div>
+      </motion.div>
 
-/* ─── Background Mesh ─────────────────────────────────────── */
-function BackgroundMesh() {
-  return (
-    <div className="absolute inset-0 overflow-hidden pointer-events-none">
-      {/* Dot grid */}
-      <div className="absolute inset-0 dot-grid opacity-30" />
-
-      {/* Primary orb — violet */}
+      {/* Floating 3D Badge 2 - Right */}
       <motion.div
-        className="absolute top-[-10%] right-[-5%] w-[700px] h-[700px] rounded-full animate-glow-pulse"
-        style={{
-          background: "radial-gradient(circle, rgba(124,58,237,0.35) 0%, rgba(124,58,237,0) 70%)",
-          filter: "blur(60px)",
-        }}
-        animate={{ scale: [1, 1.1, 1], x: [0, 20, 0] }}
-        transition={{ duration: 12, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Secondary orb — cyan */}
-      <motion.div
-        className="absolute bottom-[-10%] left-[-5%] w-[600px] h-[600px] rounded-full"
-        style={{
-          background: "radial-gradient(circle, rgba(6,182,212,0.25) 0%, rgba(6,182,212,0) 70%)",
-          filter: "blur(60px)",
-        }}
-        animate={{ scale: [1, 1.15, 1], y: [0, -20, 0] }}
-        transition={{ duration: 10, repeat: Infinity, ease: "easeInOut", delay: 2 }}
-      />
-
-      {/* Center glow */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] h-[300px] rounded-full"
-        style={{
-          background: "radial-gradient(ellipse, rgba(124,58,237,0.12) 0%, transparent 70%)",
-          filter: "blur(40px)",
-        }}
-        animate={{ opacity: [0.6, 1, 0.6] }}
-        transition={{ duration: 6, repeat: Infinity, ease: "easeInOut" }}
-      />
-
-      {/* Top-center line accent */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[1px] h-32 bg-gradient-to-b from-violet-500/50 to-transparent" />
-
-      {/* Spinning ring (large, very subtle) */}
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[800px] h-[800px] rounded-full border border-white/[0.03]"
-        animate={{ rotate: 360 }}
-        transition={{ duration: 80, repeat: Infinity, ease: "linear" }}
-      />
-      <motion.div
-        className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] rounded-full border border-violet-500/[0.05]"
-        animate={{ rotate: -360 }}
-        transition={{ duration: 60, repeat: Infinity, ease: "linear" }}
-      />
+        animate={{ y: [0, 8, 0] }}
+        transition={{ duration: 4.5, repeat: Infinity, ease: "easeInOut", delay: 1 }}
+        className="hidden lg:flex items-center gap-2.5 absolute -right-6 bottom-1/4 bg-white/95 border border-slate-200/80 shadow-[0_15px_35px_rgba(0,0,0,0.08)] px-4 py-2.5 rounded-2xl backdrop-blur-md"
+      >
+        <div className="w-8 h-8 rounded-full bg-indigo-500/10 flex items-center justify-center text-indigo-600">
+          <Zap size={16} />
+        </div>
+        <div>
+          <p className="text-xs font-bold text-slate-900">Lightning-Fast React</p>
+          <p className="text-[10px] text-slate-400">Sub-second page speeds</p>
+        </div>
+      </motion.div>
     </div>
   );
 }
 
-/* ─── Main Hero ───────────────────────────────────────────── */
+/* ─── Main Hero Section ────────────────────────────────────────── */
 export default function HeroSection() {
   const { scrollY } = useScroll();
-  const contentY = useTransform(scrollY, [0, 500], [0, 80]);
-  const opacity  = useTransform(scrollY, [0, 300], [1, 0]);
-
-  const words = ["Restaurants.", "E-commerce.", "Businesses."];
+  const contentY = useTransform(scrollY, [0, 400], [0, 60]);
+  const opacity = useTransform(scrollY, [0, 300], [1, 0.4]);
 
   return (
-    <section className="relative min-h-[100svh] flex flex-col justify-center overflow-hidden bg-[#030712]">
+    <section className="relative pt-32 pb-20 md:pt-40 md:pb-32 overflow-hidden bg-[#FAFAFA] text-slate-900">
+      
+      {/* Soft Ambient Background Elements */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-7xl h-[600px] pointer-events-none overflow-hidden -z-10">
+        <div className="absolute -top-32 left-1/2 -translate-x-1/2 w-[800px] h-[450px] bg-gradient-to-b from-indigo-100/70 via-violet-50/50 to-transparent rounded-full blur-[100px]" />
+        <div className="absolute inset-0 bg-[radial-gradient(#E2E8F0_1px,transparent_1px)] [background-size:24px_24px] opacity-60" />
+      </div>
 
-      <BackgroundMesh />
+      <div className="container mx-auto px-5 md:px-10 max-w-6xl relative z-10 text-center">
+        
+        {/* Top Minimal Pill Badge */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.5 }}
+          className="inline-flex items-center gap-2 px-4 py-1.5 rounded-full bg-white border border-slate-200/80 shadow-sm mb-6"
+        >
+          <span className="w-2 h-2 rounded-full bg-indigo-600" />
+          <span className="text-xs font-semibold text-slate-700 tracking-wide">
+            Next-Gen Digital Systems · Websites, Apps & Automation
+          </span>
+        </motion.div>
 
-      {/* Floating UI Cards */}
-      <OrderCard />
-      <RevenueCard />
-      <LoyaltyCard />
-      <WhatsAppBotCard />
+        {/* Primary Headline */}
+        <motion.h1
+          initial={{ opacity: 0, y: 20 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.1 }}
+          className="text-4xl sm:text-6xl md:text-7xl font-extrabold tracking-tight text-slate-950 max-w-4xl mx-auto leading-[1.08] mb-6"
+        >
+          We build digital systems that <span className="text-gradient-primary">run and scale</span> your business.
+        </motion.h1>
 
-      {/* Main Content */}
-      <motion.div
-        style={{ y: contentY, opacity }}
-        className="relative z-10 container mx-auto px-5 md:px-10 max-w-4xl xl:max-w-5xl pt-28 pb-20"
-      >
-        <div className="flex flex-col items-center text-center">
+        {/* Sub-headline */}
+        <motion.p
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.2 }}
+          className="text-base sm:text-lg md:text-xl text-slate-600 mb-10 max-w-2xl mx-auto leading-relaxed font-normal"
+        >
+          High-performance websites, zero-commission ordering, WhatsApp automation, and custom business software built from scratch.
+        </motion.p>
 
-          {/* Clean minimal badge */}
-          <motion.div
-            initial={{ opacity: 0, y: 15 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.6 }}
-            className="inline-flex items-center gap-2 px-3.5 py-1.5 rounded-full bg-white/[0.04] border border-white/10 mb-8 backdrop-blur-md"
+        {/* Action Buttons */}
+        <motion.div
+          initial={{ opacity: 0, y: 15 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.6, delay: 0.3 }}
+          className="flex flex-col sm:flex-row gap-3.5 items-center justify-center mb-16"
+        >
+          <Link
+            to="/start-project"
+            className="w-full sm:w-auto inline-flex h-13 items-center justify-center gap-2 rounded-full bg-slate-950 px-8 text-sm font-bold text-white transition-all shadow-[0_4px_16px_rgba(15,23,42,0.25)] hover:bg-slate-800 hover:scale-[1.02] active:scale-98"
           >
-            <span className="w-1.5 h-1.5 rounded-full bg-emerald-400 animate-pulse" />
-            <span className="text-[11px] font-semibold text-white/70 tracking-wide">
-              Digital Solutions & Automation
-            </span>
-          </motion.div>
-
-          {/* Minimal modern headline */}
-          <motion.h1
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.1 }}
-            className="text-4xl sm:text-6xl md:text-7xl font-bold tracking-tight text-white max-w-4xl leading-[1.08] mb-6"
+            Start Your Project
+            <ArrowRight size={16} />
+          </Link>
+          <a
+            href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
+            target="_blank"
+            rel="noreferrer"
+            className="w-full sm:w-auto inline-flex h-13 items-center justify-center gap-2 rounded-full bg-white border border-slate-200 px-8 text-sm font-semibold text-slate-800 hover:bg-slate-50 transition-all shadow-sm"
           >
-            We build high-performance systems that scale your business.
-          </motion.h1>
+            <MessageCircle size={17} className="text-[#25D366]" />
+            Chat on WhatsApp
+          </a>
+        </motion.div>
 
-          {/* Clean sub-headline */}
-          <motion.p
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.2 }}
-            className="text-base sm:text-lg text-white/60 mb-10 max-w-2xl leading-relaxed font-normal"
-          >
-            Custom websites, high-conversion e-commerce, AI chatbots, and WhatsApp workflows engineered for modern brands.
-          </motion.p>
+        {/* 3D Interactive Stage Mockup */}
+        <motion.div
+          initial={{ opacity: 0, y: 40 }}
+          animate={{ opacity: 1, y: 0 }}
+          transition={{ duration: 0.8, delay: 0.4 }}
+        >
+          <Interactive3DStage />
+        </motion.div>
 
-          {/* Minimalist CTAs */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ duration: 0.7, delay: 0.3 }}
-            className="flex flex-col sm:flex-row gap-3.5 items-center w-full max-w-sm sm:max-w-none justify-center"
-          >
-            {/* Primary CTA: crisp white pill */}
-            <Link
-              to="/start-project"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white px-7 text-sm font-semibold text-black transition-all hover:bg-white/90 active:scale-98 w-full sm:w-auto shadow-[0_4px_20px_rgba(255,255,255,0.15)]"
-            >
-              Start a Project
-              <ArrowRight size={15} />
-            </Link>
-
-            {/* WhatsApp CTA: subtle dark glass with green accent */}
-            <a
-              href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
-              target="_blank"
-              rel="noreferrer"
-              className="inline-flex h-12 items-center justify-center gap-2 rounded-full bg-white/[0.04] border border-white/12 px-7 text-sm font-semibold text-white/80 hover:text-white hover:bg-white/[0.08] hover:border-white/20 transition-all w-full sm:w-auto"
-            >
-              <MessageCircle size={16} className="text-[#25D366]" />
-              Chat on WhatsApp
-            </a>
-          </motion.div>
-
-          {/* Minimalist Mobile Preview Card */}
-          <motion.div
-            initial={{ opacity: 0, y: 25 }}
-            animate={{ opacity: 1, y: 0 }}
-            transition={{ delay: 0.45, duration: 0.7 }}
-            className="w-full mt-12 xl:hidden max-w-sm mx-auto"
-          >
-            <div className="rounded-2xl p-4 bg-[#0a0f1d]/80 border border-white/10 backdrop-blur-xl shadow-2xl text-left">
-              <div className="flex items-center justify-between pb-3 border-b border-white/8">
-                <div className="flex items-center gap-2">
-                  <span className="w-2 h-2 rounded-full bg-emerald-400" />
-                  <span className="text-xs font-semibold text-white">Live Operations</span>
-                </div>
-                <span className="text-[10px] font-medium text-white/40">Real-time</span>
-              </div>
-              
-              <div className="mt-3 space-y-2">
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-emerald-500/10 flex items-center justify-center text-emerald-400">
-                      <ShoppingBag size={14} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-white">Direct Online Order</p>
-                      <p className="text-[10px] text-white/45">₹580 · 0% commission</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold text-emerald-400">Paid</span>
-                </div>
-
-                <div className="flex items-center justify-between p-2.5 rounded-xl bg-white/[0.02] border border-white/5">
-                  <div className="flex items-center gap-2.5">
-                    <div className="w-7 h-7 rounded-lg bg-[#25D366]/10 flex items-center justify-center text-[#25D366]">
-                      <MessageCircle size={14} />
-                    </div>
-                    <div>
-                      <p className="text-xs font-semibold text-white">AI WhatsApp Bot</p>
-                      <p className="text-[10px] text-white/45">Instant automated reply</p>
-                    </div>
-                  </div>
-                  <span className="text-[10px] font-bold text-sky-400">Active</span>
-                </div>
-              </div>
-            </div>
-          </motion.div>
-
-          {/* Micro trust signals */}
-          <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ delay: 1.0, duration: 0.8 }}
-            className="flex items-center gap-6 mt-8 md:mt-10 flex-wrap justify-center"
-          >
-            {[
-              { label: "25+ Projects Built" },
-              { label: "4–8 Week Delivery" },
-              { label: "Zero Templates" },
-            ].map((s, i) => (
-              <div key={i} className="flex items-center gap-2 text-white/30 text-xs font-semibold">
-                <div className="w-1 h-1 rounded-full bg-violet-500" />
-                {s.label}
-              </div>
-            ))}
-          </motion.div>
-
-        </div>
-      </motion.div>
-
-      {/* Bottom scroll indicator */}
-      <motion.div
-        initial={{ opacity: 0 }}
-        animate={{ opacity: 1 }}
-        transition={{ delay: 1.5 }}
-        className="absolute bottom-8 left-1/2 -translate-x-1/2 flex flex-col items-center gap-1.5 z-10"
-      >
-        <span className="text-white/20 text-[10px] font-semibold tracking-widest uppercase">Scroll</span>
-        <div className="w-[1px] h-10 relative overflow-hidden">
-          <div className="absolute inset-0 bg-gradient-to-b from-white/0 via-white/50 to-white/0" />
-          <motion.div
-            className="absolute w-full bg-gradient-to-b from-violet-400 to-cyan-400"
-            style={{ height: "40%" }}
-            animate={{ y: ["0%", "250%"] }}
-            transition={{ duration: 1.5, repeat: Infinity, ease: "easeInOut" }}
-          />
-        </div>
-      </motion.div>
-
+      </div>
     </section>
   );
 }

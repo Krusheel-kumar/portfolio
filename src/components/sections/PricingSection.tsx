@@ -63,12 +63,7 @@ const TIERS = [
 
 export default function PricingSection() {
   return (
-    <section className="bg-[#030712] text-white py-24 md:py-32 relative overflow-hidden border-t border-white/5">
-
-      {/* Ambient glow center */}
-      <div className="absolute inset-0 flex items-center justify-center pointer-events-none">
-        <div className="w-[600px] h-[400px] bg-violet-600/[0.07] rounded-full blur-[120px]" />
-      </div>
+    <section className="bg-white text-slate-900 py-20 md:py-32 relative overflow-hidden border-t border-slate-200/80">
 
       <div className="container mx-auto px-5 md:px-10 max-w-7xl relative z-10">
 
@@ -78,64 +73,68 @@ export default function PricingSection() {
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs font-bold tracking-widest uppercase mb-4 text-white/40">Investment Tiers</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-5">
+          <span className="text-xs font-bold tracking-widest uppercase mb-3 text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block">
+            Investment Tiers
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mb-3 mt-2">
             Transparent, ROI-Focused Pricing.
           </h2>
-          <p className="text-white/50 max-w-2xl mx-auto text-base md:text-lg font-medium">
-            We don't charge by the hour. We charge for the value, automation, and revenue our systems generate. Every rupee invested should come back multiplied.
+          <p className="text-slate-500 max-w-xl mx-auto text-base sm:text-lg font-normal">
+            No unexpected hourly rates. We engineer complete business systems that generate measurable revenue and automate operations.
           </p>
         </motion.div>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-start max-w-5xl mx-auto">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 items-stretch max-w-5xl mx-auto">
           {TIERS.map((tier, idx) => (
             <motion.div
               key={idx}
-              className={`relative rounded-2xl p-7 md:p-9 flex flex-col h-full ${
+              className={`relative rounded-3xl p-7 md:p-8 flex flex-col justify-between ${
                 tier.popular
-                  ? "bg-white/8 border-2 border-white/25 shadow-[0_0_60px_rgba(139,92,246,0.15)] md:-translate-y-3"
-                  : "bg-white/[0.04] border border-white/10"
+                  ? "bg-slate-50/80 border-2 border-indigo-600 shadow-[0_20px_50px_rgba(79,70,229,0.12)] md:-translate-y-2"
+                  : "bg-white border border-slate-200 shadow-sm"
               }`}
-              initial={{ opacity: 0, y: 30 }}
+              initial={{ opacity: 0, y: 24 }}
               whileInView={{ opacity: 1, y: 0 }}
               viewport={{ once: true }}
-              transition={{ duration: 0.55, delay: idx * 0.1 }}
+              transition={{ duration: 0.5, delay: idx * 0.1 }}
             >
               {tier.tag && (
-                <div className="absolute -top-4 left-1/2 -translate-x-1/2 bg-violet-500 text-white px-4 py-1.5 rounded-full text-[10px] font-extrabold uppercase tracking-widest shadow-lg shadow-violet-500/30">
+                <div className="absolute -top-3.5 left-1/2 -translate-x-1/2 bg-indigo-600 text-white px-3.5 py-1 rounded-full text-[10px] font-extrabold uppercase tracking-widest shadow-sm">
                   {tier.tag}
                 </div>
               )}
 
-              <h3 className="text-base font-bold text-white/70 mb-2">{tier.name}</h3>
+              <div>
+                <h3 className="text-base font-bold text-slate-950 mb-2">{tier.name}</h3>
 
-              <div className="flex items-baseline gap-1.5 mb-1">
-                <span className="text-3xl md:text-4xl font-extrabold text-white">{tier.price}</span>
-                {tier.period && <span className="text-white/40 text-sm font-medium">{tier.period}</span>}
-              </div>
+                <div className="flex items-baseline gap-1.5 mb-1">
+                  <span className="text-3xl md:text-4xl font-extrabold text-slate-950">{tier.price}</span>
+                  {tier.period && <span className="text-slate-400 text-sm font-medium">{tier.period}</span>}
+                </div>
 
-              <p className="text-xs text-white/50 mb-7 leading-relaxed min-h-[3rem]">{tier.description}</p>
+                <p className="text-xs text-slate-500 mb-6 leading-relaxed min-h-[3rem]">{tier.description}</p>
 
-              <div className="w-full h-[1px] bg-white/8 mb-7" />
+                <div className="w-full h-[1px] bg-slate-100 mb-6" />
 
-              <div className="space-y-3.5 mb-8 flex-1">
-                {tier.features.map((feature, fi) => (
-                  <div key={fi} className="flex items-start gap-3">
-                    <CheckCircle2
-                      size={15}
-                      className={tier.popular ? "text-violet-400 mt-0.5 shrink-0" : "text-white/35 mt-0.5 shrink-0"}
-                    />
-                    <span className="text-sm font-medium text-white/75">{feature}</span>
-                  </div>
-                ))}
+                <div className="space-y-3 mb-8 flex-1">
+                  {tier.features.map((feature, fi) => (
+                    <div key={fi} className="flex items-start gap-2.5">
+                      <CheckCircle2
+                        size={16}
+                        className={tier.popular ? "text-indigo-600 mt-0.5 shrink-0" : "text-emerald-600 mt-0.5 shrink-0"}
+                      />
+                      <span className="text-xs font-semibold text-slate-700">{feature}</span>
+                    </div>
+                  ))}
+                </div>
               </div>
 
               <Link
                 to={tier.ctaHref}
-                className={`w-full py-3.5 rounded-full text-xs font-extrabold uppercase tracking-widest flex items-center justify-center gap-2 transition-all active:scale-95 ${
+                className={`w-full py-3.5 rounded-full text-xs font-bold uppercase tracking-wider flex items-center justify-center gap-2 transition-all ${
                   tier.popular
-                    ? "bg-white text-black hover:bg-violet-50 hover:scale-105 shadow-xl"
-                    : "bg-white/8 text-white hover:bg-white/15 border border-white/12"
+                    ? "bg-slate-950 text-white hover:bg-slate-800 shadow-md"
+                    : "bg-slate-100 text-slate-800 hover:bg-slate-200"
                 }`}
               >
                 {tier.cta} <ArrowRight size={13} />

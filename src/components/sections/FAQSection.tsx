@@ -39,7 +39,7 @@ export default function FAQSection() {
   const [openIndex, setOpenIndex] = useState<number | null>(0);
 
   return (
-    <section className="bg-[#030712] text-white py-24 md:py-32 relative border-t border-white/5">
+    <section className="bg-[#FAFAFA] text-slate-900 py-20 md:py-28 relative border-t border-slate-200/80">
       <div className="container px-5 md:px-10 mx-auto max-w-3xl relative z-10">
 
         <motion.div
@@ -48,12 +48,14 @@ export default function FAQSection() {
           viewport={{ once: true }}
           className="text-center mb-14 md:mb-18"
         >
-          <p className="text-xs font-bold tracking-widest uppercase mb-4 text-white/40">Clarity & Transparency</p>
-          <h2 className="text-4xl md:text-5xl font-extrabold tracking-tight mb-4">
-            Common Questions.
+          <span className="text-xs font-bold tracking-widest uppercase mb-3 text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block">
+            Frequently Asked Questions
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mt-2 mb-3">
+            Clear Answers. Zero Confusion.
           </h2>
-          <p className="text-base md:text-lg text-white/50 max-w-xl mx-auto font-medium">
-            Everything you need to know before partnering with Krunnex.
+          <p className="text-base text-slate-500 max-w-lg mx-auto font-normal">
+            Everything you need to know about our engineering process, pricing, and handover.
           </p>
         </motion.div>
 
@@ -66,28 +68,28 @@ export default function FAQSection() {
                 initial={{ opacity: 0, y: 10 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true }}
-                transition={{ delay: index * 0.06 }}
-                className={`border rounded-2xl overflow-hidden transition-all duration-300 ${
+                transition={{ delay: index * 0.05 }}
+                className={`border rounded-2xl overflow-hidden transition-all duration-200 ${
                   isOpen
-                    ? "bg-white/6 border-white/25"
-                    : "bg-white/[0.03] border-white/8 hover:border-white/15"
+                    ? "bg-white border-slate-300 shadow-sm"
+                    : "bg-white/80 border-slate-200 hover:border-slate-300"
                 }`}
               >
                 <button
                   onClick={() => setOpenIndex(isOpen ? null : index)}
-                  className="w-full px-6 py-5 md:px-7 flex items-center justify-between text-left focus:outline-none group"
+                  className="w-full px-6 py-4.5 md:px-7 flex items-center justify-between text-left focus:outline-none"
                 >
-                  <span className={`font-bold text-base md:text-lg pr-6 leading-snug transition-colors ${
-                    isOpen ? "text-white" : "text-white/75 group-hover:text-white"
+                  <span className={`font-bold text-base md:text-lg pr-4 leading-snug ${
+                    isOpen ? "text-slate-950" : "text-slate-800"
                   }`}>
                     {faq.question}
                   </span>
-                  <div className={`flex-shrink-0 w-9 h-9 rounded-full flex items-center justify-center transition-all border ${
+                  <div className={`flex-shrink-0 w-8 h-8 rounded-full flex items-center justify-center transition-all ${
                     isOpen
-                      ? "bg-white text-black border-white"
-                      : "bg-transparent text-white/40 border-white/15 group-hover:border-white/35 group-hover:text-white"
+                      ? "bg-slate-900 text-white"
+                      : "bg-slate-100 text-slate-500"
                   }`}>
-                    {isOpen ? <Minus size={16} /> : <Plus size={16} />}
+                    {isOpen ? <Minus size={15} /> : <Plus size={15} />}
                   </div>
                 </button>
 
@@ -97,11 +99,11 @@ export default function FAQSection() {
                       initial={{ height: 0, opacity: 0 }}
                       animate={{ height: "auto", opacity: 1 }}
                       exit={{ height: 0, opacity: 0 }}
-                      transition={{ duration: 0.28, ease: "easeInOut" }}
+                      transition={{ duration: 0.25, ease: "easeInOut" }}
                     >
                       <div className="px-6 md:px-7 pb-6 pt-1">
-                        <div className="w-full h-[1px] bg-white/8 mb-5" />
-                        <p className="text-white/60 leading-relaxed text-sm md:text-base font-medium">
+                        <div className="w-full h-[1px] bg-slate-100 mb-4" />
+                        <p className="text-slate-600 leading-relaxed text-sm md:text-base font-normal">
                           {faq.answer}
                         </p>
                       </div>

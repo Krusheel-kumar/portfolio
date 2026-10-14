@@ -1,6 +1,6 @@
 import { motion, AnimatePresence } from "framer-motion";
 import { Industry } from "@/pages/Home";
-import { Utensils, ShoppingCart, Building2 } from "lucide-react";
+import { Utensils, ShoppingCart, Building2, Check } from "lucide-react";
 
 interface IndustrySelectorProps {
   selectedIndustry: Industry;
@@ -10,166 +10,95 @@ interface IndustrySelectorProps {
 const industries = [
   {
     id: "restaurant",
-    icon: <Utensils size={28} strokeWidth={1.5} />,
+    icon: <Utensils size={24} />,
     label: "Restaurant & Food",
-    description: "Ordering, loyalty & automation",
-    theme: {
-      primaryBg: "bg-orange-500",
-      primaryText: "text-orange-500",
-      softBg: "bg-orange-500/20",
-      border: "border-orange-500/50",
-      glowRing: "shadow-[0_0_20px_rgba(249,115,22,0.4)]",
-      ambientGlow: "rgba(249,115,22,0.35)",
-    }
+    description: "Zero-commission ordering, QR menus & WhatsApp automation",
+    tag: "Most Popular",
+    color: "from-orange-500 to-amber-500",
+    bgActive: "bg-orange-50/80 border-orange-200",
+    iconBg: "bg-orange-500 text-white shadow-orange-200",
   },
   {
     id: "ecommerce",
-    icon: <ShoppingCart size={28} strokeWidth={1.5} />,
-    label: "E-commerce",
-    description: "Store, payments & fulfillment",
-    theme: {
-      primaryBg: "bg-blue-500",
-      primaryText: "text-blue-500",
-      softBg: "bg-blue-500/20",
-      border: "border-blue-500/50",
-      glowRing: "shadow-[0_0_20px_rgba(59,130,246,0.4)]",
-      ambientGlow: "rgba(59,130,246,0.35)",
-    }
+    icon: <ShoppingCart size={24} />,
+    label: "E-Commerce Brands",
+    description: "High-speed storefronts, 1-click checkout & cart recovery",
+    tag: "High Conversion",
+    color: "from-blue-600 to-indigo-600",
+    bgActive: "bg-indigo-50/80 border-indigo-200",
+    iconBg: "bg-indigo-600 text-white shadow-indigo-200",
   },
   {
     id: "business",
-    icon: <Building2 size={28} strokeWidth={1.5} />,
-    label: "Service Business",
-    description: "CRM, dashboards & automation",
-    theme: {
-      primaryBg: "bg-violet-500",
-      primaryText: "text-violet-500",
-      softBg: "bg-violet-500/20",
-      border: "border-violet-500/50",
-      glowRing: "shadow-[0_0_20px_rgba(139,92,246,0.4)]",
-      ambientGlow: "rgba(139,92,246,0.35)",
-    }
+    icon: <Building2 size={24} />,
+    label: "Service Businesses",
+    description: "Custom admin portals, 24/7 AI lead bots & workflow sync",
+    tag: "Scale Operations",
+    color: "from-violet-600 to-purple-600",
+    bgActive: "bg-purple-50/80 border-purple-200",
+    iconBg: "bg-purple-600 text-white shadow-purple-200",
   },
 ] as const;
 
 export default function IndustrySelector({ selectedIndustry, onSelect }: IndustrySelectorProps) {
   return (
-    <section className="pt-24 pb-16 bg-[#030712] relative z-20 font-sans" style={{ fontFamily: 'ui-sans-serif, system-ui, sans-serif' }}>
+    <section className="pt-20 pb-12 bg-[#FAFAFA] relative z-20 font-sans">
       
-      {/* Cinematic Ambient Glow */}
-      <div className="absolute inset-0 overflow-hidden pointer-events-none">
-        {industries.map((ind) => (
-          <motion.div
-            key={ind.id}
-            initial={{ opacity: 0 }}
-            animate={{ opacity: selectedIndustry === ind.id ? 1 : 0 }}
-            transition={{ duration: 0.8, ease: "easeInOut" }}
-            className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-5xl h-[120%] opacity-70"
-            style={{
-              background: `radial-gradient(ellipse at top, ${ind.theme.ambientGlow} 0%, transparent 65%)`,
-              filter: "blur(80px)"
-            }}
-          />
-        ))}
-      </div>
-
       <div className="container mx-auto px-5 md:px-10 max-w-6xl text-center relative z-10">
 
         {/* Header Block */}
-        <motion.div
-          initial={{ opacity: 0, y: 20 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="mb-16 md:mb-20 flex flex-col items-center"
-        >
-          <div className="inline-flex items-center gap-2.5 px-5 py-2 rounded-full border border-white/10 bg-white/[0.03] backdrop-blur-xl mb-6 shadow-xl">
-            <span className="w-2 h-2 rounded-full bg-white/80 animate-pulse" />
-            <span className="text-[10.5px] font-extrabold tracking-[0.25em] uppercase text-white/70">
-              Select Your Industry
-            </span>
-          </div>
-          
-          <h2 className="text-4xl md:text-5xl lg:text-7xl font-extrabold text-white tracking-tighter leading-[1.05] mb-5">
-            Built exactly for <br className="hidden md:block" />
-            <span className="text-transparent bg-clip-text bg-gradient-to-r from-gray-300 to-gray-600">your business.</span>
+        <div className="mb-12 flex flex-col items-center">
+          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 mb-4">
+            Select Your Industry
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold text-slate-950 tracking-tight mb-4">
+            Tailored systems for your business model.
           </h2>
-        </motion.div>
+          <p className="text-base text-slate-500 max-w-xl">
+            Choose your sector below to see the exact digital ecosystem, integrations, and ROI we deliver.
+          </p>
+        </div>
 
-        {/* Premium Selection Cards */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-6 lg:gap-8 max-w-5xl mx-auto">
-          {industries.map((ind, i) => {
+        {/* Minimal Light Selection Cards */}
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5 max-w-5xl mx-auto">
+          {industries.map((ind) => {
             const isSelected = selectedIndustry === ind.id;
-            const t = ind.theme;
 
             return (
-              <motion.button
+              <button
                 key={ind.id}
-                initial={{ opacity: 0, y: 20 }}
-                whileInView={{ opacity: 1, y: 0 }}
-                viewport={{ once: true }}
-                transition={{ delay: i * 0.1, duration: 0.5, ease: [0.16, 1, 0.3, 1] }}
-                whileTap={{ scale: 0.98 }}
                 onClick={() => onSelect(ind.id as Industry)}
-                className={`relative flex flex-col items-start text-left p-5 sm:p-6 md:p-8 lg:p-9 rounded-[1.5rem] md:rounded-[2rem] border transition-all duration-500 overflow-hidden group ${
+                className={`relative flex flex-col text-left p-6 sm:p-7 rounded-2xl border transition-all duration-300 text-slate-900 ${
                   isSelected
-                    ? `bg-white/[0.05] ${t.border} shadow-[0_20px_50px_rgba(0,0,0,0.6)]`
-                    : "border-white/5 bg-white/[0.02] hover:bg-white/[0.04] hover:border-white/15"
+                    ? `${ind.bgActive} border-2 shadow-[0_15px_30px_rgba(0,0,0,0.06)] scale-[1.02]`
+                    : "bg-white border-slate-200/80 hover:border-slate-300 hover:shadow-sm"
                 }`}
               >
-                {/* Active Subdued Background Fill */}
-                {isSelected && (
-                  <motion.div
-                    layoutId="industryCardActiveBg"
-                    className={`absolute inset-0 bg-gradient-to-br from-transparent to-${t.softBg} opacity-20 pointer-events-none`}
-                    transition={{ type: "spring", bounce: 0.1, duration: 0.6 }}
-                  />
-                )}
-
-                {/* Top Row: Icon + Radio Indicator */}
-                <div className="flex justify-between items-center md:items-start w-full mb-4 sm:mb-6 md:mb-10 relative z-10">
-                  
-                  {/* Icon Block */}
-                  <div className={`w-12 h-12 md:w-16 md:h-16 rounded-xl md:rounded-2xl flex items-center justify-center transition-all duration-500 ${
-                    isSelected 
-                      ? `${t.primaryBg} text-white ${t.glowRing} scale-105 md:scale-110` 
-                      : "bg-white/[0.04] text-white/40 group-hover:bg-white/[0.08] group-hover:text-white/80"
+                {/* Top Row: Icon + Check Indicator */}
+                <div className="flex justify-between items-center w-full mb-6">
+                  <div className={`w-12 h-12 rounded-xl flex items-center justify-center transition-all ${
+                    isSelected ? ind.iconBg : "bg-slate-100 text-slate-600"
                   }`}>
                     {ind.icon}
                   </div>
                   
-                  {/* Premium Radio Button Indicator */}
-                  <div className={`w-5 h-5 md:w-6 md:h-6 rounded-full border-2 flex items-center justify-center transition-all duration-300 ${
-                    isSelected 
-                      ? `${t.border} bg-black/50` 
-                      : "border-white/10 bg-transparent group-hover:border-white/30"
-                  }`}>
-                    <AnimatePresence>
-                      {isSelected && (
-                        <motion.div 
-                          initial={{ scale: 0 }}
-                          animate={{ scale: 1 }}
-                          exit={{ scale: 0 }}
-                          className={`w-2 md:w-2.5 h-2 md:h-2.5 rounded-full ${t.primaryBg} ${t.glowRing}`} 
-                        />
-                      )}
-                    </AnimatePresence>
-                  </div>
+                  {isSelected ? (
+                    <div className="w-6 h-6 rounded-full bg-slate-950 text-white flex items-center justify-center">
+                      <Check size={14} />
+                    </div>
+                  ) : (
+                    <div className="w-6 h-6 rounded-full border border-slate-200" />
+                  )}
                 </div>
 
-                {/* Bottom Row: Typography */}
-                <div className="relative z-10 w-full mt-auto">
-                  <h3 className={`font-extrabold text-xl sm:text-2xl lg:text-3xl tracking-tight mb-1.5 md:mb-2.5 transition-colors ${
-                    isSelected ? "text-white" : "text-white/70 group-hover:text-white"
-                  }`}>
-                    {ind.label}
-                  </h3>
-                  <p className={`text-xs sm:text-sm lg:text-base font-medium leading-relaxed transition-colors ${
-                    isSelected ? "text-white/70" : "text-white/40 group-hover:text-white/60"
-                  }`}>
-                    {ind.description}
-                  </p>
-                </div>
-              </motion.button>
+                {/* Typography */}
+                <h3 className="font-extrabold text-xl text-slate-950 tracking-tight mb-2">
+                  {ind.label}
+                </h3>
+                <p className="text-sm text-slate-500 leading-relaxed font-normal">
+                  {ind.description}
+                </p>
+              </button>
             );
           })}
         </div>

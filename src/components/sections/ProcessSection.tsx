@@ -47,29 +47,22 @@ export default function ProcessSection() {
   const lineScaleY = useTransform(scrollYProgress, [0.05, 0.85], [0, 1]);
 
   return (
-    <section className="bg-[#030712] text-white py-24 md:py-36 relative border-t border-white/5 overflow-hidden">
-
-      {/* Background decorative elements */}
-      <div className="absolute inset-0 line-grid opacity-100 pointer-events-none" />
-      <div className="absolute top-1/2 right-0 w-[400px] h-[400px] pointer-events-none"
-        style={{ background: "radial-gradient(circle, rgba(124,58,237,0.07) 0%, transparent 70%)", filter: "blur(40px)" }} />
+    <section className="bg-[#FAFAFA] text-slate-900 py-20 md:py-32 relative border-t border-slate-200/80 overflow-hidden">
 
       <div className="container mx-auto px-5 md:px-10 max-w-6xl relative z-10">
 
         {/* Header */}
-        <div className="grid md:grid-cols-2 gap-10 mb-20 items-end">
+        <div className="grid md:grid-cols-2 gap-10 mb-16 items-end">
           <motion.div
             initial={{ opacity: 0, y: 24 }}
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
           >
-            <p className="text-xs font-bold tracking-[0.25em] uppercase text-violet-400/70 mb-4 flex items-center gap-2">
-              <span className="w-6 h-[1px] bg-violet-500" />
-              Our Execution Protocol
-            </p>
-            <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter leading-[1.05]">
-              From idea to live
-              <br />
+            <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block mb-4">
+              Execution Protocol
+            </span>
+            <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 leading-[1.1]">
+              From concept to production <br />
               <span className="text-gradient-primary">in weeks.</span>
             </h2>
           </motion.div>
@@ -78,16 +71,16 @@ export default function ProcessSection() {
             whileInView={{ opacity: 1, y: 0 }}
             viewport={{ once: true }}
             transition={{ delay: 0.15 }}
-            className="flex flex-col gap-5"
+            className="flex flex-col gap-4"
           >
-            <p className="text-white/45 text-base md:text-lg leading-relaxed">
-              A disciplined, transparent build process. No surprises. No scope creep. A proven system that ships quality software fast and on budget.
+            <p className="text-slate-600 text-base sm:text-lg leading-relaxed font-normal">
+              A transparent, agile build process. No delays, no scope creep. We prototype, test, and deploy software that hits the ground running.
             </p>
             <Link
               to="/start-project"
-              className="group inline-flex items-center gap-2 text-sm font-bold text-violet-400 hover:text-violet-300 transition-colors w-fit"
+              className="group inline-flex items-center gap-2 text-sm font-bold text-indigo-600 hover:text-indigo-800 transition-colors w-fit"
             >
-              Start the process
+              Start the build process
               <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </motion.div>
@@ -130,18 +123,12 @@ export default function ProcessSection() {
                   {/* Timeline node */}
                   <div className={`absolute left-[17px] md:left-1/2 md:-translate-x-1/2 z-20 flex items-center justify-center`}>
                     <motion.div
-                      className="w-[26px] h-[26px] rounded-full border-2 border-white/20 bg-[#030712] flex items-center justify-center"
-                      whileInView={{ borderColor: "rgba(124,58,237,0.8)", boxShadow: "0 0 20px rgba(124,58,237,0.5)" }}
+                      className="w-[26px] h-[26px] rounded-full border-2 border-slate-300 bg-white flex items-center justify-center shadow-sm"
+                      whileInView={{ borderColor: "#4f46e5", boxShadow: "0 0 15px rgba(79,70,229,0.3)" }}
                       viewport={{ once: true }}
-                      transition={{ delay: 0.3, duration: 0.5 }}
+                      transition={{ delay: 0.2, duration: 0.4 }}
                     >
-                      <motion.div
-                        className="w-2.5 h-2.5 rounded-full"
-                        style={{ background: "linear-gradient(135deg, #7c3aed, #06b6d4)" }}
-                        whileInView={{ scale: [0, 1.3, 1] }}
-                        viewport={{ once: true }}
-                        transition={{ delay: 0.4, duration: 0.5 }}
-                      />
+                      <div className="w-2.5 h-2.5 rounded-full bg-indigo-600" />
                     </motion.div>
                   </div>
 
@@ -177,41 +164,31 @@ function StepCard({ step, idx, direction, isLeft }: {
 }) {
   return (
     <motion.div
-      initial={{ opacity: 0, x: direction * 40, filter: "blur(8px)" }}
-      whileInView={{ opacity: 1, x: 0, filter: "blur(0px)" }}
-      viewport={{ once: true, amount: 0.3 }}
-      transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+      initial={{ opacity: 0, x: direction * 30 }}
+      whileInView={{ opacity: 1, x: 0 }}
+      viewport={{ once: true, amount: 0.2 }}
+      transition={{ duration: 0.5 }}
       className={`w-full ${isLeft ? "md:text-right" : ""}`}
     >
-      <div className="group relative bg-white/[0.03] border border-white/7 rounded-3xl p-7 md:p-9 overflow-hidden hover:border-white/14 transition-colors duration-500">
-
-        {/* Gradient corner accent */}
-        <div className={`absolute top-0 ${isLeft ? "right-0 rounded-bl-3xl rounded-tr-3xl" : "left-0 rounded-br-3xl rounded-tl-3xl"} w-24 h-24 opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`}
-          style={{ background: `radial-gradient(circle at ${isLeft ? "top right" : "top left"}, rgba(124,58,237,0.2), transparent 70%)` }} />
-
-        {/* Step number (big bg watermark) */}
-        <div className={`absolute ${isLeft ? "left-6" : "right-6"} top-1/2 -translate-y-1/2 text-[6rem] font-extrabold text-white/[0.03] tracking-tighter select-none leading-none pointer-events-none`}>
-          {step.number}
-        </div>
+      <div className="group relative bg-white border border-slate-200 rounded-3xl p-7 md:p-8 overflow-hidden shadow-sm hover:shadow-md hover:border-slate-300 transition-all">
 
         {/* Header */}
-        <div className={`flex items-center gap-3 mb-5 ${isLeft ? "md:flex-row-reverse" : ""}`}>
-          <span className="px-3 py-1.5 text-[10px] font-bold uppercase tracking-widest rounded-full border border-white/10 text-white/40">
+        <div className={`flex items-center gap-3 mb-4 ${isLeft ? "md:flex-row-reverse" : ""}`}>
+          <span className="px-3 py-1 text-[11px] font-bold uppercase tracking-wider rounded-full bg-slate-100 text-slate-700">
             {step.week}
           </span>
-          <div className={`flex items-center gap-1.5 ${isLeft ? "md:flex-row-reverse" : ""}`}>
-            <div className={`h-[1px] w-6 bg-gradient-to-r ${step.color} to-transparent`} />
-            <span className="text-[10px] font-bold text-white/30 tracking-widest uppercase">{step.number}</span>
-          </div>
+          <span className="text-[11px] font-extrabold text-indigo-600 tracking-wider uppercase">
+            Step {step.number}
+          </span>
         </div>
 
-        <h3 className="text-xl md:text-2xl font-extrabold text-white mb-3 leading-tight">{step.title}</h3>
-        <p className="text-white/50 text-sm leading-relaxed mb-5">{step.body}</p>
+        <h3 className="text-xl md:text-2xl font-extrabold text-slate-950 mb-2 leading-tight">{step.title}</h3>
+        <p className="text-slate-600 text-sm leading-relaxed mb-5">{step.body}</p>
 
         {/* Tags */}
         <div className={`flex flex-wrap gap-2 ${isLeft ? "md:justify-end" : ""}`}>
           {step.tags.map((tag, ti) => (
-            <span key={ti} className="text-[10px] font-semibold px-2.5 py-1 rounded-full bg-white/5 border border-white/8 text-white/50">
+            <span key={ti} className="text-[11px] font-semibold px-2.5 py-1 rounded-full bg-slate-100 text-slate-600">
               {tag}
             </span>
           ))}

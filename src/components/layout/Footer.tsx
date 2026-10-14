@@ -3,23 +3,23 @@ import { MessageCircle, Instagram, Mail, ArrowRight } from "lucide-react";
 
 export default function Footer() {
   return (
-    <footer className="w-full bg-[#030712] border-t border-white/6 text-white">
+    <footer className="w-full bg-[#FAFAFA] border-t border-slate-200/80 text-slate-900 font-sans">
 
       {/* Main footer grid */}
-      <div className="container mx-auto px-5 md:px-10 py-16 md:py-20">
+      <div className="container mx-auto px-5 md:px-10 py-16 md:py-20 max-w-7xl">
         <div className="grid grid-cols-1 md:grid-cols-5 gap-12 md:gap-8">
 
-          {/* Brand column — wider */}
-          <div className="md:col-span-2 flex flex-col gap-5">
+          {/* Brand column */}
+          <div className="md:col-span-2 flex flex-col gap-4">
             <Link to="/" className="inline-block">
               <img
                 src="/images/krunnex_logo.png"
                 alt="Krunnex"
-                className="h-14 w-auto object-contain"
+                className="h-11 w-auto object-contain"
               />
             </Link>
-            <p className="text-white/45 text-sm leading-relaxed max-w-xs">
-              Premium digital solutions for restaurants, e-commerce, and growing businesses. Custom code. Real automation. Real results.
+            <p className="text-slate-500 text-sm leading-relaxed max-w-xs font-normal">
+              High-performance digital solutions, zero-commission ordering, WhatsApp automation, and custom business software.
             </p>
 
             {/* Social links */}
@@ -29,7 +29,7 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="WhatsApp"
-                className="w-9 h-9 rounded-full bg-white/6 border border-white/10 flex items-center justify-center text-white/50 hover:text-green-400 hover:border-green-400/30 transition-colors"
+                className="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-green-600 hover:border-green-200 transition-colors shadow-sm"
               >
                 <MessageCircle size={16} />
               </a>
@@ -38,14 +38,14 @@ export default function Footer() {
                 target="_blank"
                 rel="noreferrer"
                 aria-label="Instagram"
-                className="w-9 h-9 rounded-full bg-white/6 border border-white/10 flex items-center justify-center text-white/50 hover:text-pink-400 hover:border-pink-400/30 transition-colors"
+                className="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-pink-600 hover:border-pink-200 transition-colors shadow-sm"
               >
                 <Instagram size={16} />
               </a>
               <a
                 href="mailto:krusheelkumar7@gmail.com"
                 aria-label="Email"
-                className="w-9 h-9 rounded-full bg-white/6 border border-white/10 flex items-center justify-center text-white/50 hover:text-violet-400 hover:border-violet-400/30 transition-colors"
+                className="w-9 h-9 rounded-full bg-white border border-slate-200 flex items-center justify-center text-slate-500 hover:text-indigo-600 hover:border-indigo-200 transition-colors shadow-sm"
               >
                 <Mail size={16} />
               </a>
@@ -53,9 +53,9 @@ export default function Footer() {
           </div>
 
           {/* Services */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-white text-xs font-bold uppercase tracking-widest">Services</h3>
-            <ul className="space-y-2.5 text-sm text-white/45">
+          <div className="flex flex-col gap-3">
+            <h3 className="text-slate-900 text-xs font-bold uppercase tracking-wider">Services</h3>
+            <ul className="space-y-2 text-sm text-slate-500 font-normal">
               {[
                 "Custom Websites",
                 "E-commerce Stores",
@@ -64,10 +64,9 @@ export default function Footer() {
                 "Admin Dashboards",
                 "Loyalty Systems",
                 "POS & Ordering",
-                "Mobile Apps",
               ].map((s) => (
                 <li key={s}>
-                  <Link to="/start-project" className="hover:text-white transition-colors">
+                  <Link to="/start-project" className="hover:text-slate-900 transition-colors">
                     {s}
                   </Link>
                 </li>
@@ -76,21 +75,18 @@ export default function Footer() {
           </div>
 
           {/* Industries */}
-          <div className="flex flex-col gap-4">
-            <h3 className="text-white text-xs font-bold uppercase tracking-widest">Industries</h3>
-            <ul className="space-y-2.5 text-sm text-white/45">
+          <div className="flex flex-col gap-3">
+            <h3 className="text-slate-900 text-xs font-bold uppercase tracking-wider">Industries</h3>
+            <ul className="space-y-2 text-sm text-slate-500 font-normal">
               {[
                 "Restaurants & Cafés",
                 "Food Delivery",
-                "E-commerce & Retail",
+                "E-commerce & D2C",
                 "Service Businesses",
-                "Healthcare",
-                "Education",
-                "Real Estate",
                 "Startups & SaaS",
               ].map((ind) => (
                 <li key={ind}>
-                  <Link to="/start-project" className="hover:text-white transition-colors">
+                  <Link to="/start-project" className="hover:text-slate-900 transition-colors">
                     {ind}
                   </Link>
                 </li>
@@ -98,43 +94,40 @@ export default function Footer() {
             </ul>
           </div>
 
-          {/* Contact CTA */}
-          <div className="flex flex-col gap-5">
-            <h3 className="text-white text-xs font-bold uppercase tracking-widest">Get Started</h3>
-            <p className="text-sm text-white/45 leading-relaxed">
-              Ready to build something that grows your business?
-            </p>
-            <Link
-              to="/start-project"
-              className="group inline-flex items-center gap-2 bg-white text-black px-5 py-3 rounded-full text-xs font-extrabold uppercase tracking-widest hover:scale-105 active:scale-95 transition-all w-fit"
-            >
-              Start a Project <ArrowRight size={13} className="group-hover:translate-x-0.5 transition-transform" />
-            </Link>
-            <div className="flex flex-col gap-2 text-xs text-white/35">
-              <a href="mailto:krusheelkumar7@gmail.com" className="hover:text-white transition-colors">
+          {/* Contact Direct */}
+          <div className="flex flex-col gap-4">
+            <h3 className="text-slate-900 text-xs font-bold uppercase tracking-wider">Direct Contact</h3>
+            <div className="flex flex-col gap-2 text-sm text-slate-600">
+              <a href="mailto:krusheelkumar7@gmail.com" className="hover:text-slate-950 font-medium transition-colors">
                 krusheelkumar7@gmail.com
               </a>
               <a
                 href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
                 target="_blank"
                 rel="noreferrer"
-                className="hover:text-green-400 transition-colors"
+                className="hover:text-green-600 font-medium transition-colors"
               >
                 +91 77949 71935
               </a>
             </div>
+            <Link
+              to="/start-project"
+              className="inline-flex items-center gap-2 bg-slate-900 text-white px-5 py-2.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all w-fit shadow-sm"
+            >
+              Start a Project <ArrowRight size={13} />
+            </Link>
           </div>
 
         </div>
       </div>
 
       {/* Bottom bar */}
-      <div className="border-t border-white/5 py-5">
-        <div className="container mx-auto px-5 md:px-10 flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-white/25">
+      <div className="border-t border-slate-200/80 py-6">
+        <div className="container mx-auto px-5 md:px-10 max-w-7xl flex flex-col sm:flex-row items-center justify-between gap-3 text-xs text-slate-400">
           <p>© {new Date().getFullYear()} Krunnex. All rights reserved.</p>
           <div className="flex gap-5">
-            <a href="#" className="hover:text-white/50 transition-colors">Privacy Policy</a>
-            <a href="#" className="hover:text-white/50 transition-colors">Terms of Service</a>
+            <a href="#" className="hover:text-slate-600 transition-colors">Privacy Policy</a>
+            <a href="#" className="hover:text-slate-600 transition-colors">Terms of Service</a>
           </div>
         </div>
       </div>

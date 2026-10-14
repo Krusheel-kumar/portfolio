@@ -246,11 +246,7 @@ const CARDS = [
 /* ─── Main Section ────────────────────────────────────────── */
 export default function WhyUsSection() {
   return (
-    <section className="bg-[#030712] text-white py-24 md:py-36 relative overflow-hidden border-t border-white/5">
-
-      {/* Section ambient glow */}
-      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-full max-w-4xl h-[300px] rounded-full pointer-events-none"
-        style={{ background: "radial-gradient(ellipse, rgba(124,58,237,0.08) 0%, transparent 70%)" }} />
+    <section className="bg-white text-slate-900 py-20 md:py-32 relative overflow-hidden border-t border-slate-200/80">
 
       <div className="container mx-auto px-5 md:px-10 max-w-7xl relative z-10">
 
@@ -260,61 +256,47 @@ export default function WhyUsSection() {
           initial={{ opacity: 0, y: 24 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
-          transition={{ duration: 0.7 }}
+          transition={{ duration: 0.6 }}
         >
-          <p className="text-xs font-bold tracking-[0.25em] uppercase text-violet-400/70 mb-4 flex items-center gap-2">
-            <span className="w-6 h-[1px] bg-violet-500" />
-            The Krunnex Difference
-          </p>
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tighter leading-[1.05] mb-5">
-            Why not just use
-            <br />
-            <span className="text-gradient-primary">a template?</span>
+          <span className="text-xs font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block mb-4">
+            The Krunnex Standard
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mb-4">
+            Why custom engineering wins over templates.
           </h2>
-          <p className="text-white/45 text-base md:text-lg font-medium max-w-xl leading-relaxed">
-            Because your business deserves software that actually fits — not a generic site that makes you look like everyone else.
+          <p className="text-slate-500 text-base sm:text-lg font-normal max-w-xl leading-relaxed">
+            Your brand deserves software engineered for your specific business logic — not bloated page-builder themes that slow down your conversion rates.
           </p>
         </motion.div>
 
         {/* Bento Grid */}
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-4 md:gap-5">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-5">
           {CARDS.map((card, idx) => {
             const { Visual } = card;
             return (
               <motion.div
                 key={card.id}
-                className={`${card.col} group relative overflow-hidden rounded-3xl border border-white/7 bg-white/[0.03] p-7 md:p-9 min-h-[220px] cursor-default transition-colors duration-500 hover:border-white/15`}
-                initial={{ opacity: 0, y: 32 }}
+                className={`${card.col} group relative overflow-hidden rounded-3xl border border-slate-200 bg-slate-50/70 p-7 md:p-9 min-h-[200px] cursor-default transition-all duration-300 hover:border-slate-300 hover:shadow-md hover:bg-white`}
+                initial={{ opacity: 0, y: 24 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.1 }}
-                transition={{ duration: 0.6, delay: idx * 0.07, ease: [0.16, 1, 0.3, 1] }}
-                whileHover={{ y: -4 }}
+                transition={{ duration: 0.5, delay: idx * 0.05 }}
               >
-                {/* Hover gradient bg */}
-                <div className={`absolute inset-0 bg-gradient-to-br ${card.accent} opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none`} />
-
                 {/* Card number */}
-                <span className="absolute top-7 right-7 text-[11px] font-bold text-white/15 tracking-widest">
+                <span className="absolute top-7 right-7 text-xs font-bold text-slate-300 tracking-widest">
                   {card.number}
                 </span>
 
-                {/* Visual element */}
-                <Visual />
-
                 {/* Content */}
-                <div className="relative z-10 max-w-[75%]">
-                  <span className="text-[10px] font-bold tracking-[0.2em] uppercase text-white/30 mb-4 block">
+                <div className="relative z-10 max-w-[85%]">
+                  <span className="text-[11px] font-bold tracking-wider uppercase text-indigo-600 mb-2 block">
                     {card.label}
                   </span>
-                  <h3 className="text-xl md:text-2xl font-extrabold text-white mb-3 leading-tight">
+                  <h3 className="text-xl md:text-2xl font-extrabold text-slate-950 mb-2 leading-tight">
                     {card.title}
                   </h3>
-                  <p className="text-white/50 text-sm leading-relaxed">{card.desc}</p>
+                  <p className="text-slate-600 text-sm leading-relaxed">{card.desc}</p>
                 </div>
-
-                {/* Corner glow */}
-                <div className="absolute -bottom-12 -right-12 w-32 h-32 rounded-full opacity-0 group-hover:opacity-100 transition-opacity duration-700 pointer-events-none"
-                  style={{ background: `radial-gradient(circle, rgba(124,58,237,0.2), transparent)` }} />
               </motion.div>
             );
           })}

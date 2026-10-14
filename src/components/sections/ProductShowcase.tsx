@@ -67,21 +67,25 @@ const PROJECTS = [
 
 export default function ProductShowcase() {
   return (
-    <section className="bg-[#0a0a0a] text-white relative py-24 md:py-32 border-t border-white/5">
+    <section className="bg-[#FAFAFA] text-slate-900 relative py-20 md:py-28 border-t border-slate-200/80">
 
       <div className="container mx-auto px-5 md:px-10 max-w-7xl relative z-10">
 
         {/* Section Header */}
         <motion.div
-          className="text-center mb-20 md:mb-28"
+          className="text-center mb-16 md:mb-24"
           initial={{ opacity: 0, y: 20 }}
           whileInView={{ opacity: 1, y: 0 }}
           viewport={{ once: true }}
         >
-          <p className="text-xs font-bold tracking-widest uppercase mb-4 text-white/40">Real Work. Real Results.</p>
-          <h2 className="text-4xl md:text-6xl font-extrabold tracking-tight">Proof of Execution.</h2>
-          <p className="text-white/50 mt-4 max-w-xl mx-auto text-base md:text-lg font-medium">
-            Every project below was built from scratch — no templates, no page builders. Just clean code and measurable business impact.
+          <span className="text-xs font-bold tracking-widest uppercase mb-3 text-indigo-600 bg-indigo-50 px-3.5 py-1.5 rounded-full border border-indigo-100 inline-block">
+            Proof of Execution
+          </span>
+          <h2 className="text-3xl sm:text-5xl font-extrabold tracking-tight text-slate-950 mt-3">
+            Real Systems. Measurable Impact.
+          </h2>
+          <p className="text-slate-500 mt-3 max-w-xl mx-auto text-base sm:text-lg font-normal">
+            Custom engineered platforms built for real businesses. Zero templates. Clean, scalable architecture.
           </p>
         </motion.div>
 
@@ -95,27 +99,23 @@ export default function ProductShowcase() {
                 key={project.id}
                 className="md:sticky w-full flex justify-center"
                 style={{ top: topOffset }}
-                initial={{ opacity: 0, y: 80 }}
+                initial={{ opacity: 0, y: 60 }}
                 whileInView={{ opacity: 1, y: 0 }}
                 viewport={{ once: true, amount: 0.08 }}
-                transition={{ duration: 0.7, ease: [0.16, 1, 0.3, 1] }}
+                transition={{ duration: 0.6, ease: [0.16, 1, 0.3, 1] }}
               >
-                <div className="w-full max-w-6xl rounded-[2rem] md:rounded-[2.5rem] overflow-hidden relative shadow-[0_20px_60px_rgba(0,0,0,0.6)] flex flex-col md:flex-row bg-[#111] border border-white/8">
+                <div className="w-full max-w-6xl rounded-3xl overflow-hidden relative shadow-[0_20px_50px_rgba(15,23,42,0.08)] flex flex-col md:flex-row bg-white border border-slate-200">
 
-                  {/* Accent glow top */}
-                  <div className={`absolute top-0 left-0 right-0 h-[2px] bg-gradient-to-r ${project.accentColor} to-transparent pointer-events-none`} />
+                  {/* Accent bar top */}
+                  <div className={`absolute top-0 left-0 right-0 h-[3px] bg-gradient-to-r ${project.accentColor} to-transparent pointer-events-none`} />
 
                   {/* Image */}
-                  <div className="w-full md:w-[48%] h-[220px] sm:h-[280px] md:h-[580px] relative overflow-hidden shrink-0">
-                    <motion.img
+                  <div className="w-full md:w-[48%] h-[240px] sm:h-[300px] md:h-[540px] relative overflow-hidden shrink-0 bg-slate-100">
+                    <img
                       src={project.image}
                       alt={project.title}
                       className="absolute inset-0 w-full h-full object-cover"
-                      whileInView={{ scale: [1.05, 1] }}
-                      transition={{ duration: 1.2, ease: "easeOut" }}
                     />
-                    {/* Gradient overlay for text legibility */}
-                    <div className="absolute inset-0 bg-gradient-to-r from-transparent to-black/30 md:block hidden" />
                   </div>
 
                   {/* Content */}
@@ -123,33 +123,33 @@ export default function ProductShowcase() {
 
                     {/* Category */}
                     <div className="flex items-center gap-2 mb-4">
-                      <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse shadow-[0_0_8px_rgba(74,222,128,0.6)]" />
-                      <span className="text-[10px] md:text-xs font-bold tracking-widest uppercase text-white/55">
+                      <span className="w-2 h-2 rounded-full bg-emerald-500" />
+                      <span className="text-[11px] md:text-xs font-bold tracking-widest uppercase text-slate-400">
                         {project.category}
                       </span>
                     </div>
 
-                    <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-5 leading-tight text-white">
+                    <h3 className="text-2xl md:text-4xl font-extrabold mb-3 md:mb-4 leading-tight text-slate-950">
                       {project.title}
                     </h3>
 
-                    <p className="text-xs sm:text-sm md:text-base text-white/60 leading-relaxed mb-4 md:mb-6 line-clamp-2 md:line-clamp-none">
+                    <p className="text-xs sm:text-sm md:text-base text-slate-600 leading-relaxed mb-4 md:mb-6">
                       {project.description}
                     </p>
 
-                    <div className="w-full h-[1px] bg-white/8 mb-4 md:mb-6" />
+                    <div className="w-full h-[1px] bg-slate-100 mb-4 md:mb-6" />
 
                     {/* Features + Impact Grid */}
                     <div className="grid grid-cols-1 sm:grid-cols-2 gap-5 md:gap-6 mb-6 md:mb-8">
 
                       {/* What We Built */}
                       <div className="hidden sm:block">
-                        <h4 className="text-[10px] font-bold tracking-widest uppercase text-white/40 mb-3 flex items-center gap-1.5">
-                          <Code2 size={11} /> What We Built
+                        <h4 className="text-[11px] font-bold tracking-wider uppercase text-slate-400 mb-3 flex items-center gap-1.5">
+                          <Code2 size={12} /> Tech Stack & Features
                         </h4>
                         <div className="flex flex-wrap gap-2">
                           {project.features.map((f, fi) => (
-                            <span key={fi} className="text-[10px] font-semibold bg-white/8 border border-white/10 px-2.5 py-1 rounded-md text-white/80">
+                            <span key={fi} className="text-[11px] font-semibold bg-slate-100 border border-slate-200/60 px-2.5 py-1 rounded-md text-slate-700">
                               {f}
                             </span>
                           ))}
@@ -158,23 +158,15 @@ export default function ProductShowcase() {
 
                       {/* Business Impact */}
                       <div>
-                        <h4 className="text-[10px] font-bold tracking-widest uppercase text-white/40 mb-3 flex items-center gap-1.5">
-                          <CheckCircle2 size={11} /> Business Impact
+                        <h4 className="text-[11px] font-bold tracking-wider uppercase text-slate-400 mb-3 flex items-center gap-1.5">
+                          <CheckCircle2 size={12} /> Business Impact
                         </h4>
-                        <div className="space-y-2.5">
+                        <div className="space-y-2">
                           {project.impact.map((r, ri) => (
-                            <motion.div
-                              key={ri}
-                              className="flex items-start gap-2.5"
-                              initial={{ opacity: 0, x: -8 }}
-                              whileInView={{ opacity: 1, x: 0 }}
-                              transition={{ delay: 0.15 + ri * 0.08 }}
-                            >
-                              <div className="mt-0.5 bg-green-500/15 p-1 rounded-full border border-green-500/25 shrink-0">
-                                <CheckCircle2 size={9} className="text-green-400" />
-                              </div>
-                              <span className="text-[11px] md:text-xs font-semibold text-white/85 leading-snug">{r}</span>
-                            </motion.div>
+                            <div key={ri} className="flex items-start gap-2">
+                              <CheckCircle2 size={14} className="text-emerald-600 mt-0.5 shrink-0" />
+                              <span className="text-xs font-semibold text-slate-800 leading-snug">{r}</span>
+                            </div>
                           ))}
                         </div>
                       </div>
@@ -185,27 +177,18 @@ export default function ProductShowcase() {
                     <div className="flex flex-row gap-3">
                       <Link
                         to={project.ctaPrimary.href}
-                        className="flex-1 flex justify-center items-center gap-1.5 bg-white text-black px-3 py-3.5 md:py-4 rounded-full text-[10px] md:text-xs font-extrabold uppercase tracking-wider active:scale-95 transition-all hover:bg-gray-100 shadow-lg"
+                        className="flex-1 flex justify-center items-center gap-1.5 bg-slate-950 text-white px-4 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-800 transition-all shadow-sm"
                       >
-                        {project.ctaPrimary.label} <ArrowRight size={11} />
+                        {project.ctaPrimary.label} <ArrowRight size={13} />
                       </Link>
-                      {project.ctaSecondary.external ? (
-                        <a
-                          href={project.ctaSecondary.href}
-                          target="_blank"
-                          rel="noreferrer"
-                          className="flex-1 flex justify-center items-center gap-1.5 bg-transparent border border-white/20 text-white px-3 py-3.5 md:py-4 rounded-full text-[10px] md:text-xs font-extrabold uppercase tracking-wider active:scale-95 transition-all hover:bg-white/8"
-                        >
-                          {project.ctaSecondary.label} <ExternalLink size={11} />
-                        </a>
-                      ) : (
-                        <Link
-                          to={project.ctaSecondary.href}
-                          className="flex-1 flex justify-center items-center gap-1.5 bg-transparent border border-white/20 text-white px-3 py-3.5 md:py-4 rounded-full text-[10px] md:text-xs font-extrabold uppercase tracking-wider active:scale-95 transition-all hover:bg-white/8"
-                        >
-                          {project.ctaSecondary.label} <ArrowRight size={11} />
-                        </Link>
-                      )}
+                      <a
+                        href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20view%20details%20for%20this%20project."
+                        target="_blank"
+                        rel="noreferrer"
+                        className="flex-1 flex justify-center items-center gap-1.5 bg-white border border-slate-200 text-slate-800 px-4 py-3.5 rounded-full text-xs font-bold uppercase tracking-wider hover:bg-slate-50 transition-all"
+                      >
+                        Inquire Project <ExternalLink size={13} />
+                      </a>
                     </div>
 
                   </div>

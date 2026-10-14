@@ -21,7 +21,7 @@ export default function Home() {
   const [selectedIndustry, setSelectedIndustry] = useState<Industry>("restaurant");
 
   return (
-    <div className="flex flex-col min-h-screen bg-[#030712]">
+    <div className="flex flex-col min-h-screen bg-[#FAFAFA] text-slate-900">
       <Navbar />
 
       <main>
