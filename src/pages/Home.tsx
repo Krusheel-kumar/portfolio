@@ -1,68 +1,53 @@
-import { useState } from "react";
 import Navbar from "@/components/layout/Navbar";
 import Footer from "@/components/layout/Footer";
 import FloatingWhatsApp from "@/components/shared/FloatingWhatsApp";
 
-// Sections
+// Homepage Sections
 import HeroSection from "@/components/sections/HeroSection";
 import TrustStrip from "@/components/sections/TrustStrip";
-import IndustrySelector from "@/components/sections/IndustrySelector";
-import SolutionEcosystem from "@/components/sections/SolutionEcosystem";
-import ProductShowcase from "@/components/sections/ProductShowcase";
-import WhyUsSection from "@/components/sections/WhyUsSection";
-import ProcessSection from "@/components/sections/ProcessSection";
-import PricingSection from "@/components/sections/PricingSection";
+import ServiceDiscoverySection from "@/components/sections/ServiceDiscoverySection";
+import HomePortfolioSection from "@/components/sections/HomePortfolioSection";
+import HomeEstimatorTeaser from "@/components/sections/HomeEstimatorTeaser";
+import HomeProcessSection from "@/components/sections/HomeProcessSection";
+import HomePricingSection from "@/components/sections/HomePricingSection";
 import FAQSection from "@/components/sections/FAQSection";
+import AboutSection from "@/components/sections/AboutSection";
 import FinalCTASection from "@/components/sections/FinalCTASection";
 
 export type Industry = "restaurant" | "ecommerce" | "business" | null;
 
 export default function Home() {
-  const [selectedIndustry, setSelectedIndustry] = useState<Industry>("restaurant");
-
   return (
-    <div className="flex flex-col min-h-screen bg-[#FAFAFA] text-slate-900">
+    <div className="flex flex-col min-h-screen bg-[#FAFAFA] text-slate-900 font-sans selection:bg-indigo-500/20 selection:text-indigo-900">
       <Navbar />
 
       <main>
+        {/* Section 2: Hero with connected digital products stage */}
         <HeroSection />
+
+        {/* Minimal Trust Indicator Strip */}
         <TrustStrip />
 
-        {/* Industry Selector + Ecosystem */}
-        <div id="solutions">
-          <IndustrySelector
-            selectedIndustry={selectedIndustry}
-            onSelect={(ind: Industry) => {
-              setSelectedIndustry(ind);
-              setTimeout(() => {
-                const element = document.getElementById("ecosystem");
-                if (element) {
-                   const y = element.getBoundingClientRect().top + window.scrollY - 90; // offset for navbar
-                   window.scrollTo({ top: y, behavior: 'smooth' });
-                }
-              }, 150);
-            }}
-          />
-          <div id="ecosystem">
-            <SolutionEcosystem selectedIndustry={selectedIndustry} />
-          </div>
-        </div>
+        {/* Section 3: Main Service Discovery — Highest Priority */}
+        <ServiceDiscoverySection />
 
-        <div id="work">
-          <ProductShowcase />
-        </div>
+        {/* Section 4: Portfolio Section */}
+        <HomePortfolioSection />
 
-        <WhyUsSection />
+        {/* Section 5: Interactive Project Cost Estimator Teaser */}
+        <HomeEstimatorTeaser />
 
-        <div id="process">
-          <ProcessSection />
-        </div>
+        {/* Section 6: How We Work — 4-Step Process */}
+        <HomeProcessSection />
 
-        <div id="pricing">
-          <PricingSection />
-        </div>
+        {/* Section 7: Pricing Section */}
+        <HomePricingSection />
 
+        {/* Section 8: FAQ & Founder Note */}
         <FAQSection />
+        <AboutSection />
+
+        {/* Final CTA Section */}
         <FinalCTASection />
       </main>
 

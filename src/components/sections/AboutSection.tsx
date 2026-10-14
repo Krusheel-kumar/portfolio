@@ -1,86 +1,56 @@
 "use client";
 
-import { motion, useScroll, useTransform } from "framer-motion";
-
-import { useRef } from "react";
+import { motion } from "framer-motion";
 
 export default function AboutSection() {
-  const ref = useRef(null);
-  const { scrollYProgress } = useScroll({
-    target: ref,
-    offset: ["start end", "end start"]
-  });
-  
-  const yImage = useTransform(scrollYProgress, [0, 1], [100, -100]);
-  
   return (
-    <section id="about" ref={ref} className="py-24 md:py-40 relative overflow-hidden bg-white">
-      <div className="container px-4 mx-auto max-w-6xl">
-        <div className="grid grid-cols-1 md:grid-cols-2 gap-16 md:gap-24 items-center">
+    <section id="about" className="py-20 md:py-32 relative overflow-hidden bg-white border-t border-slate-200/80 font-sans text-slate-900">
+      <div className="container px-5 sm:px-8 mx-auto max-w-6xl">
+        <div className="grid grid-cols-1 md:grid-cols-12 gap-12 md:gap-16 items-center">
           
-          {/* Storytelling Image Reveal */}
-          <div className="order-2 md:order-1 relative">
-            <motion.div 
-              initial={{ opacity: 0, scale: 0.8, filter: "blur(20px)" }}
-              whileInView={{ opacity: 1, scale: 1, filter: "blur(0px)" }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 1, ease: "easeOut" }}
-              className="relative aspect-[4/5] md:aspect-[3/4] w-full max-w-md mx-auto rounded-3xl overflow-hidden shadow-2xl shadow-primary/10 border-8 border-white"
-            >
-              <motion.div style={{ y: yImage, height: "120%", top: "-10%" }} className="absolute inset-0 w-full">
-                <img 
-                  src="/images/profileimage.jpeg" 
-                  alt="Krusheel Kumar" 
-                  className="w-full h-full object-cover"
-                />
-              </motion.div>
-              {/* Glass overlay text */}
-              <div className="absolute bottom-6 left-6 right-6 p-4 rounded-2xl bg-white/70 backdrop-blur-md border border-white/50 text-center">
-                <p className="font-bold text-foreground">Krusheel Kumar</p>
-                <p className="text-sm text-muted-foreground font-medium">Founder & Principal Engineer</p>
+          {/* Founder Image */}
+          <div className="md:col-span-5 relative order-2 md:order-1">
+            <div className="relative aspect-[4/5] w-full max-w-sm mx-auto rounded-3xl overflow-hidden shadow-xl border-4 border-white bg-slate-100">
+              <img 
+                src="/images/profileimage.jpeg" 
+                alt="Krusheel Kumar — Founder & Principal Engineer at Krunnex" 
+                className="w-full h-full object-cover"
+              />
+              <div className="absolute bottom-4 left-4 right-4 p-4 rounded-2xl bg-white/90 backdrop-blur-md border border-slate-200 text-center shadow-sm">
+                <p className="font-black text-slate-950 text-base">Krusheel Kumar</p>
+                <p className="text-xs text-slate-600 font-semibold mt-0.5">Founder & Principal Engineer</p>
               </div>
-            </motion.div>
-            
-            {/* Decorative Blobs */}
-            <div className="absolute -z-10 top-1/2 -translate-y-1/2 left-[-20%] w-[300px] h-[300px] bg-primary/20 blur-[100px] rounded-full mix-blend-multiply" />
+            </div>
           </div>
           
           {/* Text Content */}
-          <div className="order-1 md:order-2">
-            <motion.div
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8 }}
-            >
-              <h2 className="text-sm font-bold text-primary tracking-widest uppercase mb-4">A Note From The Founder</h2>
-              <h3 className="text-4xl md:text-5xl font-extrabold tracking-tight text-foreground mb-8 leading-tight">
-                Software is an investment. <br className="hidden md:block"/> It should pay you back.
-              </h3>
-            </motion.div>
+          <div className="md:col-span-7 order-1 md:order-2">
+            <div>
+              <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-indigo-700 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block mb-4">
+                Founder's Note
+              </span>
+              <h2 className="text-3xl sm:text-5xl font-black tracking-tight text-slate-950 mb-6 leading-tight">
+                Software is an investment. It should pay you back.
+              </h2>
+            </div>
             
-            <motion.div 
-              initial={{ opacity: 0, y: 30 }}
-              whileInView={{ opacity: 1, y: 0 }}
-              viewport={{ once: true, margin: "-100px" }}
-              transition={{ duration: 0.8, delay: 0.2 }}
-              className="space-y-6 text-xl text-muted-foreground font-medium leading-relaxed"
-            >
+            <div className="space-y-5 text-base sm:text-lg text-slate-600 leading-relaxed font-normal">
               <p>
-                Hi, I'm Krusheel. I started Krunnex because I saw too many business owners getting burned by generic agencies who sold them confusing, overpriced technology they didn't need.
+                Hi, I'm Krusheel. I founded Krunnex to help non-technical business owners navigate the modern digital landscape without getting sold confusing, overpriced tech stacks they don't actually need.
               </p>
               <p>
-                My mission is simple: I want to build software that actually makes your life easier and your business more profitable. Whether that's a custom ordering system for your restaurant or a dashboard that automates your inventory.
+                Whether it's a zero-commission QR ordering system for a restaurant, a headless e-commerce storefront, or an automated operations dashboard—every line of code we write is designed around your actual business workflow.
               </p>
               <p>
-                I handle all the complex engineering behind the scenes so you can focus on what you do best—running your business.
+                We handle the end-to-end architecture, API integrations, and cloud hosting so you can focus entirely on running and scaling your business.
               </p>
-              <div className="pt-6">
-                <p className="text-2xl text-foreground font-bold font-serif italic">
-                  - Krusheel Kumar
+              <div className="pt-4">
+                <p className="text-xl text-slate-950 font-black">
+                  — Krusheel Kumar
                 </p>
+                <p className="text-xs text-slate-400 font-medium">Principal Engineer, Krunnex</p>
               </div>
-            </motion.div>
+            </div>
           </div>
           
         </div>
@@ -88,4 +58,3 @@ export default function AboutSection() {
     </section>
   );
 }
-

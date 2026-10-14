@@ -1,18 +1,27 @@
 import { Menu, X, ArrowRight } from "lucide-react";
 import { useState, useEffect } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { motion, AnimatePresence } from "framer-motion";
 
-const NAV_LINKS = [
-  { label: "Solutions", href: "#solutions" },
-  { label: "Work", href: "#work" },
-  { label: "Process", href: "#process" },
-  { label: "Pricing", href: "#pricing" },
+interface NavLinkItem {
+  label: string;
+  href: string;
+  isRoute?: boolean;
+}
+
+const NAV_LINKS: NavLinkItem[] = [
+  { label: "Solutions", href: "/solutions", isRoute: true },
+  { label: "Portfolio", href: "/portfolio", isRoute: true },
+  { label: "How We Work", href: "/#process" },
+  { label: "Pricing", href: "/pricing", isRoute: true },
+  { label: "About", href: "/#about" },
 ];
 
 export default function Navbar() {
   const [scrolled, setScrolled] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
+  const location = useLocation();
+  const navigate = useNavigate();
 
   useEffect(() => {
     const handleScroll = () => setScrolled(window.scrollY > 20);
@@ -27,61 +36,91 @@ export default function Navbar() {
     return () => window.removeEventListener("resize", handleResize);
   }, []);
 
-  const handleNavClick = (href: string) => {
+  // Close on route change
+  useEffect(() => {
     setMobileOpen(false);
-    const el = document.querySelector(href);
-    if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+  }, [location.pathname]);
+
+  // Handle escape key
+  useEffect(() => {
+    const handleKeyDown = (e: KeyboardEvent) => {
+      if (e.key === "Escape") setMobileOpen(false);
+    };
+    window.addEventListener("keydown", handleKeyDown);
+    return () => window.removeEventListener("keydown", handleKeyDown);
+  }, []);
+
+  const handleLinkClick = (link: NavLinkItem) => {
+    setMobileOpen(false);
+    if (link.isRoute) {
+      navigate(link.href);
+      return;
+    }
+
+    if (link.href.startsWith("/#")) {
+      const targetId = link.href.replace("/#", "");
+      if (location.pathname === "/") {
+        const el = document.getElementById(targetId);
+        if (el) el.scrollIntoView({ behavior: "smooth", block: "start" });
+      } else {
+        navigate(`/#${targetId}`);
+      }
+    }
   };
 
   return (
     <>
-      <nav className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
-        scrolled
-          ? "bg-white/85 backdrop-blur-xl border-b border-slate-200/80 py-3.5 sm:py-4 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
-          : "bg-transparent py-5 sm:py-7"
-      }`}>
-        <div className="container mx-auto px-6 md:px-12 max-w-7xl flex items-center justify-between">
+      <nav 
+        aria-label="Main Navigation"
+        className={`fixed top-0 w-full z-50 transition-all duration-300 ease-out ${
+          scrolled
+            ? "bg-white/90 backdrop-blur-xl border-b border-slate-200/80 py-3 sm:py-3.5 shadow-[0_4px_25px_rgba(0,0,0,0.04)]"
+            : "bg-transparent py-4 sm:py-6"
+        }`}
+      >
+        <div className="container mx-auto px-5 sm:px-8 md:px-12 max-w-7xl flex items-center justify-between">
 
           {/* LOGO */}
-          <Link to="/" className="flex items-center group shrink-0">
+          <Link to="/" className="flex items-center group shrink-0" aria-label="Krunnex Home">
             <img
               src="/images/krunnex_logo.png"
               alt="Krunnex"
-              className="h-16 sm:h-20 md:h-22 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
+              className="h-14 sm:h-18 md:h-20 w-auto object-contain transition-transform duration-300 group-hover:scale-105"
             />
           </Link>
 
           {/* DESKTOP LINKS */}
-          <div className="hidden md:flex items-center gap-10 lg:gap-14">
+          <div className="hidden lg:flex items-center gap-9 xl:gap-11">
             {NAV_LINKS.map((link, idx) => (
               <button
                 key={idx}
-                onClick={() => handleNavClick(link.href)}
-                className="text-base lg:text-lg font-bold text-slate-700 hover:text-slate-950 transition-all relative group whitespace-nowrap cursor-pointer tracking-tight"
+                onClick={() => handleLinkClick(link)}
+                className="text-base font-bold text-slate-700 hover:text-slate-950 transition-all relative group whitespace-nowrap cursor-pointer tracking-tight"
               >
                 {link.label}
-                <span className="absolute -bottom-1.5 left-0 w-0 h-[2.5px] bg-indigo-600 transition-all duration-300 group-hover:w-full rounded-full" />
+                <span className="absolute -bottom-1 left-0 w-0 h-[2px] bg-indigo-600 transition-all duration-300 group-hover:w-full rounded-full" />
               </button>
             ))}
           </div>
 
           {/* DESKTOP CTA */}
-          <div className="hidden md:flex items-center gap-4">
+          <div className="hidden lg:flex items-center gap-4">
             <Link
-              to="/start-project"
-              className="group relative flex items-center gap-2.5 rounded-full bg-slate-950 px-8 py-3.5 text-base font-bold text-white transition-all duration-300 shadow-[0_4px_18px_rgba(15,23,42,0.25)] hover:bg-slate-800 hover:scale-[1.03] active:scale-98"
+              to="/contact"
+              className="group relative flex items-center gap-2 rounded-full bg-slate-950 px-7 py-3.5 text-sm font-bold text-white transition-all duration-300 shadow-[0_4px_18px_rgba(15,23,42,0.2)] hover:bg-slate-800 hover:scale-[1.02] active:scale-98"
             >
-              Start a Project <ArrowRight size={16} className="group-hover:translate-x-1 transition-transform" />
+              Start a Project <ArrowRight size={15} className="group-hover:translate-x-1 transition-transform" />
             </Link>
           </div>
 
-          {/* MOBILE MENU BUTTON */}
+          {/* MOBILE MENU TOGGLE BUTTON */}
           <button
             onClick={() => setMobileOpen(!mobileOpen)}
-            className="md:hidden h-12 w-12 flex items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-800 transition-colors shadow-sm cursor-pointer"
-            aria-label="Toggle menu"
+            className="lg:hidden h-12 w-12 flex items-center justify-center rounded-2xl border border-slate-200 bg-white text-slate-900 transition-colors shadow-sm cursor-pointer"
+            aria-label={mobileOpen ? "Close menu" : "Open menu"}
+            aria-expanded={mobileOpen}
           >
-            {mobileOpen ? <X className="h-6 w-6" /> : <Menu className="h-6 w-6" />}
+            {mobileOpen ? <X size={22} /> : <Menu size={22} />}
           </button>
 
         </div>
@@ -91,40 +130,40 @@ export default function Navbar() {
       <AnimatePresence>
         {mobileOpen && (
           <motion.div
-            initial={{ opacity: 0, y: -10 }}
+            initial={{ opacity: 0, y: -15 }}
             animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -10 }}
-            transition={{ duration: 0.2 }}
-            className="fixed inset-0 z-40 bg-white/95 backdrop-blur-2xl pt-24 px-6 flex flex-col"
+            exit={{ opacity: 0, y: -15 }}
+            transition={{ duration: 0.25 }}
+            className="fixed inset-0 z-40 bg-white/98 backdrop-blur-2xl pt-24 pb-12 px-6 flex flex-col justify-between overflow-y-auto"
           >
             <nav className="flex flex-col gap-2 mt-4">
               {NAV_LINKS.map((link, idx) => (
-                <motion.button
+                <button
                   key={idx}
-                  initial={{ opacity: 0, x: -20 }}
-                  animate={{ opacity: 1, x: 0 }}
-                  transition={{ delay: idx * 0.07 }}
-                  onClick={() => handleNavClick(link.href)}
-                  className="text-left text-2xl font-bold text-slate-800 hover:text-indigo-600 py-4 border-b border-slate-100 transition-colors"
+                  onClick={() => handleLinkClick(link)}
+                  className="text-left text-2xl font-black text-slate-900 hover:text-indigo-600 py-3.5 border-b border-slate-100 transition-colors cursor-pointer"
                 >
                   {link.label}
-                </motion.button>
+                </button>
               ))}
             </nav>
-            <motion.div
-              initial={{ opacity: 0, y: 20 }}
-              animate={{ opacity: 1, y: 0 }}
-              transition={{ delay: 0.3 }}
-              className="mt-8"
-            >
+
+            <div className="mt-8 pt-6 space-y-3">
               <Link
-                to="/start-project"
+                to="/contact"
                 onClick={() => setMobileOpen(false)}
-                className="flex items-center justify-center gap-2 w-full bg-slate-900 text-white py-4 rounded-2xl text-base font-bold shadow-lg"
+                className="flex items-center justify-center gap-2 w-full bg-slate-950 text-white py-4 rounded-2xl text-base font-bold shadow-lg"
               >
-                Start a Project <ArrowRight size={18} />
+                Start a Project <ArrowRight size={17} />
               </Link>
-            </motion.div>
+              <Link
+                to="/estimate"
+                onClick={() => setMobileOpen(false)}
+                className="flex items-center justify-center gap-2 w-full bg-slate-100 text-slate-800 py-4 rounded-2xl text-base font-bold"
+              >
+                Estimate My Project
+              </Link>
+            </div>
           </motion.div>
         )}
       </AnimatePresence>

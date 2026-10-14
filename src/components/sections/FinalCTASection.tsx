@@ -19,32 +19,30 @@ export default function FinalCTASection() {
           viewport={{ once: true }}
           transition={{ duration: 0.7 }}
         >
-          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-indigo-600 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block mb-6">
-            Ready to Build Your Edge?
+          <span className="text-xs sm:text-sm font-bold tracking-widest uppercase text-indigo-700 bg-indigo-50 px-4 py-2 rounded-full border border-indigo-100 inline-block mb-6">
+            Get Started
           </span>
 
           <h2 className="text-4xl sm:text-6xl md:text-7xl font-black tracking-tight text-slate-950 mb-6 leading-[1.08]">
-            Stop relying on manual processes.
-            <br className="hidden md:block" />
-            <span className="text-gradient-primary"> Start automating today.</span>
+            Let's build the right solution for <span className="text-gradient-primary">your business.</span>
           </h2>
 
           <p className="text-lg sm:text-xl text-slate-600 mb-12 max-w-2xl mx-auto leading-relaxed font-normal">
-            We partner with businesses to build high-performance digital systems that capture orders, automate customer interactions, and scale revenue 24/7.
+            Whether you need a high-speed website, zero-commission restaurant POS, or bespoke business software—we're ready to engineer it.
           </p>
 
           {/* Action CTAs */}
           <div className="flex flex-col sm:flex-row gap-4 items-center justify-center">
             <Link
-              to="/start-project"
+              to="/contact"
               className="inline-flex h-16 items-center justify-center gap-3 rounded-full bg-slate-950 px-10 text-base font-black text-white transition-all shadow-[0_8px_30px_rgba(15,23,42,0.25)] hover:bg-slate-800 hover:scale-[1.02] active:scale-98 w-full sm:w-auto"
             >
-              Start Your Project
+              Get a Free Quote
               <ArrowRight size={18} />
             </Link>
 
             <a
-              href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project."
+              href="https://wa.me/917794971935?text=Hi%20Krunnex%2C%20I%27d%20like%20to%20discuss%20a%20project%20for%20my%20business."
               target="_blank"
               rel="noreferrer"
               className="inline-flex h-16 items-center justify-center gap-3 rounded-full bg-white border border-slate-300 px-10 text-base font-bold text-slate-900 hover:bg-slate-50 transition-all shadow-sm w-full sm:w-auto hover:border-slate-400"
